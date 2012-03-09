@@ -1,7 +1,17 @@
 <?php
-# Activate during development
-error_reporting(E_ALL);
-ini_set('display_errors',1);
 
-#require_once('lib/...');
-#require_once('dispatcher.inc.php');
+if ( !function_exists( 'isAdmin' )) {
+
+    /**
+     * Returns true.
+     *
+     * @return bool
+     */
+    function isAdmin()
+    {
+        return true;
+    }
+}
+
+// Includes main index.php file
+require_once dirname(__FILE__)."/../../index.php";
