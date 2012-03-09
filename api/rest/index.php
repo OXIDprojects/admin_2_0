@@ -1,12 +1,9 @@
 <?php
 
+#require_once('lib/...');
+require_once('dispatcher.php');
+=======
 if ( !function_exists( 'isAdmin' )) {
-
-    /**
-     * Returns true.
-     *
-     * @return bool
-     */
     function isAdmin()
     {
         return true;
