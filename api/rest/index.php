@@ -4,9 +4,24 @@ ini_set('display_errors',1);
 
 function getShopBasePath()
 {
-    $sDs = DIRECTORY_SEPARATOR;
-    return dirname(__FILE__).$sDs.'..'.$sDs.'..'.$sDs;
+    return ADMIN2_SHOP_PATH;
 }
+
+/**
+ * Admin2 autoloader function
+ */
+function admin2Autoloader($sClassName)
+{
+    $sFileName = dirname(__FILE__) . "/" . str_replace(array("Admin2_","_"), array("", "/"), basename($sClassName)) . ".php";
+
+    if (file_exists($sFileName)) {
+        require_once($sFileName);
+    } else {
+        throw new Exception("Class $sClassName was not found");
+    }
+}
+
+require dirname(__FILE__) . "/config.inc.php";
 
 /**
  * Load OXID Core Classes
@@ -18,9 +33,8 @@ oxUtils::getInstance()->stripGpcMagicQuotes();
 $iDebug = $myConfig->getConfigParam('iDebug');
 set_exception_handler(array(oxNew('oxexceptionhandler', $iDebug), 'handleUncaughtException'));
 
-foreach (glob('controller/controller_*.php') as $file)
-{
-    require_once($file);
-}
+spl_autoload_register("admin2Autoloader");
 
-require_once('dispatcher.php');
+//here we go
+$oDispatcher = new Admin2_Dispatcher;
+$oDispatcher->run();
