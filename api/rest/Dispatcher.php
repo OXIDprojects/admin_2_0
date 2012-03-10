@@ -35,7 +35,7 @@ class Admin2_Dispatcher {
         $oOutputProcessor = $this->getOutputProcessor();
         #$oOutputProcessor->init($oController->getResult());
         #$oOutputProcessor->sendHeaders();
-        $oOutputProcessor->sendResults();
+        $oOutputProcessor->sendResults($oController->getResult());
 
         die();
     }
