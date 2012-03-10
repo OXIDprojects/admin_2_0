@@ -43,7 +43,7 @@ class Admin2_Controller_Base
     /**
      * Selects and executes appropriate controller method. Formats the result.
      *
-     * @param string $sRequestMethod HTTP call method (GET, POSTS, DELETE, )
+     * @param string $sRequestMethod HTTP call method (POSTS, GET, PUT, DELETE)
      * @param string $sEntity
      * @param string $aParams
      *
@@ -83,9 +83,9 @@ class Admin2_Controller_Base
 
     /**
      * Selects appropriate method name by supplied Entity value.
-     * In case entity value is "search", it would look for method loadSearch in $this Controller. (eg. /api/rest/product/search?q=hi call)
+     * In case entity value is "search", it would look for method loadSearch in $this Controller. (eg. /api/rest/products/search?q=hi call)
      *
-     * If method does not exists it assumes that entity means object id (eg. /api/rest/product/1234 call)
+     * If method does not exists it assumes that entity means object id (eg. /api/rest/products/1234 call)
      * And returns "loadItem"/"saveItem" method
      *
      * Otherwise it would return "loadDefault" method name (eg. /api/rest/products call).
@@ -99,17 +99,15 @@ class Admin2_Controller_Base
 
 
         if ($this->_sEntity) {
-            if (method_exists($this, "load" . $sEntity)) {
-                $sMethod = "load" . $sEntity;
+            if (method_exists($this, "load" . ucfirst($sEntity))) {
+                $sMethod = "load" . ucfirst($sEntity);
             } else {
                 $this->_sId = $sEntity;
                 $sMethod = "loadItem";
             }
         }
-
         return $sMethod;
     }
-
 
     /**
      * Default controller execution (eg. /api/rest/products call).
