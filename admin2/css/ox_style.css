@@ -1,0 +1,36 @@
+#page {
+    height: auto;
+    min-height: 100%;
+    position: relative;
+    width: 100%;
+}
+#adminbar {
+	background-color: #464646;
+    background-image: -moz-linear-gradient(center bottom , #333, #444 5px);
+    color: #CCCCCC;
+    font: 13px/28px sans-serif;
+    height: 35px;
+    left: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 99999;
+}
+#adminbar:after {clear:both}
+
+#adminbar ul, #adminbar ul li {
+    background: none repeat scroll 0 0 transparent;
+    clear: none;
+    list-style: none outside none;
+    margin: 0;
+    padding: 0;
+    position: relative;
+    z-index: 99999;
+}
+#adminbar li {
+    float: left;
+}
+
+
+.left {float:left;}
+.right {float:right;}
