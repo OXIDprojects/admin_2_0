@@ -2,22 +2,41 @@
 error_reporting(E_ALL);
 ini_set('display_errors',1);
 
+/**
+ * Returns the filesystem path to the OXID eShop installation.
+ *
+ * The default path is (relative to this directory) "../../". In case you've installed OXID somewhere in the filesystem,
+ * you can set the shop path via environment variable.
+ * For Apache in .htacces: SetEnv /path/to/oxid/
+ *
+ * @return string
+ */
 function getShopBasePath()
 {
-    return ADMIN2_SHOP_PATH;
+    $oxidShopPath = getenv('OXID_SHOP_PATH');
+    if ($oxidShopPath !== false) {
+        return rtrim($oxidShopPath, '/') . '/';
+    }
+
+    return dirname(__FILE__) . '/../../';
 }
 
 /**
  * Admin2 autoloader function
  */
-function admin2Autoloader($sClassName)
+function admin2Autoloader($className)
 {
-    $sFileName = dirname(__FILE__) . "/" . str_replace(array("Admin2_","_"), array("", "/"), basename($sClassName)) . ".php";
+    $fileName = dirname(__FILE__) . "/"
+        . str_replace(array("Admin2_", "_"), array("", "/"), basename($className)) . ".php";
 
-    if (file_exists($sFileName)) {
-        require_once($sFileName);
-    } else {
-        throw new Exception("Class $sClassName was not found");
+    if (!file_exists($fileName)) {
+        throw new Exception("Can't find file '$fileName'");
+    }
+
+    require_once $fileName;
+
+    if (!class_exists($className)) {
+        throw new Exception("Can't load class '$className'.");
     }
 }
 
