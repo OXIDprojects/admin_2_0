@@ -1,6 +1,8 @@
 $(document).ready(function() {
-  // Handler for .ready() called.
-	
-	
-	
+
+	oTableGrid = $('#grid1').dataTable({
+		"bJQueryUI" : true,
+		"sPaginationType" : "full_numbers"
+	});
+
 });
