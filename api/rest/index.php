@@ -4,7 +4,8 @@ ini_set('display_errors',1);
 
 function getShopBasePath()
 {
-    return dirname(__FILE__).'/../../';
+    $sDs = DIRECTORY_SEPARATOR;
+    return dirname(__FILE__).$sDs.'..'.$sDs.'..'.$sDs;
 }
 
 /**
