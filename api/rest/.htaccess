@@ -1,0 +1,5 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteCond %{REQUEST_URI} (\/api\/rest\/)
+RewriteRule (.*)$ index.php?%{QUERY_STRING} [L]
+</IfModule>
