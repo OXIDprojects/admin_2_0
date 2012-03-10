@@ -3,20 +3,20 @@
     min-height: 100%;
     position: relative;
     width: 100%;
+	margin-top:40px;
 }
 #adminbar {
 	background-color: #464646;
     background-image: -moz-linear-gradient(center bottom , #333, #444 5px);
     color: #CCCCCC;
     font: 13px/28px sans-serif;
-    height: 35px;
+    height: 28px;
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 99999;
 }
-#adminbar:after {clear:both}
 
 #adminbar ul, #adminbar ul li {
     background: none repeat scroll 0 0 transparent;
@@ -31,23 +31,25 @@
     float: left;
 }
 
+#adminbar .right {padding-right:20px; padding-top:5px;}
+#navbar {padding:5px; border:1px solid #eee; position:absolute; top:40px; left:-140; z-index: 50; background-color: #ddd;}
+
+#navbar h2{margin-bottom:10px;}
+#navbar ul{margin-bottom:20px;}
 
 .left {float:left;}
 .right {float:right;}
-
 .hide{
 	display:none;
-
 }
-
 .panelhead
 {
 	background: #ddd;
 	padding: 5px;
 	cursor:pointer;
-
-
 }
+
 .panel{
 margin: 10px; 
 }
+

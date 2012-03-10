@@ -1,11 +1,21 @@
 <?php
+
+/**
+ * Request Dispatcher
+ */
 class Admin2_Dispatcher {
-    static public function request($key)
+
+    public function request($key)
     {
         return oxConfig::getParameter($key);
     }
 
-    static public function main()
+    /**
+     * Starting point for dispatcher execution
+     *
+     * @return null
+     */
+    public function run()
     {   
         $subject = $_SERVER['REQUEST_URI'];
         $pattern = '/'. 
@@ -13,29 +23,66 @@ class Admin2_Dispatcher {
                    'v(?P<version>[0-9])\/'.
                    '(?P<controller>products|categories|orders)'.
                    '\/?(?P<entity>[A-Za-z0-9]*)?'.
-                   '(\.(?P<format>xml|json)?)?'.
+                   '(\.(?P<format>xml|json|csv)?)?'.
                    '/';
-        preg_match($pattern, $subject, $matches);
+        preg_match($pattern, $subject, $this->matches);
 
-        ## Init controller
-        $controller_class = 'admin2_controller_'.$matches['controller'];
-        $valid = ( isset($matches['version']) && isset($matches['controller']) && class_exists($controller_class) );
-                 
-        if ($valid)
+        $method = $this->getRequestMethod();
+
+        ## Init the controller
+        $oController = $this->getController($this->matches["controller"]);
+        $oController->execute($method, $this->matches["entity"], $_REQUEST);
+
+        ## Init output processor
+        $oOutputProcessor = $this->getOutputProcessor();
+        $oOutputProcessor->init($oController->getResult());
+        $oOutputProcessor->sendHeaders();
+        $oOutputProcessor->sendResults();
+
+        die();
+    }
+
+    /**
+     * Returns Controller
+     *
+     * @param string $sController Controller name
+     *
+     * @return Admin2_Controller_Base;
+     */
+    protected function getController($sController)
+    {
+        $class = 'Admin2_Controller_'.ucfirst($sController);
+
+        if (class_exists($class))
         {
-            $controller = new $controller_class;
-            echo '<pre>';
-            echo '<strong>Matches</strong><br>';
-            print_r($matches);
-            echo '<strong>Controller</strong><br>';
-            print_r($controller);
-            echo '<strong>Request</strong><br>';
-            print_r($_REQUEST);
+            $oController = new $class;
+        } else {
+            $oController = new Admin2_Controller_Base();
         }
-        
-        ## TODO: init output
-        #echo self::request('fields');
-    
+
+        return new $oController;
+    }
+
+    /**
+     * Returns Output Processor
+     *
+     * @return Admin2_OutputProcessor;
+     */
+    protected function getOutputProcessor()
+    {
+        $format = (isset($this->matches['format'])) ? $this->matches['format'] : 'Json';
+        $class = 'Admin2_Output_Processor_'.ucfirst($format);
+        return new $class;
+    }
+
+    /**
+     * Returns server request method
+     *
+     * @return string;
+     */
+    protected function getRequestMethod()
+    {
+        //TODO: read forced method param from request
+        return $_SERVER["REQUEST_METHOD"];
     }
 }
-Admin2_Dispatcher::main();
