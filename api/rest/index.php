@@ -50,7 +50,6 @@ require_once getShopBasePath() . 'core/oxfunctions.php';
 $myConfig = oxConfig::getInstance();
 oxUtils::getInstance()->stripGpcMagicQuotes();
 $iDebug = $myConfig->getConfigParam('iDebug');
-set_exception_handler(array(oxNew('oxexceptionhandler', $iDebug), 'handleUncaughtException'));
 
 spl_autoload_register("admin2Autoloader");
 

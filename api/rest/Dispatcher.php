@@ -28,14 +28,14 @@ class Admin2_Dispatcher {
         $method = $this->getRequestMethod();
 
         ## Init the controller
-        $oController = $this->getController();
+        $oController = $this->getController($this->matches["controller"]);
         $oController->execute($method, null, $_REQUEST);
 
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
         #$oOutputProcessor->init($oController->getResult());
         #$oOutputProcessor->sendHeaders();
-        $oOutputProcessor->sendResults();
+        $oOutputProcessor->sendResults($oController->getResult());
 
         die();
     }
@@ -43,12 +43,22 @@ class Admin2_Dispatcher {
     /**
      * Returns Controller
      *
+     * @param string $sController Controller name
+     *
      * @return Admin2_Controller_Base;
      */
-    protected function getController()
+    protected function getController($sController)
     {
-        $class = 'Admin2_Controller_'.ucfirst($this->matches['controller']);
-        return new $class;
+        $class = 'Admin2_Controller_'.ucfirst($sController);
+
+        if (class_exists($class))
+        {
+            $oController = new $class;
+        } else {
+            $oController = new Admin2_Controller_Base();
+        }
+
+        return new $oController;
     }
 
     /**
