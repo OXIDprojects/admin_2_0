@@ -13,7 +13,7 @@ class Admin2_Dispatcher {
     /**
      * Dispatcher
      */
-    public function run()
+    public function __construct()
     {   
         $subject = $_SERVER['REQUEST_URI'];
         $pattern = '/'. 
@@ -23,12 +23,12 @@ class Admin2_Dispatcher {
                    '\/?(?P<entity>[A-Za-z0-9]*)?'.
                    '(\.(?P<format>xml|json)?)?'.
                    '/';
-        preg_match($pattern, $subject, $matches);
+        preg_match($pattern, $subject, $this->matches);
 
         /*
         if ($valid)
         {
-            $controller = new $controller_class;
+            
             echo '<pre>';
             echo '<strong>Matches</strong><br>';
             print_r($matches);
@@ -41,16 +41,41 @@ class Admin2_Dispatcher {
         $method = $this->getRequestMethod();
 
         ## Init the controller
-        $oController = $this->getController($controller);
-        $oController->execute($method, $entity, $_REQUEST);
+        $oController = $this->getController();
+        $oController->execute($method, null, $_REQUEST);
+
+        echo '<pre>';
+        print_r($oController);
 
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
-        $oOutputProcessor->init($oController->getResult());
-        $oOutputProcessor->sendHeaders();
-        $oOutputProcessor->sendResults();
+        #$oOutputProcessor->init($oController->getResult());
+        #$oOutputProcessor->sendHeaders();
+        #$oOutputProcessor->sendResults();
 
         die();
+    }
+
+    /**
+     * Returns Controller
+     *
+     * @return object;
+     */
+    protected function getController()
+    {
+        $class = 'Admin2_Controller_'.$this->matches['controller'];
+        return new $class;
+    }
+
+    /**
+     * Returns Output Processor
+     *
+     * @return object;
+     */
+    protected function getOutputProcessor()
+    {
+        ## TODO - implement this function
+        return new stdClass;
     }
 
     /**
