@@ -25,7 +25,11 @@ class admin2 {
         {
             $controller = new $controller_class;
             echo '<pre>';
+            echo '<strong>Matches</strong><br>';
+            print_r($matches);
+            echo '<strong>Controller</strong><br>';
             print_r($controller);
+            echo '<strong>Request</strong><br>';
             print_r($_REQUEST);
         }
         
