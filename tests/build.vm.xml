@@ -9,7 +9,6 @@
     <delete dir="${logdir}" />
     <mkdir dir="${builddir}" />
     <mkdir dir="${builddir}/api" />
-    <mkdir dir="${builddir}/git" />
     <mkdir dir="${builddir}/coverage" />
     <mkdir dir="${builddir}/pdepend" />
     <mkdir dir="${logdir}" />
