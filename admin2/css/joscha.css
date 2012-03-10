@@ -86,6 +86,10 @@ div.oxidinfo .oxidversion {
     font-size:13px;
 }
 
+/*
+ * Sidebar
+ */
+
 aside {
     float:left;
     width:50px;
@@ -94,28 +98,70 @@ aside {
 
 aside nav ul {
     list-style:none;
-    padding:0;
+    padding:10px 0 0;
     margin:0;
+    background:#DFE5DD;
+    border-radius:0 5px 5px 0;
+    border:solid 1px silver;
 }
 
 aside nav ul  li {
-    padding:5px;
+    padding:0;
     display:block;
-    background:url("icons/dortmund/32x32/publish.png") no-repeat scroll 4px 4px #DFE5DD;
-    -moz-box-shadow: 0 3px 2px #888888;
-    -webkit-box-shadow: 0 3px 2px #888888;
-    box-shadow: 0 3px 2px #888888;
-    margin:0 0 10px 0;
-    width:30px;
-    height:30px;
-    -moz-border-radius: 0 5px 5px 0;
-    border-radius: 0 5px 5px 0;
+    background:url("icons/dortmund/32x32/publish.png") no-repeat scroll 0 0 #DFE5DD;
+    margin:0 0 15px 8px;
+    width:32px;
+    height:32px;
     text-indent:999px;
     overflow:hidden;
+}
+/*
+ * TODO: Define hover and active status
+ */
+aside nav ul li:hover,
+aside nav ul li.active {
+    -moz-transform:rotate(-10deg);
+    -webkit-transform:rotate(-10deg);
+    -o-transform:rotate(-10deg);
+    transform:rotate(-10deg);
 }
 
 aside nav ul ul {
     display:none;
+}
+
+/*
+ * Nav elements
+ */
+
+aside nav ul  li.products {
+    background-image:url('icons/dortmund/32x32/shipping.png');
+}
+
+aside nav ul  li.marketing {
+    background-image:url('icons/dortmund/32x32/special-offer.png');
+}
+
+aside nav ul  li.users {
+    background-image:url('icons/dortmund/32x32/customers.png');
+}
+
+aside nav ul  li.orders {
+    background-image:url('icons/dortmund/32x32/order.png');
+}
+
+aside nav ul  li.settings {
+    background-image:url('icons/dortmund/32x32/settings.png');
+}
+
+aside nav ul  li.divider {
+    background:none;
+    background-color:silver;
+    height:2px;
+    border-right:1px solid white;
+    border-bottom:1px solid white;
+    box-shadwo:none;
+    
 }
 
 #content {
@@ -128,7 +174,7 @@ aside nav ul ul {
     -moz-border-radius: 3px;
     border-radius: 3px;
     float: left;
-    margin: 0 20px 10px 0;
+    margin: 0 20px 8px 0;
     width: 99%;
 }
 
