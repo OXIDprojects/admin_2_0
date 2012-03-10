@@ -31,7 +31,7 @@ class Admin2_Dispatcher {
 
         ## Init the controller
         $oController = $this->getController($this->matches["controller"]);
-        $oController->execute($this->matches["entity"], $_REQUEST);
+        $oController->execute($method, $this->matches["entity"], $_REQUEST);
 
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
