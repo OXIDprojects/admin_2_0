@@ -72,4 +72,14 @@ class Admin2_Controller_Result
     {
         return $this->_blError;
     }
+
+    /**
+     * Returns error message
+     *
+     * @return Admin2_Controller_Error|null
+     */
+    public function getError()
+    {
+        return $this->_oError;
+    }
 }

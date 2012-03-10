@@ -43,7 +43,7 @@ class Admin2_Controller_Base
     /**
      * Selects and executes appropriate controller method. Formats the result.
      *
-     * @param string $sMethod HTTP call method (GET, POSTS, DELETE, )
+     * @param string $sRequestMethod HTTP call method (GET, POSTS, DELETE, )
      * @param string $sEntity
      * @param string $aParams
      *
@@ -51,7 +51,7 @@ class Admin2_Controller_Base
      */
     public function execute($sRequestMethod, $sEntity, $aParams)
     {
-        $this->_sRequestMethod = $sMethod;
+        $this->_sRequestMethod = $sRequestMethod;
         $this->_sEntity = $sEntity;
         $this->_aParams = $aParams;
 
@@ -95,11 +95,11 @@ class Admin2_Controller_Base
 
 
         if ($this->_sEntity) {
-            if (method_exists($this, "execute" . $sEntity)) {
-                $sMethod = "execute" . $sEntity;
+            if (method_exists($this, "load" . $sEntity)) {
+                $sMethod = "load" . $sEntity;
             } else {
                 $this->_sId = $sEntity;
-                $sMethod = "executeItem";
+                $sMethod = "loadItem";
             }
         }
 
