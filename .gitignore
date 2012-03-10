@@ -25,5 +25,6 @@
 /xd_receiver.htm
 .tmp*
 /.project
+/.idea
 /.settings/org.eclipse.core.resources.prefs
 *.*~
