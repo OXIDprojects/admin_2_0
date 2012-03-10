@@ -59,7 +59,7 @@ class Admin2_Dispatcher {
     /**
      * Returns Controller
      *
-     * @return object;
+     * @return Admin2_Controller;
      */
     protected function getController()
     {
@@ -70,7 +70,7 @@ class Admin2_Dispatcher {
     /**
      * Returns Output Processor
      *
-     * @return object;
+     * @return Admin2_OutputProcessor;
      */
     protected function getOutputProcessor()
     {
