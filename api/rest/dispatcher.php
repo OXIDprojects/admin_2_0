@@ -6,26 +6,32 @@ class admin2 {
     }
 
     static public function main()
-    {
-    
+    {   
         $subject = $_SERVER['REQUEST_URI'];
-        $pattern = '/.*\/rest\/(?P<version>.*)\/(?P<class>.*)[\.](?P<format>.*)\?.*/';
-        preg_match($pattern, $subject, $matches,0);
-        
-        echo '<pre>';
-        print_r($matches);
-        
-        
-        /*$url = explode('/rest/', $_SERVER['REQUEST_URI'],2);
-        if (count($url)==2)
+        $pattern = '/'. 
+                   '(.*)\/rest\/'.
+                   'v(?P<version>[0-9])\/'.
+                   '(?P<controller>products|categories|orders)'.
+                   '\/?(?P<entity>[A-Za-z0-9]*)?'.
+                   '(\.(?P<format>xml|json)?)?'.
+                   '/';
+        preg_match($pattern, $subject, $matches);
+
+        ## Init controller
+        $controller_class = 'admin2_controller_'.$matches['controller'];
+        $valid = ( isset($matches['version']) && isset($matches['controller']) && class_exists($controller_class) );
+                 
+        if ($valid)
         {
-            echo $url[1];
+            $controller = new $controller_class;
+            echo '<pre>';
+            print_r($controller);
+            print_r($_REQUEST);
         }
-        */
         
-        echo self::request('fields');
+        ## TODO: init output
+        #echo self::request('fields');
     
     }
 }
 admin2::main();
-?>

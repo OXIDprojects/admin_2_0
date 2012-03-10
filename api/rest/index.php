@@ -17,5 +17,9 @@ oxUtils::getInstance()->stripGpcMagicQuotes();
 $iDebug = $myConfig->getConfigParam('iDebug');
 set_exception_handler(array(oxNew('oxexceptionhandler', $iDebug), 'handleUncaughtException'));
 
-#require_once('lib/...');
+foreach (glob('controller/controller_*.php') as $file)
+{
+    require_once($file);
+}
+
 require_once('dispatcher.php');
