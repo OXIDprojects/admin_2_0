@@ -75,7 +75,7 @@ class OxAdminTemplate {
 
 	function getHTMLAdminBar() {
 		?>
-		<div id="adminbar" class="ui-menu" style="display:none;">
+		<div id="adminbar" class="ui-menu" >
 			<div class="left">
 				<ul>
 					<li>Ich bin Punkt 1</li>

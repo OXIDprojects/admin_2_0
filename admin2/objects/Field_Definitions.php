@@ -12,7 +12,7 @@
 				?>
 				<div class="panel">
 				<h3 class="panelHead"><?php echo $panel->label ?></h3>
-				<div class="panelContent <?php echo ($panel->active)?"hide":"" ?>">
+				<div class="panelContent <?php echo (!$panel->active)?"hide":"" ?>">
 
 				<?php
 				foreach($panel->fields as $obj)
