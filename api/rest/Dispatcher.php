@@ -3,7 +3,24 @@
 /**
  * Request Dispatcher
  */
-class Admin2_Dispatcher {
+class Admin2_Dispatcher
+{
+    /**
+     * @var Admin2_Controller_Request_Abstract
+     */
+    protected $_request;
+
+
+    protected $_outputProcessor;
+
+    public function __construct(
+        Admin2_Controller_Request_Abstract $request,
+        Admin2_Output_Processor_Base $outputProcessor
+    )
+    {
+        $this->_request = $request;
+        $this->_outputProcessor = $outputProcessor;
+    }
 
     public function request($key)
     {
@@ -16,22 +33,22 @@ class Admin2_Dispatcher {
      * @return null
      */
     public function run()
-    {   
-        $subject = $_SERVER['REQUEST_URI'];
-        $pattern = '/'. 
-                   '(.*)\/rest\/'.
-                   'v(?P<version>[0-9])\/'.
-                   '(?P<controller>products|categories|orders)'.
-                   '\/?(?P<entity>[A-Za-z0-9]*)?'.
-                   '(\.(?P<format>xml|json|csv)?)?'.
-                   '/';
-        preg_match($pattern, $subject, $this->matches);
-
-        $method = $this->getRequestMethod();
+    {
+        $method = $this->_request->getMethod();
 
         ## Init the controller
-        $oController = $this->getController($this->matches["controller"]);
-        $oController->execute($method, $this->matches["entity"], $_REQUEST);
+        $controllerName = ucfirst($this->_request->getContoller());
+        $class = "Admin2_Controller_$controllerName";
+
+        if (class_exists($class))
+        {
+            $controller = new $class();
+        } else {
+            throw new Admin2_Controller_Exception("Can't find controller '$controllerName'.");
+        }
+
+        $oController = $this->getController($this->_request->getContoller());
+        $oController->execute($method, $this->_request->getEntity(), $_REQUEST);
 
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
@@ -43,27 +60,6 @@ class Admin2_Dispatcher {
     }
 
     /**
-     * Returns Controller
-     *
-     * @param string $sController Controller name
-     *
-     * @return Admin2_Controller_Base;
-     */
-    protected function getController($sController)
-    {
-        $class = 'Admin2_Controller_'.ucfirst($sController);
-
-        if (class_exists($class))
-        {
-            $oController = new $class;
-        } else {
-            $oController = new Admin2_Controller_Base();
-        }
-
-        return new $oController;
-    }
-
-    /**
      * Returns Output Processor
      *
      * @return Admin2_OutputProcessor;
@@ -71,7 +67,7 @@ class Admin2_Dispatcher {
     protected function getOutputProcessor()
     {
         $format = (isset($this->matches['format'])) ? $this->matches['format'] : 'Json';
-        $class = 'Admin2_Output_Processor_'.ucfirst($format);
+        $class = 'Admin2_Output_Processor_' . ucfirst($format);
         return new $class;
     }
 

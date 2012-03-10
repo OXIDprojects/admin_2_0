@@ -3,7 +3,7 @@
 /**
  * Implements base controller functionality
  */
-class Admin2_Controller_Base
+class Admin2_Controller_Abstract
 {
     /**
      * Result object
@@ -39,6 +39,11 @@ class Admin2_Controller_Base
      * @var null
      */
     protected $_sId = null;
+
+    public function __construct(Admin2_Controller_Request_Abstract $request, Admin2_Controller_Result $result)
+    {
+
+    }
 
     /**
      * Selects and executes appropriate controller method. Formats the result.
