@@ -32,3 +32,17 @@
 
 .left {float:left;}
 .right {float:right;}
+.hide{
+	display:none;
+}
+.panelhead
+{
+	background: #ddd;
+	padding: 5px;
+	cursor:pointer;
+}
+
+.panel{
+margin: 10px; 
+}
+

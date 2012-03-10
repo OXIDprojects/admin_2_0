@@ -1,11 +1,19 @@
 <?php
+
+/**
+ * Request Dispatcher
+ */
 class Admin2_Dispatcher {
-    static public function request($key)
+
+    public function request($key)
     {
         return oxConfig::getParameter($key);
     }
 
-    static public function main()
+    /**
+     * Dispatcher
+     */
+    public function run()
     {   
         $subject = $_SERVER['REQUEST_URI'];
         $pattern = '/'. 
@@ -17,10 +25,7 @@ class Admin2_Dispatcher {
                    '/';
         preg_match($pattern, $subject, $matches);
 
-        ## Init controller
-        $controller_class = 'admin2_controller_'.$matches['controller'];
-        $valid = ( isset($matches['version']) && isset($matches['controller']) && class_exists($controller_class) );
-                 
+        /*
         if ($valid)
         {
             $controller = new $controller_class;
@@ -31,11 +36,31 @@ class Admin2_Dispatcher {
             print_r($controller);
             echo '<strong>Request</strong><br>';
             print_r($_REQUEST);
-        }
-        
-        ## TODO: init output
-        #echo self::request('fields');
-    
+        } */
+
+        $method = $this->getRequestMethod();
+
+        ## Init the controller
+        $oController = $this->getController($controller);
+        $oController->execute($method, $entity, $_REQUEST);
+
+        ## Init output processor
+        $oOutputProcessor = $this->getOutputProcessor();
+        $oOutputProcessor->init($oController->getResult());
+        $oOutputProcessor->sendHeaders();
+        $oOutputProcessor->sendResults();
+
+        die();
+    }
+
+    /**
+     * Returns server request method
+     *
+     * @return string;
+     */
+    protected function getRequestMethod()
+    {
+        //TODO: read forced method param from request
+        return $_SERVER["REQUEST_METHOD"];
     }
 }
-Admin2_Dispatcher::main();

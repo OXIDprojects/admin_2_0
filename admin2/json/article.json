@@ -1,0 +1,55 @@
+{
+	"label":"PageTitle",
+	"panels":
+	[
+		{
+			"label":"Panel 1",
+			"active": true,
+			"fields":
+			[
+				{
+				"type":"text",
+				"id":1,
+				"label": "Label1"
+				},
+				{
+				"type":"datepicker",
+				"id":1,
+				"label": "Label1"
+				},
+				{
+				"type":"number",
+				"id":2,
+				"label": "Label2"
+				}
+			]
+		},
+		{
+			"label":"Panel 2",
+			"active": false,
+			"fields":
+			[
+				{
+				"type":"map",
+				"id":3,
+				"label": "Label3",
+				"coords":
+				[
+					"2'0",
+					"74'0"
+				]
+				},
+				{
+				"type":"datagrid",
+				"id":4,
+				"label": "Label4",
+				"fields":
+				[
+					"oxtitle",
+					"oxprice"
+				]
+				}
+			]
+		}
+	]
+}
