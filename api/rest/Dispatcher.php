@@ -13,7 +13,7 @@ class Admin2_Dispatcher {
     /**
      * Dispatcher
      */
-    public function __construct()
+    public function run()
     {   
         $subject = $_SERVER['REQUEST_URI'];
         $pattern = '/'. 
@@ -33,8 +33,8 @@ class Admin2_Dispatcher {
 
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
-        #$oOutputProcessor->init($oController->getResult());
-        #$oOutputProcessor->sendHeaders();
+        $oOutputProcessor->init($oController->getResult());
+        $oOutputProcessor->sendHeaders();
         $oOutputProcessor->sendResults($oController->getResult());
 
         die();
