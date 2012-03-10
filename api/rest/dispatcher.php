@@ -1,7 +1,6 @@
 <?php
-
-echo '<pre>';
-print_r($_REQUEST);
-echo '</pre>';
-
+$url = explode('/rest/', $_SERVER['REQUEST_URI'],2);
+if (count($url)==2) {
+    echo $url[1];
+}
 ?>
