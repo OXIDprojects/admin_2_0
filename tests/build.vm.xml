@@ -1,4 +1,4 @@
-<project name="oTranCe" default="build" basedir="/home/jenkins/otc">
+<project name="OxidAdmin2" default="build" basedir="/home/jenkins/OXIDAdmin2">
 
 <property name="repodir" value="${basedir}/svn" />
 <property name="builddir" value="${basedir}/build" />
