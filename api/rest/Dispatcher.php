@@ -21,22 +21,9 @@ class Admin2_Dispatcher {
                    'v(?P<version>[0-9])\/'.
                    '(?P<controller>products|categories|orders)'.
                    '\/?(?P<entity>[A-Za-z0-9]*)?'.
-                   '(\.(?P<format>xml|json)?)?'.
+                   '(\.(?P<format>xml|json|csv)?)?'.
                    '/';
         preg_match($pattern, $subject, $this->matches);
-
-        /*
-        if ($valid)
-        {
-            
-            echo '<pre>';
-            echo '<strong>Matches</strong><br>';
-            print_r($matches);
-            echo '<strong>Controller</strong><br>';
-            print_r($controller);
-            echo '<strong>Request</strong><br>';
-            print_r($_REQUEST);
-        } */
 
         $method = $this->getRequestMethod();
 
@@ -44,14 +31,11 @@ class Admin2_Dispatcher {
         $oController = $this->getController();
         $oController->execute($method, null, $_REQUEST);
 
-        echo '<pre>';
-        print_r($oController);
-
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
         #$oOutputProcessor->init($oController->getResult());
         #$oOutputProcessor->sendHeaders();
-        #$oOutputProcessor->sendResults();
+        $oOutputProcessor->sendResults();
 
         die();
     }
@@ -63,7 +47,7 @@ class Admin2_Dispatcher {
      */
     protected function getController()
     {
-        $class = 'Admin2_Controller_'.$this->matches['controller'];
+        $class = 'Admin2_Controller_'.ucfirst($this->matches['controller']);
         return new $class;
     }
 
@@ -74,8 +58,9 @@ class Admin2_Dispatcher {
      */
     protected function getOutputProcessor()
     {
-        ## TODO - implement this function
-        return new stdClass;
+        $format = (isset($this->matches['format'])) ? $this->matches['format'] : 'Json';
+        $class = 'Admin2_Output_Processor_'.ucfirst($format);
+        return new $class;
     }
 
     /**
