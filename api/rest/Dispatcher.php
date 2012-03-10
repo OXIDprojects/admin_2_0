@@ -11,7 +11,9 @@ class Admin2_Dispatcher {
     }
 
     /**
-     * Dispatcher
+     * Starting point for dispatcher execution
+     *
+     * @return null
      */
     public function run()
     {   
@@ -29,13 +31,13 @@ class Admin2_Dispatcher {
 
         ## Init the controller
         $oController = $this->getController($this->matches["controller"]);
-        $oController->execute($method, null, $_REQUEST);
+        $oController->execute($this->matches["entity"], $_REQUEST);
 
         ## Init output processor
         $oOutputProcessor = $this->getOutputProcessor();
         $oOutputProcessor->init($oController->getResult());
         $oOutputProcessor->sendHeaders();
-        $oOutputProcessor->sendResults($oController->getResult());
+        $oOutputProcessor->sendResults();
 
         die();
     }
