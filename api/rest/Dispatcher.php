@@ -59,7 +59,7 @@ class Admin2_Dispatcher {
     /**
      * Returns Controller
      *
-     * @return Admin2_Controller;
+     * @return Admin2_Controller_Base;
      */
     protected function getController()
     {
