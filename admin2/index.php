@@ -54,6 +54,9 @@ class OxAdminTemplate {
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 	
+	<!-- DataTable Grid -->
+	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
+	
 	<!-- unsere jquery functions -->
 	<script type="text/javascript" src="js/ox_jquery.js"></script>
 	<?php
