@@ -55,15 +55,19 @@ class Admin2_Controller_Base
         $this->_sEntity = $sEntity;
         $this->_aParams = $aParams;
 
-        $sMethod = $this->_getMethod();
-
         $this->_oResult = new Admin2_Controller_Result();
 
-        try {
-            //executes actual method
-            $this->_oResult->setContent($this->$sMethod());
-        } catch (Exception $oE) {
-            $this->_oResult->setError($oE);
+        $sMethod = $this->_getMethod();
+
+        if (!$sMethod) {
+            $this->_oResult->setErrorNotFound();
+        } else {
+            try {
+                //executes actual method
+                $this->_oResult->setContent($this->$sMethod());
+            } catch (Exception $oE) {
+                $this->_oResult->setError($oE);
+            }
         }
     }
 
@@ -108,7 +112,8 @@ class Admin2_Controller_Base
 
 
     /**
-     * Default controller execution (eg. /api/rest/products call)
+     * Default controller execution (eg. /api/rest/products call).
+     * The result returned by this method is supposed to be returned for front end client.
      *
      * @return mixed
      */
@@ -119,6 +124,7 @@ class Admin2_Controller_Base
 
     /**
      * Controller method selecting one item (eg. /api/rest/products/1234 call)
+     * The result returned by this method is supposed to be returned for front end client.
      *
      * @return mixed
      */
@@ -129,6 +135,7 @@ class Admin2_Controller_Base
 
     /**
      * Saves one item (eg. when doing POST to /api/rest/products/1234)
+     * The result returned by this method is supposed to be returned for front end client.
      *
      * @return null
      */

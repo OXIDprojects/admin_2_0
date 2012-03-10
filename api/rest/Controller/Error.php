@@ -1,4 +1,7 @@
 <?php
+
+define("ADMIN2_ERROR_NOTFOUND", 404);
+
 /**
  * Created by JetBrains PhpStorm.
  * User: Tomas Liubinas

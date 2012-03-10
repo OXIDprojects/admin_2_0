@@ -63,6 +63,16 @@ class Admin2_Controller_Result
         $this->_oError->message = $oException->getMessage();
     }
 
+    public function setErrorNotFound()
+    {
+        $this->_blError = true;
+        $this->_oError = new Admin2_Controller_Error();
+        $this->_oError->code = ADMIN2_ERROR_NOTFOUND;
+        $this->_oError->httpCode = "404";
+        //TODO: multilanguage support for error messages
+        $this->_oError->message = "Not found";
+    }
+
     /**
      * Indicates if this result containts any error
      *
