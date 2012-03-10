@@ -1,5 +1,5 @@
 <?php
-class admin2 {
+class Admin2_Dispatcher {
     static public function request($key)
     {
         return oxConfig::getParameter($key);
@@ -38,4 +38,4 @@ class admin2 {
     
     }
 }
-admin2::main();
+Admin2_Dispatcher::main();
