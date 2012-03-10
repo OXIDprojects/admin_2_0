@@ -3,13 +3,11 @@
  * 
  */
 
-$template = new OxAdminTemplate ();
 
+$template = new OxAdminTemplate ();
 $template->getHTMLHeader ();
 $template->getHTMLAdminBar();
-
-echo ("<h1>Hallo Welt</h1>");
-
+$template->getHTMLGrid();
 $template->getHTMLFooter ();
 
 /**
@@ -22,7 +20,7 @@ class OxAdminTemplate {
 	
 	function getHTMLHeader() {
 		?>
-		<html>
+	<html>
 		<head>
 		<?php
 		$this->getHTMLJSLibs ();
@@ -31,7 +29,7 @@ class OxAdminTemplate {
 		</head>
 		<body>
 		<!-- bof page -->
-		<div id="page">
+		<div id="page" class="container_16">
 		<?php
 	}
 	
@@ -51,10 +49,11 @@ class OxAdminTemplate {
 	
 	private function getHTMLJSLibs() {
 	?>
+	<!-- jQuery Base-->
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
 	<script type="text/javascript" src="js/jquery-ui-1.8.18.custom.min.js"></script>
 	
-	<!-- DataTable Grid TEST -->
+	<!-- DataTable Grid -->
 	<script type="text/javascript" src="js/jquery.dataTables.min.js"></script>
 	
 	<!-- unsere jquery functions -->
@@ -74,20 +73,57 @@ class OxAdminTemplate {
 			<div class="right">
 				<ul class="ui-widget ui-helper-clearfix">
 				<li class="ui-state-default ui-corner-all">
-					<span class="ui-icon ui-icon-gear"></span>
+					<span class="ui-icon ui-icon-gear"></span>SETTINGS
 				</li>
 				
 				</ul>
 			</div>
+			<div class="clear"></div>
 		</div>
+		
 		<?php 
 	}
-	
+	function getHTMLGrid() {
+		?>
+		<div class="grid_16">
+			<h1>Grid</h1>
+			
+            <table id="grid1">
+                <thead>
+                    <tr>
+                        <th>Column 1</th>
+                        <th>Column 2</th>
+                        <th>etc</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Row 1 Data 1</td>
+                        <td>Row 1 Data 2</td>
+                        <td>etc</td>
+                    </tr>
+                    <tr>
+                        <td>Row 2 Data 1</td>
+                        <td>Row 2 Data 2</td>
+                        <td>etc</td>
+                    </tr>
+                </tbody>
+            </table>
 
+
+		</div>
+
+		<?php
+	}
+
+	function echoHTML($sHTML) {
+		echo $sHTML;
+	}
+	
 	function getHTMLFooter() {
 		?>		
 	<!-- eof page -->
-	</div> 
+	</div>
 	</body>
 	</html>
 	<?php

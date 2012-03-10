@@ -9,14 +9,13 @@
     background-image: -moz-linear-gradient(center bottom , #333, #444 5px);
     color: #CCCCCC;
     font: 13px/28px sans-serif;
-    height: 35px;
+    height: 28px;
     left: 0;
     position: fixed;
     top: 0;
     width: 100%;
     z-index: 99999;
 }
-#adminbar:after {clear:both}
 
 #adminbar ul, #adminbar ul li {
     background: none repeat scroll 0 0 transparent;
@@ -30,7 +29,6 @@
 #adminbar li {
     float: left;
 }
-
 
 .left {float:left;}
 .right {float:right;}
