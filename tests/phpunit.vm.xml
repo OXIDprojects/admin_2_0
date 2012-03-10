@@ -11,6 +11,10 @@
          testSuiteLoaderClass="PHPUnit_Runner_StandardTestSuiteLoader"
          verbose="true"
          strict="true">
+    <php>
+        <env name="OXID_SHOP_PATH" value="/srv/www/oxid/"/>
+    </php>
+
     <testsuites>
         <testsuite name="OxidAdmin2Suite">
             <directory>unit/</directory>
