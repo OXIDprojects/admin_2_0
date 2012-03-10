@@ -3,6 +3,7 @@
     min-height: 100%;
     position: relative;
     width: 100%;
+	margin-top:40px;
 }
 #adminbar {
 	background-color: #464646;
@@ -29,6 +30,12 @@
 #adminbar li {
     float: left;
 }
+
+#adminbar .right {padding-right:20px; padding-top:5px;}
+#navbar {padding:5px; border:1px solid #eee; position:absolute; top:40px; left:-140; z-index: 50; background-color: #ddd;}
+
+#navbar h2{margin-bottom:10px;}
+#navbar ul{margin-bottom:20px;}
 
 .left {float:left;}
 .right {float:right;}

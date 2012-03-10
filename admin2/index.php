@@ -10,7 +10,6 @@ $template = new OxAdminTemplate ();
 
 $template = new OxAdminTemplate ();
 $template->getHTMLHeader ();
-$template->getHTMLAdminBar();
 $template->getContent();
 $template->getHTMLFooter ();
 
@@ -22,7 +21,8 @@ $template->getHTMLFooter ();
  */
 class OxAdminTemplate {
 
-	function getHTMLHeader() {
+	function getHTMLHeader() 
+	{
 		?>
 	<html>
 		<head>
@@ -41,12 +41,23 @@ class OxAdminTemplate {
 		</script>
 		</head>
 		<body>
+		<?php 
+		
+		$this->getHTMLAdminBar();
+		
+		$this->getHTMLNavBar();
+		
+		
+		?>
+		
+		
 		<!-- bof page -->
 		<div id="page" class="container_16">
 		<?php
 	}
 
-	private function getHTMLcss() {
+	private function getHTMLcss() 
+	{
 		?>
 	<!-- oxid admin basis -->
 	<link rel="stylesheet" type="text/css" media="screen" href="css/ox_reset.css">
@@ -60,7 +71,8 @@ class OxAdminTemplate {
 	<?php
 	}
 
-	private function getHTMLJSLibs() {
+	private function getHTMLJSLibs() 
+	{
 	?>
 	<!-- jQuery Base-->
 	<script type="text/javascript" src="js/jquery-1.7.1.min.js"></script>
@@ -73,9 +85,10 @@ class OxAdminTemplate {
 	<?php
 	}
 
-	function getHTMLAdminBar() {
+	function getHTMLAdminBar() 
+	{
 		?>
-		<div id="adminbar" class="ui-menu" style="display:none;">
+		<div id="adminbar" class="ui-menu">
 			<div class="left">
 				<ul>
 					<li>Ich bin Punkt 1</li>
@@ -85,7 +98,7 @@ class OxAdminTemplate {
 			<div class="right">
 				<ul class="ui-widget ui-helper-clearfix">
 				<li class="ui-state-default ui-corner-all">
-					<span class="ui-icon ui-icon-gear"></span>SETTINGS
+					<span class="ui-icon ui-icon-gear"></span>
 				</li>
 
 				</ul>
@@ -96,44 +109,69 @@ class OxAdminTemplate {
 		
 		<?php 
 	}
-	function getHTMLGrid() {
-		?>
-		<div class="grid_16">
-			<h1>Grid</h1>
-			
-            <table id="grid1">
-                <thead>
-                    <tr>
-                        <th>Column 1</th>
-                        <th>Column 2</th>
-                        <th>etc</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>Row 1 Data 1</td>
-                        <td>Row 1 Data 2</td>
-                        <td>etc</td>
-                    </tr>
-                    <tr>
-                        <td>Row 2 Data 1</td>
-                        <td>Row 2 Data 2</td>
-                        <td>etc</td>
-                    </tr>
-                </tbody>
-            </table>
+	
+	
+	function getHTMLNavBar()
+	{
+	?>
+	<div id="navbar">
+		<h2>ICON Artikelverwaltung</h2>
+		<ul>
+			<li>Artikel</li>
+			<li>Attribute</li>
+			<li>Kategorien</li>
+			<li>...</li>
+		</ul>
+		
+		<h2>ICON Marketing</h2>
+		<ul>
+			<li>Aktionen verwalten</li>
+			<li>Gutscheine</li>
+			<li>CMS-Seiten</li>
+			<li>...</li>
+		</ul>
+		
+		<h2>ICON Marketing</h2>
+		<ul>
+			<li>Aktionen verwalten</li>
+			<li>Gutscheine</li>
+			<li>CMS-Seiten</li>
+			<li>...</li>
+		</ul>
 
-
-		</div>
-
-		<?php
+		<h2>ICON Marketing</h2>
+		<ul>
+			<li>Aktionen verwalten</li>
+			<li>Gutscheine</li>
+			<li>CMS-Seiten</li>
+			<li>...</li>
+		</ul>				
+	</div>
+	
+	<script>
+	$(document).ready(function(){
+		
+		$("#navbar").hover(function(){
+  			$("#navbar").animate({"left": "0px"}, "fast");
+		}, function(){
+			$("#navbar").animate({"left": "-=140px"}, "fast");
+		});
+	});
+	</script>
+	
+	<?php     
 	}
+	
+	
 
-	function echoHTML($sHTML) {
+
+	function echoHTML($sHTML) 
+	{
 		echo $sHTML;
 	}
 	
-	function getHTMLFooter() {
+	function getHTMLFooter() 
+	{
 		?>
 	<!-- eof page -->
 	</div>
