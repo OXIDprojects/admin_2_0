@@ -103,12 +103,17 @@
 						{
 							"Type": "Panel",
 							"Title": "Statistics",
+							"Active": true,
 							"Items" :
 							[
 								{
 									"Type": "Chart",
-									"ChartType": "Bar",
-									"Data":  "Some Data Representation"
+									"ChartType": "Pie",
+									"Title":"Online Bestseller 2009",
+									"Width": "100%", 
+									"Height": "200px",
+									"Description": "Die Meistverkauften Produktgruppen im Online-Handel nach Angabe der Haendler ( in %)",
+									"DataUrl":  "json/ChartData.json"
 								}
 							]
 						}

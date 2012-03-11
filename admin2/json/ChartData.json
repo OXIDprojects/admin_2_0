@@ -1,0 +1,18 @@
+[
+	{
+		"Category": "CDs", 
+		"Value": 18.2
+	},
+	{
+		"Category": "Buecher", 
+		"Value": 18
+	},
+	{
+		"Category": "Elektro", 
+		"Value": 17.2
+	},
+	{
+		"Category": "Mode", 
+		"Value": 14.4
+	}
+]
