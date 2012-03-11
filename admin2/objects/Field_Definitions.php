@@ -1,132 +1,260 @@
 <?php
 	class Field_Definitions
 	{
-		static function renderSite($info)
+		static function renderItems($info)
 		{
-			?>
-			<h1><?php echo $info->label ?></h1>
-			<div class="panels">
-			<?php
-			foreach($info->panels as $panel)
-			{
-				?>
-				<div class="panel">
-				<h3 class="panelHead"><?php echo $panel->label ?></h3>
-				<div class="panelContent <?php echo (!$panel->active)?"hide":"" ?>">
-
-				<?php
-				foreach($panel->fields as $obj)
+		
+			foreach($info->Items as $obj)
 				{
-					$func = "get".ucfirst($obj->type);
+					$func = ucfirst($obj->Type);
 					Field_Definitions::$func($obj);
 				}
-				?>
-				</div>
-				</div>
+		}
+
+		static function Panel($info)
+		{
+?>
+				<section id="" class="listentry <?php echo (isset($info->Width))? "grid_".$info->Width:"" ?>">
+				<header class="panelHead<?php echo (isset($info->Active) && $info->Active)?" open":"" ?>"><?php echo $info->Title ?></header>
+				<section >
+
 				<?php
-			}
+
+					Field_Definitions::renderItems($info); 
+				
+				?>
+				</section>
+				</section>
+				<?php
+
+		}
+		
+		static function Columns($info)
+		{
 			?>
+			<div class="container_16">
+			<?php
+					Field_Definitions::renderItems($info);
+			?>
+			
+			
+			</div>
+			<div class="clearfix"></div>
+			<?php
+		}
+		
+		static function Column($info)
+		{
+		?>
+			<div class="<?php echo (isset($info->Width))? "grid_".$info->Width:"" ?>">
+			<?php Field_Definitions::renderItems($info) ?>
 			</div>
 			<?php
 		}
+		
+		static function Text($info)
+		{
+			?>
 
-		static function getText($info)
+			
+				<p><?php echo $info->Text ?></p>
+
+			<?php
+		}
+		
+		static function Textbox($info)
 		{
 			?>
 			<div>
 
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<input id="<?php echo $info->id ?>" type="text" />
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input id="<?php echo $info->Id ?>" Type="text" value="<?php echo (isset($info->value))? $info->value:"" ?>" />
 			</div>
 			<?php
 		}
+		static function Image($info)
+		{
+				?>
+				<image src="<?php echo $info->Source ?>" title="<?php echo (isset($info->Label))? $info->Label:"" ?>" />
+				<?php
+		}
 
-		static function getMap($info)
+		static function Map($info)
 		{
 			?>
 			<div>
 
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<div id="<?php echo $info->id ?>">I will show a Map with the Coordinates: <?php echo $info->coords[0]."; ".$info->coords[1] ?></div>
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<div id="<?php echo $info->Id ?>">I will show a Map with the Coordinates: <?php echo $info->coords[0]."; ".$info->coords[1] ?></div>
 			</div>
 			<?php
 		}
 
-		static function getNumber($info)
+		static function Numberbox($info)
 		{
 			?>
 			<div>
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<input id="<?php echo $info->id ?>" type="number" />
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input id="<?php echo $info->Id ?>" Type="number" value="<?php echo (isset($info->value))? $info->value:"" ?>" />
 			</div>
 			<?php
 		}
 
-		static function getDatepicker($info)
-		{
-			?>
-			<div>
-
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<input id="<?php echo $info->id ?>" type="date" />
-			</div>
-			<?php
-		}
-
-		static function getBarchart($info)
+		static function Datepicker($info)
 		{
 			?>
 			<div>
 
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<input id="<?php echo $info->id ?>" type="text" value="i am a barchart" />
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input id="<?php echo $info->Id ?>" Type="date" />
+			</div>
+			<script>
+			$(function(){
+				$("input['Type=date']").datepicker(); 
+				})
+			</script>
+			<?php
+		}
+
+		static function Chart($info)
+		{
+			?>
+			<div>
+i am a chart
 			</div>
 			<?php
 		}
 
-		static function getTextarea($info)
+		static function Textarea($info)
 		{
 			?>
 			<div class="textarea">
 
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<textarea id="<?php echo $info->id ?>" type="text" ></textarea>
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<textarea id="<?php echo $info->Id ?>" Type="text" >
+					<?php echo ($info->value)? $info->value:"" ?>
+					</textarea>
 			</div>
+			
 			<?php
+			if($info->rte)
+			{
+				Field_Definitions::getTinyMceScript($info);
+			}
+		}
+		
+		static function TinyMceScript($info)
+		{
+			
 		}
 
-		static function getCheckbox($info)
+		static function Checkbox($info)
 		{
 			?>
 			<div class="checkbox">
 
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-				<input id="<?php echo $info->id ?>" type="checkbox" />
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input id="<?php echo $info->Id ?>" Type="checkbox" />
 			</div>
 			<?php
 		}
+		
+		static function Select($info)
+		{
+			?>
+			<div class="select">
 
-		static function getDatagrid($info)
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<select id="<?php echo $info->Id ?>" Type="checkbox" >
+				<?php 
+				foreach($info->option as $option => $value)
+				{
+				?>
+				<option value="<?php echo $value ?>"> <?php echo $option ?><option>
+				<?php
+				}
+					?>
+				</select>
+			</div>
+			<?php
+		}
+		
+		static function Splitbutton($info)
+		{
+			?>
+			<div class="splitbutton">
+
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input class="ui-icon" id="<?php echo $info->Id ?>" Type="button" />
+			</div>
+			<?php
+		}
+		
+		static function Imagebutton($info)
+		{
+			?>
+			<div class="imagebutton">
+				<input id="button_<?php echo $info->Id ?>" Type="checkbox" value="<?php echo $info->Label ?>"/>
+			</div>
+			<script>
+				$(function(){ 
+					$("#button_<?php echo $info->Id ?>").button({icons:{primary: "ui-icon-<?php echo $info->icon ?>"}});
+					});
+			</script>
+			<?php
+		}
+
+		static function Datagrid($info)
 		{
 			?>
 			<div class="datagrid">
 
-			<label for="<?php echo $info->id ?>"><?php echo $info->label ?></label>
-			<table>
+			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+			<table id="table_<?php echo $info->Id ?>">
+			<thead>
 			<tr>
+			
 				<?php
-				foreach($info->fields as $field)
+				foreach($info->Fields as $field)
 				{
 				?>
-				<th><?php echo $field ?></th>
+				<th><?php echo $field->Label ?></th>
 				<?php
 				}
 				?>
 				</tr>
+				</thead>
+				<tbody>
+				<?php
+				global $rc; 
+				$data = $rc->getData($info->dataUrl);
+				
+				foreach($data as $row)
+				{
+					?>
+					<tr>
+					<?php
+					foreach($row as $cell)
+					{
+					?>
+						<td><?php echo $cell ?></td>
+					<?php
+					}
+					?>
+					</tr>
+					<?php
+				}
+				?>
+				</tbody>
 				</table>
+				<script>
+				  $('#table_<?php echo $info->Id ?>').dataTable({
+        "bJQueryUI": true,
+        "sPaginationType": "full_numbers"
+    });
+				</script>
 			</div>
 			<?php
 		}
-
 	}
 ?>

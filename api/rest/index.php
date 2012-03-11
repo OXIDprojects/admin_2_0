@@ -7,7 +7,7 @@ ini_set('display_errors',1);
  *
  * The default path is (relative to this directory) "../../". In case you've installed OXID somewhere in the filesystem,
  * you can set the shop path via environment variable.
- * For Apache in .htacces: SetEnv /path/to/oxid/
+ * For Apache in VHost configuratio or .htacces: SetEnv OXID_SHOP_PATH /path/to/oxid/
  *
  * @return string
  */
@@ -46,14 +46,14 @@ require dirname(__FILE__) . "/config.inc.php";
  * Load OXID Core Classes
  */
 require getShopBasePath() . 'modules/functions.php';
-require_once getShopBasePath() . 'core/oxfunctions.php';
+require getShopBasePath() . 'core/oxfunctions.php';
 $myConfig = oxConfig::getInstance();
 oxUtils::getInstance()->stripGpcMagicQuotes();
 $iDebug = $myConfig->getConfigParam('iDebug');
-set_exception_handler(array(oxNew('oxexceptionhandler', $iDebug), 'handleUncaughtException'));
 
 spl_autoload_register("admin2Autoloader");
 
 //here we go
-$oDispatcher = new Admin2_Dispatcher;
+$request = new Admin2_Controller_Request_Http();
+$oDispatcher = new Admin2_Dispatcher($request);
 $oDispatcher->run();

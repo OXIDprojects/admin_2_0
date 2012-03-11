@@ -1,6 +1,6 @@
 <?php
 
-class Admin2_Controller_Products extends Admin2_Controller_Base
+class Admin2_Controller_Products extends Admin2_Controller_Abstract
 {
     public function getResults() {
         //.. do some stuff..
