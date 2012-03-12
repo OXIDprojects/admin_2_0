@@ -1,10 +1,11 @@
 <?php
 
-class Admin2_Output_Processor_Json extends Admin2_Output_Processor_Base
+class Admin2_Output_Processor_Json implements Admin2_Output_Processor_Interface
 {
-    public function sendResults()
-    {   
-        header('Content-Type:application/json');
-        echo json_encode(array('hello'=>'world'));
+    public function process(Admin2_Controller_Result $result)
+    {
+        $result->addResponseHeader('Content-Type', 'application/json', true);
+
+        return json_encode($result->getData());
     }
 }

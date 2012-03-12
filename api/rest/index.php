@@ -21,24 +21,18 @@ function getShopBasePath()
     return dirname(__FILE__) . '/../../';
 }
 
-/**
- * Admin2 autoloader function
- */
-function admin2Autoloader($className)
-{
-    $fileName = dirname(__FILE__) . "/"
-        . str_replace(array("Admin2_", "_"), array("", "/"), basename($className)) . ".php";
+set_include_path(
+    implode(
+        PATH_SEPARATOR,
+        array(
+            dirname(__FILE__),
+            get_include_path(),
+        )
+    )
+);
 
-    if (!file_exists($fileName)) {
-        throw new Exception("Can't find file '$fileName'");
-    }
-
-    require_once $fileName;
-
-    if (!class_exists($className)) {
-        throw new Exception("Can't load class '$className'.");
-    }
-}
+require 'Autoloader.php';
+$loader = Admin2_Autoloader::getInstance();
 
 require dirname(__FILE__) . "/config.inc.php";
 
@@ -47,13 +41,9 @@ require dirname(__FILE__) . "/config.inc.php";
  */
 require getShopBasePath() . 'modules/functions.php';
 require getShopBasePath() . 'core/oxfunctions.php';
-$myConfig = oxConfig::getInstance();
-oxUtils::getInstance()->stripGpcMagicQuotes();
-$iDebug = $myConfig->getConfigParam('iDebug');
-
-spl_autoload_register("admin2Autoloader");
 
 //here we go
 $request = new Admin2_Controller_Request_Http();
-$oDispatcher = new Admin2_Dispatcher($request);
-$oDispatcher->run();
+$result = new Admin2_Controller_Result();
+$dispatcher = new Admin2_Dispatcher($request, $result);
+$dispatcher->run();

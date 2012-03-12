@@ -6,21 +6,21 @@ abstract class Admin2_Controller_Request_Abstract
      *
      * @var string
      */
-    protected $_controller = 'error';
+    protected $_controller = null;
 
     /**
      * Name of the requested entity.
      *
      * @var string
      */
-    protected $_entity = 'invalidUrl';
+    protected $_entity = null;
 
     /**
      * Version number of the API.
      *
      * @var string
      */
-    protected $_version = '0.1';
+    protected $_version = null;
 
     /**
      * Format of the response.
@@ -34,7 +34,7 @@ abstract class Admin2_Controller_Request_Abstract
      *
      * @var string
      */
-    protected $_method = 'GET';
+    protected $_method = null;
 
     /**
      * Request parameter.
