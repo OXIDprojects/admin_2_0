@@ -87,4 +87,12 @@
         -i tests/,index.php,bootstrap.php/" />
   </exec>
  </target>
+
+    <target name="docblox">
+     <exec executable="phpdox">
+      <arg line="project:run -d ${basedir}
+           -t ${builddir}/api" />
+     </exec>
+    </target>
+
 </project>
