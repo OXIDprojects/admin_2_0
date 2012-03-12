@@ -12,37 +12,35 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
             throw new Admin2_Controller_Request_Exception("Request URI is not set.");
         }
 
-        $pattern = '/'
-            . '(.*)\/rest\/'
-            . 'v(?P<version>[0-9])\/'
-            . '(?P<controller>products|categories|orders)'
-            . '\/?(?P<entity>[A-Za-z0-9]*)?'
-            . '(\.(?P<format>xml|json|csv)?)?'
-            . '/';
-        if (preg_match($pattern, $_SERVER['REQUEST_URI'], $matches)) {
-            if (isset($matches['controller']) && !empty($matches['controller'])) {
-                $this->_controller = $matches['controller'];
-            }
+        $baseDir = dirname($_SERVER['SCRIPT_NAME']) . '/';
+        $cleanRequestUri = str_replace($baseDir, '', $_SERVER['REQUEST_URI']);
+        $urlParts = explode('/', trim($cleanRequestUri, '/'));
+        $count = count($urlParts);
+        $formatPos = strpos($urlParts[$count - 1], '.');
 
-            if (isset($matches['version']) && !empty($matches['version'])) {
-                $this->_version = $matches['version'];
-            }
+        if ($formatPos !== false) {
+            $this->_format = substr($urlParts[$count - 1], $formatPos + 1);
+            $urlParts[$count - 1] = substr($urlParts[$count - 1], 0, $formatPos);
+        }
 
-            if (isset($matches['entity']) && !empty($matches['entity'])) {
-                $this->_entity = $matches['entity'];
-            }
+        if ($count > 0) {
+            $this->_version = substr($urlParts[0], 1);
+        }
 
-            if (isset($matches['format']) && !empty($matches['format'])) {
-                $this->_format = $matches['format'];
-            }
+        if ($count > 1) {
+            $this->_controller = $urlParts[1];
+        }
 
-            if (isset( $_SERVER['REQUEST_METHOD']) && !empty( $_SERVER['REQUEST_METHOD'])) {
-                $this->_method = $_SERVER['REQUEST_METHOD'];
-            }
+        if ($count > 2) {
+            $this->_entity = $urlParts[2];
+        }
 
-            if (isset($_REQUEST) && !empty($_REQUEST)) {
-                $this->_params = filter_var_array($_REQUEST);
-            }
+        if (isset($_REQUEST) && !empty($_REQUEST)) {
+            $this->_params = filter_var_array($_REQUEST);
+        }
+
+        if (isset( $_SERVER['REQUEST_METHOD']) && !empty( $_SERVER['REQUEST_METHOD'])) {
+            $this->_method = $_SERVER['REQUEST_METHOD'];
         }
     }
 
