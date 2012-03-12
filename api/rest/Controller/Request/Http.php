@@ -8,7 +8,7 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
      */
     public function init()
     {
-        $subject = $_SERVER['REQUEST_URI'];
+        $subject = isset($_SERVER['REQUEST_URI']) ? $_SERVER['REQUEST_URI'] : '';
         $pattern = '/'
             . '(.*)\/rest\/'
             . 'v(?P<version>[0-9])\/'
