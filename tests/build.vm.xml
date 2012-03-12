@@ -1,6 +1,6 @@
-<project name="OxidAdmin2" default="build" basedir="/home/jenkins/OXIDAdmin2">
+<project name="OxidAdmin2" default="build" basedir="/home/jenkins/oxid_admin2">
 
-<property name="repodir" value="${basedir}" />
+<property name="repodir" value="${basedir}/git" />
 <property name="builddir" value="${basedir}/build" />
 <property name="logdir" value="${basedir}/build/logs" />
 
