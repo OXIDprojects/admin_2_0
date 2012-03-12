@@ -87,4 +87,13 @@
         -i tests/,index.php,bootstrap.php/" />
   </exec>
  </target>
+
+    <target name="docblox">
+     <exec executable="docblox">
+      <arg line="project:run -d ${basedir}
+           -t ${builddir}/api
+           --template zend" />
+     </exec>
+    </target>
+
 </project>
