@@ -61,7 +61,7 @@
 											"Name": "date"
 										},
 										{
-											"Type": "Br"
+											"Type": "Linebreak"
 										},
 										{
 											"Type": "Panel", 
@@ -163,10 +163,6 @@
 								}
 							]
 						}
-						
-						
-						
-						
 					]
 				}
 			]

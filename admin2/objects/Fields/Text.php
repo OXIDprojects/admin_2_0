@@ -1,0 +1,1 @@
+<p><?php echo $info->Text ?></p>
