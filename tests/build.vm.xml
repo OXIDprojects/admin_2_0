@@ -91,7 +91,8 @@
     <target name="docblox">
      <exec executable="docblox">
       <arg line="project:run -d ${basedir}
-           -t ${builddir}/api" />
+           -t ${builddir}/api
+           --template zend" />
      </exec>
     </target>
 
