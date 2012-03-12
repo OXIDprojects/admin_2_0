@@ -1,7 +1,7 @@
 <project name="OxidAdmin2" default="build" basedir="/home/jenkins/oxid_admin2">
 
 <property name="builddir" value="${basedir}/build" />
-<property name="logdir" value="${bulddir}/logs" />
+<property name="logdir" value="${builddir}/logs" />
 
 <target name="clean">
     <delete dir="${builddir}" />
