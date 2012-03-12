@@ -34,8 +34,6 @@ set_include_path(
 require 'Autoloader.php';
 $loader = Admin2_Autoloader::getInstance();
 
-require dirname(__FILE__) . "/config.inc.php";
-
 /**
  * Load OXID Core Classes
  */
