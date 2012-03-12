@@ -36,11 +36,43 @@
 											"CssClass": ""
 										},
 										{
+											"Type": "Line"
+										},
+										{
 											"Type": "Textbox",
 											"Name": "oxtitle",
 											"Label": "Title",
 											"Value": "Kite", 
 											"Id" : "1"
+										}, 
+										{
+											"Type": "Numberbox",
+											"Name": "oxprice",
+											"Label": "Price",
+											"Value": "3", 
+											"Id" : "number1"
+										}, 
+										{
+											"Type" : "Datepicker", 
+											"Date" : "12.03.2012", 
+											"MinDate" : "2012-03-11", 
+											"Id": "date1", 
+											"Label": "Date", 
+											"Name": "date"
+										},
+										{
+											"Type": "Br"
+										},
+										{
+											"Type": "Panel", 
+											"Title": "Nested Infopanel", 
+											"Items": 
+											[
+												{
+													"Type": "Text", 
+													"Text": "Just some Info"
+												}
+											]
 										}
 									]
 								},
@@ -53,7 +85,7 @@
 									[
 										{
 											"Type": "Image",
-											"Source": "http://lorempixel.com/400/400/food"
+											"Source": "http://lorempixel.com/300/300/food"
 										}
 										
 									]
@@ -116,7 +148,25 @@
 									"DataUrl":  "json/ChartData.json"
 								}
 							]
+						},
+						{
+							"Type": "Panel",
+							"Title": "Youtube",
+			
+							"Items" :
+							[
+								{
+									"Type": "Youtube",
+									"Width": "100%", 
+									"Height": 300,
+									"Source": "http://www.youtube.com/embed/eKG08z85DtY"
+								}
+							]
 						}
+						
+						
+						
+						
 					]
 				}
 			]

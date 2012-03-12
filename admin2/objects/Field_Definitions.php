@@ -37,9 +37,9 @@
 					Field_Definitions::renderItems($info);
 			?>
 			
-			
-			</div>
 			<div class="clearfix"></div>
+			</div>
+			
 			<?php
 		}
 		
@@ -55,10 +55,7 @@
 		static function Text($info)
 		{
 			?>
-
-			
 				<p><?php echo $info->Text ?></p>
-
 			<?php
 		}
 		
@@ -67,7 +64,7 @@
 			?>
 			<div>
 
-			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+			<Label class="input" for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
 				<input id="<?php echo $info->Id ?>" Type="text" value="<?php echo (isset($info->value))? $info->value:"" ?>" />
 			</div>
 			<?php
@@ -84,18 +81,33 @@
 			?>
 			<div>
 
-			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+			<Label class="input" for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
 				<div id="<?php echo $info->Id ?>">I will show a Map with the Coordinates: <?php echo $info->coords[0]."; ".$info->coords[1] ?></div>
 			</div>
 			<?php
 		}
 
+		static function Br($info)
+		{
+			?><br/><?php
+		}
+		
+		static function Line($info)
+		{
+			?><hr/><?php
+		}
+		static function Youtube($info)
+		{
+		?>
+		<iframe width="<?php echo $info->Width ?>" height="<?php echo $info->Height ?>" src="<?php echo $info->Source ?>" frameborder="0" allowfullscreen></iframe>
+		<?php
+		}
 		static function Numberbox($info)
 		{
 			?>
 			<div>
-			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
-				<input id="<?php echo $info->Id ?>" Type="number" value="<?php echo (isset($info->value))? $info->value:"" ?>" />
+			<Label class="input" for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input id="<?php echo $info->Id ?>" Type="number" value="<?php echo (isset($info->Value))? $info->Value:"" ?>" />
 			</div>
 			<?php
 		}
@@ -105,12 +117,19 @@
 			?>
 			<div>
 
-			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
-				<input id="<?php echo $info->Id ?>" Type="date" />
+			<Label class="input" for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+				<input id="<?php echo $info->Id ?>" type="date" value=""/>
 			</div>
 			<script>
 			$(function(){
-				$("input['Type=date']").datepicker(); 
+				$("input[type='date']").datepicker({
+				dateFormat: "dd.mm.yy",
+				altFormat: 'yy-mm-dd'
+				<?php
+				echo (isset($info->MinDate))?",minDate: new Date('{$info->MinDate}')":""; 
+				echo (isset($info->MaxDate))?",minDate: new Date('{$info->MaxDate}')":""; 
+				?>
+				}).datepicker('setDate', '<?php echo $info->Date ?>'); 
 				})
 			</script>
 			<?php
@@ -256,7 +275,7 @@
 			?>
 			<div class="datagrid">
 
-			<Label for="<?php echo $info->Id ?>"><?php echo $info->Label ?></Label>
+			<h3><?php echo $info->Label ?></h3>
 			<table id="table_<?php echo $info->Id ?>">
 			<thead>
 			<tr>

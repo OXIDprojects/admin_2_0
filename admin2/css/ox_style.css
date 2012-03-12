@@ -197,7 +197,7 @@ aside nav ul  li.divider {
     width:400px;
 }
 
-.listentry section{
+.listentry > section{
     border-top:solid 1px silver;
     display:none;
     padding: 10px 10px 10px 28px;
@@ -234,6 +234,13 @@ footer {
 
 input[type="submit"] {
     margin-left:80px;
+}
+
+label.input{
+    clear:both;
+    float:left;
+    font-weight:bold;
+    width:80px;
 }
 
 .group {
