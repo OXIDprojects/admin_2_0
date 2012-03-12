@@ -89,7 +89,7 @@
  </target>
 
     <target name="docblox">
-     <exec executable="phpdox">
+     <exec executable="docblox">
       <arg line="project:run -d ${basedir}
            -t ${builddir}/api" />
      </exec>
