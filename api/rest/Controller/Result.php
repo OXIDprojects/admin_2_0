@@ -1,95 +1,49 @@
 <?php
-/**
- * Result container. We need this class to have a single object capable of storing result content and/or error information
- */
 class Admin2_Controller_Result
 {
-    /**
-     * Actual result contents. It could be an object, array or any useful content
-     *
-     * @var mixed
-     */
-    protected $_mContents;
+    protected $_responseCode;
 
-    /**
-     * Indicates if this result object contains any errors
-     *
-     * @var bool
-     */
-    protected $_blError = false;
+    protected $_responseHeader = array();
 
-    /**
-     * Error object
-     *
-     * @var Admin2_Controller_Error
-     */
-    protected $_oError = null;
+    protected $_data;
 
-    /**
-     * Sets the result contents
-     *
-     * @param $mContents string Actual result contents
-     *
-     * @return null
-     */
-    public function setContents($mContents)
+    public function setData($data)
     {
-        $this->_mContents = $mContents;
+        $this->_data = (array) $data;
     }
 
-    /**
-     * Returns actual result contents.
-     * This contents is to be parsed into appropriate format (ie JSON) and passed back to user.
-     *
-     * @return mixed
-     */
-    public function getContents()
+    public function getData()
     {
-        return $this->_mContents;
+        return $this->_data;
     }
 
-    /**
-     * Sets erorr values
-     *
-     * @param Exception $oException Exception object
-     */
-    public function setError(Exception $oException)
+    public function setResponseCode($responseCode)
     {
-        $this->_blError = true;
-        $this->_oError = new Admin2_Controller_Error();
-        $this->_oError->code = $oException->getCode();
-        //TODO: implement HTTP code handling here, so we can return close
-        $this->_oError->httpCode = "400";
-        $this->_oError->message = $oException->getMessage();
+        $this->_responseCode = (string) $responseCode;
     }
 
-    public function setErrorNotFound()
+    public function getResponseCode()
     {
-        $this->_blError = true;
-        $this->_oError = new Admin2_Controller_Error();
-        $this->_oError->code = ADMIN2_ERROR_NOTFOUND;
-        $this->_oError->httpCode = "404";
-        //TODO: multilanguage support for error messages
-        $this->_oError->message = "Not found";
+        return $this->_responseCode;
     }
 
-    /**
-     * Indicates if this result containts any error
-     *
-     * @return bool
-     */
-    public function isError()
+    public function setResponseHeader($responseHeader)
     {
-        return $this->_blError;
+        $this->_responseHeader = (string) $responseHeader;
     }
 
-    /**
-     * Returns error message
-     *
-     * @return Admin2_Controller_Error|null
-     */
-    public function getError()
+    public function getResponseHeader()
     {
-        return $this->_oError;
+        return $this->_responseHeader;
+    }
+
+    public function addResponseHeader($key, $value, $replace = true)
+    {
+        if (isset($this->_responseHeader[$key]) && !$replace) {
+            return false;
+        }
+
+        $this->_responseHeader[$key] = (string) $value;
+        return true;
     }
 }
