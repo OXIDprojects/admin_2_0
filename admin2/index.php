@@ -7,7 +7,7 @@ include "objects/Admin_Template.php";
 include "objects/Field_Definitions.php";
 include "objects/Rest_Client.php";
 
-$rc = new Rest_Client();  
+$rc = new Rest_Client();
 $t = new Admin_Template();
 
 //$t->render(); 
@@ -28,9 +28,9 @@ $t = new Admin_Template();
 
         <!-- Fluid CSS -->
         <link rel="stylesheet" type="text/css" media="screen" href="css/fluid_grid.css">
-        <script src="js/modernizr.custom.js"></script>
+        <!-- <script src="js/modernizr.custom.js"></script> SCRIPT FEHLT NOCH -->
         <script src="js/jquery-1.7.1.min.js" type="text/javascript"></script>
-		   <script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
+        <script src="js/jquery-ui-1.8.18.custom.min.js" type="text/javascript"></script>
         <script src="js/jquery.dataTables.min.js" type="text/javascript"></script>
 		<script src="js/raphael.js" type="text/javascript"></script>
 		<script src="js/amcharts.js" type="text/javascript"></script>
@@ -55,9 +55,9 @@ $t = new Admin_Template();
                     <li><a href="#">Logout</a></li>
                 </ul>
             </nav>
-        
+
         </header>
-        
+
         <div id="main" role="main">
             <aside>
                 <nav>
@@ -102,19 +102,19 @@ $t = new Admin_Template();
                 </nav>
             </aside>
             <div id="content">
-			
+
 			<?php $t->getContent("json/page.json"); ?>
-			
-              
+
+
             </div>
         </div>
-        
+
         <footer>
             OXID Admin 2.0 was developed by the OXID Community and OXID eSales AG
         </footer>
-        
-           <script src="js/joscha.js" type="text/javascript"></script>
-        
+
+    <script src="js/joscha.js" type="text/javascript"></script>
+
     </body>
 </html>
 
