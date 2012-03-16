@@ -17,7 +17,9 @@ class Admin_Template
     static private $restClient;
 
     /**
-     * Return a Html Snippet
+     * Render a Html Snippet and return its content.
+     *
+     * Nested PHP will be executed.
      *
      * @param string $snippetName The name of the snippet to fetch
      *
@@ -29,7 +31,9 @@ class Admin_Template
         $snippetName = (string) $snippetName;
         $fileName = realpath(dirname(__FILE__) . '/../views/snippets/' . $snippetName . '.php');
         if (is_readable($fileName)) {
-            $snippet = file_get_contents($fileName);
+            ob_start();
+            include($fileName);
+            $snippet = ob_get_clean();
         }
         return $snippet;
     }
