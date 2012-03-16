@@ -25,3 +25,5 @@
 /.idea
 /.settings/org.eclipse.core.resources.prefs
 *.*~
+
+/atlassian-ide-plugin.xml

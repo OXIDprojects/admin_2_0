@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('#content').delegate("header", "click", function(){
+    $('#content').delegate("header", "click", function(){
         $(this).nextAll('section').slideToggle('fast');
         /*
         if(!$(this).hasClass('open')){
