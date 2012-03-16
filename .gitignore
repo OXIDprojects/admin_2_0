@@ -1,9 +1,6 @@
-/admin/*
-/core/*
 /export/*
 /log/*
 /modules/*
-/out/admin/*
 /out/azure/*
 /out/basic/*
 /out/de/*
