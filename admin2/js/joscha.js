@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	$('.listentry header').click(function(){
+	$('#content').delegate("header", "click", function(){
         if(!$(this).hasClass('open')){
             $(this).nextAll('.quickedit').slideDown('fast');
             $(this).addClass('open');
