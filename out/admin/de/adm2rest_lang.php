@@ -27,7 +27,7 @@ $sLangName  = "Deutsch";
 // RESOURCE IDENTITFIER = STRING
 // -------------------------------
 $aLang = array(
-'charset'                                  => 'ISO-8859-15',
+'charset'                                  => 'UTF-8',
 'adm2rest'                                 => 'API',
 
 'ADM2REST_API_ACCESS'                      => 'API-Zugriff',

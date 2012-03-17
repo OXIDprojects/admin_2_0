@@ -10,13 +10,13 @@ class adm2rest_api extends oxAdminDetails
     public function render()
     {
         parent::render();
-        
+
         $soxId = $this->getEditObjectId();
         if ( $soxId != "-1" && isset( $soxId ) ) {
             // load object
             $oUser = oxNew( "oxuser" );
             $oUser->load( $soxId );
-            
+
             if($sAd2mRestOXID = $this->_checkApiUser($soxId))
             {
                 $oAdm2Rest = oxNew( "oxbase" );
@@ -34,7 +34,7 @@ class adm2rest_api extends oxAdminDetails
                 $newOXID = $soxId;
             }
 
-            
+
             //show country in active language
             $oCountry = oxNew( "oxCountry" );
             $oCountry->loadInLang( oxLang::getInstance()->getObjectTplLanguage(), $oUser->oxuser__oxcountryid->value );
@@ -50,7 +50,7 @@ class adm2rest_api extends oxAdminDetails
 
         return "adm2rest_api.tpl";
     }
-    
+
     /**
      * Generates api-key for user and save into db
      *
@@ -89,7 +89,7 @@ class adm2rest_api extends oxAdminDetails
     {
 
         $soxId = $this->getEditObjectId();
-        
+
         if ( !$this->_allowAdminEdit( $soxId ) )
             return false;
 
@@ -107,17 +107,17 @@ class adm2rest_api extends oxAdminDetails
         }
 
     }
-    
+
     /**
      * Checks if the user column already exists
      *
      * @param   string      oxuserid
      * @return  string
-     */    
+     */
     protected function _checkApiUser($soxId) {
         return oxDb::getDb()->getOne("SELECT oxid FROM adm2rest_api WHERE oxuserid = ".oxDb::getDb()->quote( $soxId ));
     }
-    
-    
-    
+
+
+
 }
