@@ -50,8 +50,7 @@ class Admin2_Dispatcher
 
             $class = "Admin2_Controller_" . ucfirst($controllerName);
 
-            if (class_exists($class))
-            {
+            if (class_exists($class)) {
                 $controller = new $class($this->_request, $this->_result);
             } else {
                 throw new Admin2_Controller_Exception("Can't find controller '$controllerName'.");

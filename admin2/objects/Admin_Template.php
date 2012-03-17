@@ -14,7 +14,7 @@ class Admin_Template
     /**
      * @var Rest_Client
      */
-    static private $restClient;
+    static private $_restClient;
 
     /**
      * Render a Html Snippet and return its content.
@@ -47,10 +47,10 @@ class Admin_Template
      */
     public function getContent($site)
     {
-        if (self::$restClient === null) {
-            self::$restClient = new Rest_Client();
+        if (self::$_restClient === null) {
+            self::$_restClient = new Rest_Client();
         }
-        $obj = self::$restClient->getData($site);
+        $obj = self::$_restClient->getData($site);
 
         //@todo get rid of singleton Field_Defintions and let method return rendered content
         Field_Definitions::renderItems($obj);

@@ -6,9 +6,9 @@ class adm2oauth extends OAuth2
   /**
    * Make sure that the client credentials is valid.
    *
-   * @param $client_id
+   * @param $clientId
    *   Client identifier to be check with.
-   * @param $client_secret
+   * @param $clientSecret
    *   (optional) If a secret is required, check that they've given the right one.
    *
    * @return
@@ -18,19 +18,19 @@ class adm2oauth extends OAuth2
    *
    * @ingroup oauth2_section_2
    */
-    protected function checkClientCredentials($client_id, $client_secret = NULL)
+    protected function checkClientCredentials($clientId, $clientSecret = NULL)
     {
         // user already authenticated
         return true;
     }
-    
+
   /**
    * Get the registered redirect URI of corresponding client_id.
    *
    * OAuth says we should store request URIs for each registered client.
    * Implement this function to grab the stored URI for a given client id.
    *
-   * @param $client_id
+   * @param $clientId
    *   Client identifier to be check with.
    *
    * @return
@@ -39,17 +39,17 @@ class adm2oauth extends OAuth2
    *
    * @ingroup oauth2_section_3
    */
-    protected function getRedirectUri($client_id)
+    protected function getRedirectUri($clientId)
     {
         return null;
     }
-    
+
   /**
    * Look up the supplied oauth_token from storage.
    *
    * We need to retrieve access token data as we create and verify tokens.
    *
-   * @param $oauth_token
+   * @param $oauthToken
    *   oauth_token to be check with.
    *
    * @return
@@ -61,19 +61,19 @@ class adm2oauth extends OAuth2
    *
    * @ingroup oauth2_section_5
    */
-    protected function getAccessToken($oauth_token)
+    protected function getAccessToken($oauthToken)
     {
-        
+
     }
-    
+
   /**
    * Store the supplied access token values to storage.
    *
    * We need to store access token data as we create and verify tokens.
    *
-   * @param $oauth_token
+   * @param $oauthToken
    *   oauth_token to be stored.
-   * @param $client_id
+   * @param $clientId
    *   Client identifier to be stored.
    * @param $expires
    *   Expiration to be stored.
@@ -82,27 +82,27 @@ class adm2oauth extends OAuth2
    *
    * @ingroup oauth2_section_4
    */
-    protected function setAccessToken($oauth_token, $client_id, $expires, $scope = NULL)
+    protected function setAccessToken($oauthToken, $clientId, $expires, $scope = NULL)
     {
-        
+
     }
 
   /**
    * Creates an authcode
    *
-   * @param $client_id
+   * @param $clientId
    *   Client identifier (oxuserid)
-   * @param $redirect_uri
+   * @param $redirectUri
    *   Redirect URI
    */
-    public function createNewAuthCode($client_id, $redirect_uri)
+    public function createNewAuthCode($clientId, $redirectUri)
     {
         $aParams["response_type"] = 'code';
-        $aParams["client_id"] = $client_id;
-        $aParams["redirect_uri"] = $redirect_uri;
+        $aParams["client_id"] = $clientId;
+        $aParams["redirect_uri"] = $redirectUri;
         $this->finishClientAuthorization(true, $aParams);
     }
-    
+
 
 
 }

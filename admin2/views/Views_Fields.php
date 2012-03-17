@@ -3,9 +3,9 @@
 /*
  * Base class to implement field types
  */
- 
-class Views_Fields {
 
+class Views_Fields
+{
     /*
      * Returns JavaScript code for the specified fieldtype
      *
@@ -13,9 +13,9 @@ class Views_Fields {
      */
     public function render()
     {
-        
+
     }
-    
+
     /*
      * Returns JavaScript code for the specified fieldtype
      *
@@ -23,9 +23,9 @@ class Views_Fields {
      */
     public function setScript()
     {
-    
+
     }
-    
+
     /*
      * Returns CSS code for the specified fieldtype
      *
@@ -33,7 +33,7 @@ class Views_Fields {
      */
     public function setCss()
     {
-    
+
     }
 
 }
