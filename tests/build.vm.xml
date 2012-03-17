@@ -27,7 +27,7 @@
               --report-file=${logdir}/checkstyle.xml
               --standard=${basedir}/tests/Zend.xml
               --extensions=php
-              --ignore=*/tests/*
+              --ignore=*/tests/*,*/api/rest/lib/*
               ./
    "/>
   </exec>
@@ -55,6 +55,7 @@
             --reportfile ${builddir}/logs/pmd.xml
             --suffixes php
             --exclude ${basedir}/tests/*
+            --exclude ${basedir}/api/rest/lib/*
         "/>
   </exec>
  </target>
@@ -65,6 +66,7 @@
    <arg line="--log-pmd ${logdir}/pmd-cpd.xml
         --suffixes php
         --exclude ${basedir}/tests
+        --exclude ${basedir}/api/rest/lib
         ./" />
   </exec>
  </target>
@@ -73,6 +75,7 @@
   <exec executable="phploc">
    <arg line="--log-csv ${logdir}/phploc.csv ${basedir}
         --exclude ${basedir}/tests
+        --exclude ${basedir}/api/rest/lib
    " />
   </exec>
  </target>
@@ -84,16 +87,17 @@
         -t ${builddir}/api
         -ti 'Oxid Admin 2 Code Documentation'
         -s
-        -i tests/,index.php,bootstrap.php/" />
+        -i tests/,index.php,bootstrap.php/,api/rest/lib/" />
   </exec>
  </target>
 
     <target name="docblox">
      <exec executable="docblox">
       <arg line="project:run -d ${basedir}
-           -t ${builddir}/api
-		   -i ${builddir}/tests/*
-           --template zend" />
+            -t ${builddir}/api
+            -i ${builddir}/tests/*
+            -i ${builddir}/api/rest/lib/*
+            --template zend" />
      </exec>
     </target>
 
