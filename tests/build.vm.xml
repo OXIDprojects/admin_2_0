@@ -27,7 +27,7 @@
               --report-file=${logdir}/checkstyle.xml
               --standard=${basedir}/tests/Zend.xml
               --extensions=php
-              --ignore=*/tests/*,*/api/rest/lib/*
+              --ignore=*/tests/*,*/api/rest/lib/*,admin/*
               ./
    "/>
   </exec>
@@ -56,6 +56,8 @@
             --suffixes php
             --exclude ${basedir}/tests/*
             --exclude ${basedir}/api/rest/lib/*
+            --exclude ${basedir}/out/*
+            --exclude ${basedir}/admin
         "/>
   </exec>
  </target>
@@ -67,6 +69,8 @@
         --suffixes php
         --exclude ${basedir}/tests
         --exclude ${basedir}/api/rest/lib
+        --exclude ${basedir}/out
+        --exclude ${basedir}/admin
         ./" />
   </exec>
  </target>
@@ -76,6 +80,8 @@
    <arg line="--log-csv ${logdir}/phploc.csv ${basedir}
         --exclude ${basedir}/tests
         --exclude ${basedir}/api/rest/lib
+        --exclude ${basedir}/out
+        --exclude ${basedir}/admin
    " />
   </exec>
  </target>
@@ -87,7 +93,7 @@
         -t ${builddir}/api
         -ti 'Oxid Admin 2 Code Documentation'
         -s
-        -i tests/,index.php,bootstrap.php/,api/rest/lib/" />
+        -i tests/,index.php,bootstrap.php/,api/rest/lib/,out/" />
   </exec>
  </target>
 
@@ -97,6 +103,8 @@
             -t ${builddir}/api
             -i ${builddir}/tests/*
             -i ${builddir}/api/rest/lib/*
+            -i ${builddir}/out/*
+            -i ${builddir}/admin/*
             --template zend" />
      </exec>
     </target>
