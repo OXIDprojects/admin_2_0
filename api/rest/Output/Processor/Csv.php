@@ -1,10 +1,11 @@
 <?php
 
-class Admin2_Output_Processor_Csv extends Admin2_Output_Processor_Base
+class Admin2_Output_Processor_Csv implements Admin2_Output_Processor_Interface
 {
-    public function sendResults()
-    {   
-        header('Content-Type:text/plain');
-        echo '"hello";"world"';
+    public function process(Admin2_Controller_Result $result)
+    {
+        $result->addResponseHeader('Content-Type', 'text/plain', true);
+
+        return implode(',', $result->getData());
     }
 }

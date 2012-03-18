@@ -1,0 +1,158 @@
+{
+    "Title":"Product Page",
+    "Items":[
+        {
+            "Type":"Columns",
+            "Items":[
+                {
+                    "Type":"Column",
+                    "Title":"Left Column",
+                    "Id":"leftColumn",
+                    "Width":12,
+                    "Items":[
+                        {
+                            "Type":"Panel",
+                            "Title":"Generel Information",
+                            "Active":true,
+                            "Items":[
+                                {
+                                    "Type":"Columns",
+                                    "Items":[
+                                        {
+                                            "Type":"Column",
+                                            "Title":"",
+                                            "Id":"",
+                                            "Width":8,
+                                            "Items":[
+                                                {
+                                                    "Type":"Text",
+                                                    "Text":"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras placerat libero in nunc blandit lacinia. Etiam tristique nunc eu odio consectetur vel eleifend risus feugiat. Duis rutrum, lectus sit amet hendrerit dictum, odio dui sodales dui, eget dictum est enim eget justo. Curabitur rhoncus cursus nibh ut vehicula. Phasellus aliquet vestibulum condimentum. Vestibulum pharetra augue et diam blandit placerat. Proin justo lectus, blandit id feugiat ultrices, elementum et dolor. Aliquam erat volutpat. Quisque pretium eros a metus aliquam congue. Sed et nulla nec justo lacinia mattis eget in mauris. Donec at elit tellus, et suscipit nunc. Nunc fermentum lacinia dolor id porttitor. Pellentesque tincidunt aliquam nunc vitae egestas.",
+                                                    "CssClass":""
+                                                },
+                                                {
+                                                    "Type":"Line"
+                                                },
+                                                {
+                                                    "Type":"Textbox",
+                                                    "Name":"oxtitle",
+                                                    "Label":"Title",
+                                                    "Value":"Kite",
+                                                    "Id":"1"
+                                                },
+                                                {
+                                                    "Type":"Numberbox",
+                                                    "Name":"oxprice",
+                                                    "Label":"Price",
+                                                    "Value":"3",
+                                                    "Id":"number1"
+                                                },
+                                                {
+                                                    "Type":"Datepicker",
+                                                    "Date":"12.03.2012",
+                                                    "MinDate":"2012-03-11",
+                                                    "Id":"date1",
+                                                    "Label":"Date",
+                                                    "Name":"date"
+                                                },
+                                                {
+                                                    "Type":"Linebreak"
+                                                },
+                                                {
+                                                    "Type":"Panel",
+                                                    "Title":"Nested Infopanel",
+                                                    "Items":[
+                                                        {
+                                                            "Type":"Text",
+                                                            "Text":"Just some Info"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        },
+                                        {
+                                            "Type":"Column",
+                                            "Title":"",
+                                            "Id":"",
+                                            "Width":8,
+                                            "Items":[
+                                                {
+                                                    "Type":"Image",
+                                                    "Source":"http://lorempixel.com/300/300/food"
+                                                }
+
+                                            ]
+                                        },
+                                        {
+                                            "Type":"Column",
+                                            "Title":"",
+                                            "Id":"",
+                                            "Width":16,
+                                            "Items":[
+
+                                                {
+                                                    "Type":"Datagrid",
+                                                    "Id":5,
+                                                    "Label":"Your Variants",
+                                                    "InlineEdit":false,
+                                                    "dataUrl":"json/GridData.json",
+                                                    "Fields":[
+                                                        {
+                                                            "Field":"oxtitle",
+                                                            "Label":"Title"
+                                                        },
+                                                        {
+                                                            "Field":"oxprice",
+                                                            "Label":"Price"
+                                                        }
+                                                    ]
+                                                }
+                                            ]
+                                        }
+                                    ]
+                                }
+
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "Type":"Column",
+                    "Title":"Right Column",
+                    "Id":"rightColumn",
+                    "Width":"4",
+                    "Items":[
+                        {
+                            "Type":"Panel",
+                            "Title":"Statistics",
+                            "Active":true,
+                            "Items":[
+                                {
+                                    "Type":"Chart",
+                                    "ChartType":"Pie",
+                                    "Title":"Online Bestseller 2009",
+                                    "Width":"100%",
+                                    "Height":"200px",
+                                    "Description":"Die Meistverkauften Produktgruppen im Online-Handel nach Angabe der Haendler ( in %)",
+                                    "DataUrl":"json/ChartData.json"
+                                }
+                            ]
+                        },
+                        {
+                            "Type":"Panel",
+                            "Title":"Youtube",
+
+                            "Items":[
+                                {
+                                    "Type":"Youtube",
+                                    "Width":"100%",
+                                    "Height":300,
+                                    "Source":"http://www.youtube.com/embed/eKG08z85DtY"
+                                }
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

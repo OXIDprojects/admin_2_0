@@ -1,0 +1,3 @@
+Iconset "Dortmund" from http://pc.de/icons/
+Iconset "Munich" from http://pc.de/icons/
+Iconset "Duesseldorf" from http://pc.de/icons/

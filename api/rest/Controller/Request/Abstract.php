@@ -1,26 +1,26 @@
 <?php
-abstract class Admin2_ControlleR_Request_Abstract
+abstract class Admin2_Controller_Request_Abstract
 {
     /**
      * Name of the requested controller.
      *
      * @var string
      */
-    protected $_controller = 'error';
+    protected $_controller = null;
 
     /**
      * Name of the requested entity.
      *
      * @var string
      */
-    protected $_entity = 'missingParams';
+    protected $_entity = null;
 
     /**
      * Version number of the API.
      *
      * @var string
      */
-    protected $_version = '0.1';
+    protected $_version = null;
 
     /**
      * Format of the response.
@@ -34,16 +34,31 @@ abstract class Admin2_ControlleR_Request_Abstract
      *
      * @var string
      */
-    protected $_method = 'GET';
+    protected $_method = null;
+
+    /**
+     * Request parameter.
+     *
+     * @var array
+     */
+    protected $_params = array();
+
+    /**
+     * Initializes the new instance.
+     *
+     * @return \Admin2_Controller_Request_Abstract
+     */
+    public function __construct()
+    {
+        $this->init();
+    }
 
     /**
      * Initializes the request object. Implementations should put their parsing code here.
      *
      * @return null
      */
-    public function init()
-    {
-    }
+    abstract public function init();
 
     /**
      * Returns the controller name.
@@ -94,5 +109,22 @@ abstract class Admin2_ControlleR_Request_Abstract
     public function getMethod()
     {
         return $this->_method;
+    }
+
+    /**
+     * Returns the value of a request paramter or the default value.
+     *
+     * @param string $key     Name of the request parameter.
+     * @param mixed  $default Default value, if the request parameter is not set.
+     *
+     * @return mixed
+     */
+    public function getParam($key, $default = null)
+    {
+        if (isset($this->_params[$key])) {
+            return $this->_params[$key];
+        }
+
+        return $default;
     }
 }
