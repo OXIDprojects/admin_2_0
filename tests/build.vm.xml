@@ -27,7 +27,7 @@
               --report-file=${logdir}/checkstyle.xml
               --standard=${basedir}/tests/Zend.xml
               --extensions=php
-              --ignore=*/tests/*,*/api/rest/lib/*,admin/*
+              --ignore=*/tests/*,*/api/rest/lib/*,admin/*,admin2/views/snippets/*
               ./
    "/>
   </exec>
@@ -38,7 +38,7 @@
     <touch file="${logdir}/jdepend.xml" mkdirs="true" />
     <exec dir="${basedir}" executable="pdepend">
     <arg line="--jdepend-xml=${logdir}/jdepend.xml
-        --ignore=language,Zend,ZendX,work,tests
+        --ignore=language,Zend,ZendX,work,tests,admin2/views/snippets
         --suffix=php
         --jdepend-chart=${builddir}/pdepend/dependencies.svg
         --overview-pyramid=${builddir}/pdepend/overview-pyramid.svg
@@ -57,7 +57,8 @@
             --exclude ${basedir}/tests/*
             --exclude ${basedir}/api/rest/lib/*
             --exclude ${basedir}/out/*
-            --exclude ${basedir}/admin
+            --exclude ${basedir}/admin/*
+            --exclude ${basedir}/admin2/views/snippets
         "/>
   </exec>
  </target>
@@ -82,6 +83,7 @@
         --exclude ${basedir}/api/rest/lib
         --exclude ${basedir}/out
         --exclude ${basedir}/admin
+        --exclude ${basedir}/admin2/views/snippets
    " />
   </exec>
  </target>
@@ -93,7 +95,7 @@
         -t ${builddir}/api
         -ti 'Oxid Admin 2 Code Documentation'
         -s
-        -i tests/,index.php,bootstrap.php/,api/rest/lib/,out/" />
+        -i tests/,index.php,bootstrap.php/,api/rest/lib/,out/,admin2/views/snippets" />
   </exec>
  </target>
 
@@ -105,6 +107,7 @@
             -i ${builddir}/api/rest/lib/*
             -i ${builddir}/out/*
             -i ${builddir}/admin/*
+            -i ${builddir}/admin2/views/snippets/*
             --template zend" />
      </exec>
     </target>
