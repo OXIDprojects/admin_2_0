@@ -1,7 +1,10 @@
 <?php
-class Admin2_Model_Product extends Admin2_Model_Base
+class Admin2_Model_Product extends Admin2_Model_Abstract
 {
 
-    const sCoreClassName = 'oxArticle';
+    protected $_aTableNames = array('oxarticles'   => 'oxarticles',
+                                    'oxartextends' => 'oxid'
+    );
+
 
 }
