@@ -8,12 +8,12 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
      */
     public function init()
     {
-        if (!isset($_SERVER['REQUEST_URI'])) {
+        if (!isset($_SERVER['SCRIPT_URL'])) {
             throw new Admin2_Controller_Request_Exception("Request URI is not set.");
         }
 
         $baseDir         = dirname($_SERVER['SCRIPT_NAME']) . '/';
-        $cleanRequestUri = str_replace($baseDir, '', $_SERVER['REQUEST_URI']);
+        $cleanRequestUri = str_replace($baseDir, '', $_SERVER['SCRIPT_URL']);
         $urlParts        = explode('/', trim($cleanRequestUri, '/'));
         $count           = count($urlParts);
         $formatPos       = strpos($urlParts[$count - 1], '.');
