@@ -1,62 +1,48 @@
 <?php
 abstract class Admin2_Model_Abstract
 {
+    /**
+     * Existing shop languages.
+     *
+     * @var array
+     */
+    protected $languages;
 
-    private $_oDb = null;
-    protected $_aTableNames = array('table'         => 'table', #root table of object
-                                    'extendedTable' => 'keyToTable' # 1:n relation example: oxartextends -> oxid
-    );
+    /**
+     * Currently selected language.
+     *
+     * @var
+     */
+    protected $currentLanguageId;
 
-    public function __set($sFieldName, $sValue)
+    /**
+     * Class constructor.
+     * Initializes the new instance.
+     *
+     * @return \Admin2_Model_Abstract
+     */
+    public function __construct()
     {
-        if (stripos($sFieldName, "__") === false) {
-            $sFieldName = key($this->_getTableNames()) . '__' . $sFieldName;
-        }
-        $this->$sFieldName = $sValue;
-    }
-
-    public function __get($sFieldName)
-    {
-        if (stripos($sFieldName, "__") === false) {
-            foreach ($this->_getTableNames() as $sTableName => $sKey)
-            {
-                $sFieldName = $sTableName . '__' . $sFieldName;
-                if ($this->$sFieldName !== null) {
-                    return $this->$sFieldName;
-                }
+        $oxidLanguage = oxLang::getInstance();
+        $oxidLanguages = $oxidLanguage->getLanguageArray();
+        $languages = array();
+        foreach ($oxidLanguages as $language) {
+            $languages[$language->abbr] = (array) $language;
+            if ($language->selected) {
+                $this->currentLanguageId = $language->id;
             }
         }
+        $this->languages = $languages;
 
-        if ($this->$sFieldName !== null) {
-            return $this->$sFieldName;
-        }
-
-        return null;
-
+        $this->init();
     }
 
-    protected function _getTableNames()
+    /**
+     * Method for model specific initialization.
+     *
+     * @return null
+     */
+    public function init()
     {
-        return $this->_aTableNames;
     }
-
-    protected function getConnection($blAssoc = true)
-    {
-        if ($this->_oDb === null) {
-            $this->_oDb = oxDb::getDb($blAssoc);
-        }
-
-        return $this->_oDb;
-    }
-
-    protected function _loadField($sFieldName)
-    {
-
-    }
-
-    protected function _loadFields($aFieldNames)
-    {
-
-    }
-
 }

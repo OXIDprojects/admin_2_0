@@ -4,7 +4,9 @@ class Admin2_Controller_Products extends Admin2_Controller_Abstract
 {
     public function get()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $productModel = new Admin2_Model_Product();
+        $productData = $productModel->getProduct('dc5ffdf380e15674b56dd562a7cb6aec');
+        $this->_result->setData(array('product' => $productData));
     }
 
     public function post()

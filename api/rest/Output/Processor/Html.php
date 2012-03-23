@@ -15,13 +15,23 @@ class Admin2_Output_Processor_Html implements Admin2_Output_Processor_Interface
 </body>
 </html>
 EOH;
-        $htmlSnippet = '<table border="1" style="border-collapse:collapse;"><tr><th>key</th><th>value</th></tr>';
-        foreach ($result->getData() as $key => $value) {
-            $htmlSnippet .= "<tr><td>$key</td><td>$value</td></tr>";
-        }
-
-        $htmlSnippet .= '</table>';
+        $htmlSnippet = $this->implode($result->getData());
 
         return sprintf($html, $htmlSnippet);
+    }
+
+    protected function implode($array)
+    {
+        $htmlSnippet = '<table border="1" style="border-collapse:collapse;margin:15px;">'
+            . '<tr style="background-color:#EEE;"><th>key</th><th>value</th></tr>';
+        foreach ($array as $key => $value) {
+            if (is_array($value) || $value instanceof Traversable) {
+                $value = $this->implode($value);
+            }
+            $htmlSnippet .= "<tr><td style=\"padding:5px;\">$key</td><td style=\"padding:5px;\">$value</td></tr>";
+        }
+        $htmlSnippet .= '</table>';
+
+        return $htmlSnippet;
     }
 }
