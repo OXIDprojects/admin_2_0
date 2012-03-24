@@ -97,33 +97,33 @@ class Rest_Client
     private function _exec($type, $url, $params = array())
     {
         $headers = $this->_headers;
-        $s = curl_init();
+        $curl = curl_init();
 
         if (!is_null($this->_user)) {
-            curl_setopt($s, CURLOPT_USERPWD, $this->_user . ':' . $this->_pass);
+            curl_setopt($curl, CURLOPT_USERPWD, $this->_user . ':' . $this->_pass);
         }
 
         switch ($type)
         {
             case self::DELETE:
-                curl_setopt($s, CURLOPT_URL, $url . '?' . http_build_query($params));
-                curl_setopt($s, CURLOPT_CUSTOMREQUEST, self::DELETE);
+                curl_setopt($curl, CURLOPT_URL, $url . '?' . http_build_query($params));
+                curl_setopt($curl, CURLOPT_CUSTOMREQUEST, self::DELETE);
                 break;
             case self::POST:
-                curl_setopt($s, CURLOPT_URL, $url);
-                curl_setopt($s, CURLOPT_POST, true);
-                curl_setopt($s, CURLOPT_POSTFIELDS, $params);
+                curl_setopt($curl, CURLOPT_URL, $url);
+                curl_setopt($curl, CURLOPT_POST, true);
+                curl_setopt($curl, CURLOPT_POSTFIELDS, $params);
                 break;
             case self::GET:
-                curl_setopt($s, CURLOPT_URL, $url . '?' . http_build_query($params));
+                curl_setopt($curl, CURLOPT_URL, $url . '?' . http_build_query($params));
                 break;
         }
 
-        curl_setopt($s, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($s, CURLOPT_HTTPHEADER, $headers);
-        $_out = curl_exec($s);
-        $status = curl_getinfo($s, CURLINFO_HTTP_CODE);
-        curl_close($s);
+        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+        curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
+        $_out = curl_exec($curl);
+        $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+        curl_close($curl);
         switch ($status)
         {
             case self::HTTP_OK:
