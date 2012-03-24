@@ -1,5 +1,5 @@
 <?php
-error_reporting(E_ALL);
+error_reporting(E_ALL ^ E_NOTICE); // Oxid-classes throw notices so we block them here
 ini_set('display_errors', 1);
 
 /**
@@ -41,7 +41,7 @@ require getShopBasePath() . 'modules/functions.php';
 require getShopBasePath() . 'core/oxfunctions.php';
 
 //here we go
-$request = new Admin2_Controller_Request_Http();
-$result = new Admin2_Controller_Result();
+$request    = new Admin2_Controller_Request_Http();
+$result     = new Admin2_Controller_Result();
 $dispatcher = new Admin2_Dispatcher($request, $result);
 $dispatcher->run();
