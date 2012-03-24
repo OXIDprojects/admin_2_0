@@ -4,7 +4,7 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
     /**
      * Extracts data from the HTTP request.
      *
-     * @return null
+     * @return void
      */
     public function init()
     {
@@ -13,8 +13,10 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
         }
 
         $requestUri = $_SERVER['REQUEST_URI'];
-        if (strpos($requestUri, $_SERVER['QUERY_STRING']) !== false) {
-            $requestUri = str_replace('?' . $_SERVER['QUERY_STRING'], '', $requestUri);
+        if ($_SERVER['QUERY_STRING'] > '') {
+            if (strpos($requestUri, $_SERVER['QUERY_STRING']) !== false) {
+                $requestUri = str_replace('?' . $_SERVER['QUERY_STRING'], '', $requestUri);
+            }
         }
 
         $baseDir         = dirname($_SERVER['SCRIPT_NAME']) . '/';
