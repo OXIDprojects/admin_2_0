@@ -6,7 +6,7 @@ abstract class Admin2_Model_Abstract
      *
      * @var array
      */
-    protected $languages;
+    protected $_languages;
 
     /**
      * Currently selected language.
@@ -32,7 +32,7 @@ abstract class Admin2_Model_Abstract
                 $this->currentLanguageId = $language->id;
             }
         }
-        $this->languages = $languages;
+        $this->_languages = $languages;
 
         $this->init();
     }
