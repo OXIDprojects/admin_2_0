@@ -20,29 +20,31 @@ class Admin2_Dispatcher
      */
     protected $_result;
 
+    /**
+     * Constructor
+     *
+     * @param Admin2_Controller_Request_Abstract $request
+     * @param Admin2_Controller_Result           $result
+     */
     public function __construct(
         Admin2_Controller_Request_Abstract $request,
         Admin2_Controller_Result $result
     )
     {
-        $this->_request = $request;
-        $this->_result = $result;
-
-        $outputProcClass = "Admin2_Output_Processor_" . ucfirst($request->getFormat());
+        $this->_request         = $request;
+        $this->_result          = $result;
+        $outputProcClass        = 'Admin2_Output_Processor_' . ucfirst($request->getFormat());
         $this->_outputProcessor = new $outputProcClass();
     }
 
     /**
      * Starting point for dispatcher execution
      *
-     * @return null
+     * @return void
      */
     public function run()
     {
         try {
-            /**
-             * @var Admin2_Controller_Abstract $controller
-             */
             $controllerName = $this->_request->getContoller();
             if ($controllerName === null) {
                 throw new Admin2_Dispatcher_Exception("There was no controller specified.");
@@ -77,7 +79,7 @@ class Admin2_Dispatcher
 
         } catch (Exception $exception) {
             $errorController = new Admin2_Controller_Error();
-            $processedData = $errorController->error($exception);
+            $processedData   = $errorController->error($exception);
         }
         echo $processedData;
     }
