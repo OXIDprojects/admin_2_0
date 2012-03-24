@@ -1,13 +1,11 @@
 <?php
 /**
- * TODO Attention: This is only an example.
+ * Class for handling actions related to a product
  */
 class Admin2_Model_Product extends Admin2_Model_Abstract
 {
     /**
-     * Retrieves a data about one product.
-     *
-     * TODO This method does not return all the fields that belong to the product object.
+     * Retrieve product data.
      *
      * @param string $oxid OXID of the product.
      *

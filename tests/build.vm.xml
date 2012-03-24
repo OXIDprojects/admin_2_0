@@ -25,7 +25,7 @@
   <exec executable="phpcs">
    <arg line="--report=checkstyle
               --report-file=${logdir}/checkstyle.xml
-              --standard=${basedir}/tests/Zend.xml
+              --standard=${basedir}/tests/OxidAdmin2CodingStandard.xml
               --extensions=php
               --ignore=*/tests/*,*/api/rest/lib/*,admin/*,admin2/views/snippets/*
               ./
