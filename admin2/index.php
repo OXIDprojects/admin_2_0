@@ -1,30 +1,29 @@
 <?php
+
 header('Content-type: text/html; charset=utf-8');
-include "objects/Admin_Template.php";
-include "objects/Field_Definitions.php";
-include "objects/Rest_Client.php";
+include 'config.php';
 
-$template = new Admin_Template();?>
-<!DOCTYPE html>
-<html id="home" lang="de">
-    <head>
-        <meta charset=utf-8 />
-        <title>Admin 2 / </title>
-        <?php
-            echo $template->getHtmlSnippet('css');
-            echo $template->getHtmlSnippet('jsIncludesMain');
-        ?>
-    </head>
-    <body>
-        <?php echo $template->getHtmlSnippet('topNavi');?>
+/**
+ *Autpoloader for all Classes
+ * @param string $class_name
+ * @return void 
+ */
+function __autoload($class_name)
+{
 
-        <div id="main" role="main">
-            <?php echo $template->getHtmlSnippet('navBar');?>
-            <div id="content">
-                <?php echo $template->getContent("json/page.json"); ?>
-            </div>
-        </div>
-        <?php echo $template->getHtmlSnippet("footer"); ?>
-    </body>
-</html>
+    foreach (Config::getInstance()->classesDir as $directory)
+    {
+        if (file_exists(ROOT_DIR . $directory . $class_name . '.php'))
+        {
+            require_once (ROOT_DIR . $directory . $class_name . '.php');
+            return;
+        }
+    }
+}
+
+error_reporting(E_ALL);
+
+$template = new Admin_Template();
+$template->run("/json/page.json");
+?>
 

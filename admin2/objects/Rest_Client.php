@@ -1,5 +1,8 @@
 <?php
 
+/**
+ * Rest Client 
+ */
 class Rest_Client
 {
 
@@ -10,7 +13,7 @@ class Rest_Client
 
     public function getData($url, $params = "", $method = "GET")
     {
-        $obj = json_decode(file_get_contents($url));
+        $obj = json_decode(file_get_contents(ROOT_DIR . $url));
         return $obj;
     }
 

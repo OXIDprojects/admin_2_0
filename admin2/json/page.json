@@ -1,5 +1,6 @@
 {
     "Title":"Product Page",
+    "Type": "Page",
     "Items":[
         {
             "Type":"Columns",
@@ -94,7 +95,7 @@
                                                     "Id":5,
                                                     "Label":"Your Variants",
                                                     "InlineEdit":false,
-                                                    "dataUrl":"json/GridData.json",
+                                                    "DataUrl":"/json/GridData.json",
                                                     "Fields":[
                                                         {
                                                             "Field":"oxtitle",
@@ -128,19 +129,18 @@
                             "Items":[
                                 {
                                     "Type":"Chart",
-                                    "ChartType":"Pie",
                                     "Title":"Online Bestseller 2009",
                                     "Width":"100%",
                                     "Height":"200px",
-                                    "Description":"Die Meistverkauften Produktgruppen im Online-Handel nach Angabe der Haendler ( in %)",
-                                    "DataUrl":"json/ChartData.json"
+                                    "DataUrl":"/json/ChartData.json",
+                                    "Description":"Die Meistverkauften Produktgruppen im Online-Handel nach Angabe der Haendler ( in %)"
+                                    
                                 }
                             ]
                         },
                         {
                             "Type":"Panel",
                             "Title":"Youtube",
-
                             "Items":[
                                 {
                                     "Type":"Youtube",

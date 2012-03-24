@@ -1,1 +1,0 @@
-<image src="<?php echo $info->Source ?>" title="<?php echo (isset($info->Label)) ? $info->Label : "" ?>" />

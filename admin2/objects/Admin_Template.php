@@ -1,9 +1,11 @@
 <?php
+
 /**
  * This file is part of Oxid Admin2
  */
+
 /**
- * Helper for rendering Html Snippets
+ * Controller for Creating Site
  *
  * @author Dennis Heidtmann
  * @author Rafael Dabrowski
@@ -11,32 +13,16 @@
  */
 class Admin_Template
 {
+/**
+ *
+ * @var Site 
+ */
+    protected $Site = NULL;
+
     /**
      * @var Rest_Client
      */
     static private $_restClient;
-
-    /**
-     * Render a Html Snippet and return its content.
-     *
-     * Nested PHP will be executed.
-     *
-     * @param string $snippetName The name of the snippet to fetch
-     *
-     * @return string The fetched Html snippet ready to output
-     */
-    public function getHtmlSnippet($snippetName)
-    {
-        $snippet = '';
-        $snippetName = (string) $snippetName;
-        $fileName = realpath(dirname(__FILE__) . '/../views/snippets/' . $snippetName . '.php');
-        if (is_readable($fileName)) {
-            ob_start();
-            include($fileName);
-            $snippet = ob_get_clean();
-        }
-        return $snippet;
-    }
 
     /**
      * Gets the Content of the provided Site
@@ -45,15 +31,24 @@ class Admin_Template
      *
      * @return void
      */
-    public function getContent($site)
+    public function run($site)
     {
-        if (self::$_restClient === null) {
+
+        $this->createSite($site);
+        $this->Site->render();
+    }
+
+    protected function createSite($site)
+    {
+        if (self::$_restClient === null)
+        {
             self::$_restClient = new Rest_Client();
         }
         $obj = self::$_restClient->getData($site);
+        $this->Site = new Site();
+        $this->Site->Title = $obj->Title;
 
-        //@todo get rid of singleton Field_Defintions and let method return rendered content
-        Field_Definitions::renderItems($obj);
+        $this->Site->setContent(new Content($obj));
     }
 
 }
