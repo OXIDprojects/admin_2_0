@@ -1,8 +1,6 @@
 <?php
 
-/**
- * 
- */
+
 class Column extends Widget
 {
 

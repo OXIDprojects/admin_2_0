@@ -1,9 +1,7 @@
 <?php
-/**
- * Generates Charts
- */
 
 /**
+ * Generates Charts
  * @author Rafael Dabrowski  
  */
 class Chart extends Widget

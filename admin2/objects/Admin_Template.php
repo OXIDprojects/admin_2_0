@@ -13,10 +13,11 @@
  */
 class Admin_Template
 {
-/**
- *
- * @var Site 
- */
+
+    /**
+     *
+     * @var Site 
+     */
     protected $Site = NULL;
 
     /**

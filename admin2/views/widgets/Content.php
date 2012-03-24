@@ -1,10 +1,5 @@
 <?php
 
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 /**
  * Description of Content
  *
@@ -21,12 +16,13 @@ class Content extends Widget
     public function output()
     {
         $output = "";
-        foreach($this->Items as $item)
+        foreach ($this->Items as $item)
         {
-         $output.= $item->output(); 
+            $output.= $item->output();
         }
         return $output;
     }
+
 }
 
 ?>
