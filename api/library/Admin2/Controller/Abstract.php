@@ -36,7 +36,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method GET
      * @abstract
      *
-     * @return void
+     * @return null
      */
     abstract public function get();
 
@@ -44,7 +44,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method POST
      * @abstract
      *
-     * @return void
+     * @return null
      */
     abstract public function post();
 
@@ -52,7 +52,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method PUT
      * @abstract
      *
-     * @return void
+     * @return null
      */
     abstract public function put();
 
@@ -60,7 +60,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method DELETE
      * @abstract
      *
-     * @return void
+     * @return null
      */
     abstract public function delete();
 

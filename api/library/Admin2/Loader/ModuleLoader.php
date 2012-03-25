@@ -82,20 +82,20 @@ class Admin2_Loader_ModuleLoader
      *
      * @throws Admin2_Loader_Exception
      *
-     * @return bool
+     * @return null
      */
     protected function loadClass($className)
     {
         $spacedClassName = str_replace(array('\\', '_'), ' ', $className);
         $firstSpace = strpos($spacedClassName, ' ');
         if ($firstSpace === false) {
-            return false;
+            return;
         }
 
         $namespace = substr($spacedClassName, 0, $firstSpace);
 
         if ($namespace != $this->_namespace) {
-            return false;
+            return;
         }
 
         $secondSpace = strpos($spacedClassName, ' ', $firstSpace + 1);
@@ -103,7 +103,7 @@ class Admin2_Loader_ModuleLoader
         $moduleName = strtolower($rawModuleName);
 
         if (!isset($this->_paths[$moduleName])) {
-            return false;
+            return;
         }
 
         $fileName = $this->_paths[$moduleName] . '/' . substr($spacedClassName, $secondSpace + 1);
@@ -115,13 +115,6 @@ class Admin2_Loader_ModuleLoader
         }
 
         include_once $fileName;
-
-        if (!class_exists($className)) {
-            require_once 'Admin2/Loader/Exception.php';
-            throw new Admin2_Loader_Exception("File '$fileName' does not contain class '$className'.");
-        }
-
-        return true;
     }
 
 }

@@ -66,19 +66,19 @@ class Admin2_Loader_Autoloader
      *
      * @throws Admin2_Loader_Exception
      *
-     * @return bool
+     * @return null
      */
     public function loadClass($className)
     {
         $spacedClassName = str_replace(array('\\', '_'), ' ', $className);
         $firstSpace = strpos($spacedClassName, ' ');
         if ($firstSpace === false) {
-            return false;
+            return;
         }
 
         $namespace = substr($spacedClassName, 0, $firstSpace);
         if (!in_array($namespace, $this->_namespaces)) {
-            return false;
+            return;
         }
 
         $fileName = str_replace(' ', DIRECTORY_SEPARATOR, ucwords($spacedClassName)) . '.php';
@@ -89,15 +89,6 @@ class Admin2_Loader_Autoloader
         }
 
         include_once $fileName;
-
-        if (!class_exists($className) && !interface_exists($className)) {
-            require_once 'Admin2/Loader/Exception.php';
-            throw new Admin2_Loader_Exception(
-                "The file '$fileName' doesn't contain the class definition for '$className'."
-            );
-        }
-
-        return true;
     }
 
     /**

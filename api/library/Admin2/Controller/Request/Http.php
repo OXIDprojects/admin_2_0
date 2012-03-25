@@ -34,13 +34,17 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
         $this->_controller = $count > 1 ? $urlParts[1] : 'Products';
         $this->_entity     = $count > 2 ? $urlParts[2] : '';
 
-        if (!empty($_REQUEST)) {
-            $this->_params = filter_var_array($_REQUEST);
-        }
-
         if (!empty($_SERVER['REQUEST_METHOD'])) {
             $this->_method = $_SERVER['REQUEST_METHOD'];
         }
+
+        $request = $_REQUEST;
+        if (empty($request) && $this->_method != 'GET') {
+            parse_str(file_get_contents('php://input'), $request);
+        }
+
+        $this->_params = filter_var_array($request);
+
     }
 
 }

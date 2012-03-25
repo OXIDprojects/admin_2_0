@@ -72,9 +72,10 @@ class Admin2_Dispatcher
                 throw new Admin2_Dispatcher_Exception("There was no controller specified.");
             }
 
-            $class = ucfirst($controllerName) . 'Controller';
+            $spacedClass = str_replace('_', ' ', $controllerName);
+            $class = str_replace(' ', '_', ucwords($spacedClass)) . 'Controller';
 
-            $controllerFile = $this->_controllerDir . '/' . $class . '.php';
+            $controllerFile = $this->_controllerDir . '/' . str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
 
             if (!file_exists($controllerFile)) {
                 require_once 'Admin2/Dispatcher/Exception.php';
