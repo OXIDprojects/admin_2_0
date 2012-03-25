@@ -2,7 +2,7 @@
 /**
  * Class for handling actions related to a product
  */
-class Admin2_Model_Product extends Admin2_Model_Abstract
+class Application_Model_Product extends Admin2_Model_Abstract
 {
     /**
      * Retrieve product data.

@@ -2,6 +2,8 @@
 error_reporting(E_ALL ^ E_NOTICE); // Oxid-classes throw notices so we block them here
 ini_set('display_errors', 1);
 
+defined('APPLICATION_PATH') || define('APPLICATION_PATH', dirname(__FILE__));
+
 /**
  * Returns the filesystem path to the OXID eShop installation.
  *
@@ -21,26 +23,35 @@ function getShopBasePath()
     return dirname(__FILE__) . '/../../';
 }
 
+// Now we add the library and OXID path to the include paths.
+// Adding the OXID path prevent us to use code like "require getShopBasePath() . 'core/oxfunctions.php';"
 set_include_path(
     implode(
         PATH_SEPARATOR,
         array(
-            dirname(__FILE__),
+            realpath(dirname(__FILE__) . '/../library'),
+            getShopBasePath(),
             get_include_path(),
         )
     )
 );
 
-require 'Autoloader.php';
-$loader = Admin2_Autoloader::getInstance();
+// Load and initialize our main autoloader.
+require 'Admin2/Loader/Autoloader.php';
+$loader = Admin2_Loader_Autoloader::getInstance();
+$loader->registerNamespace('Admin2');
+
+// Initialize our module loader.
+// The module loader loads e.g. the models (currently only the models, but easily extendable).
+$moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
 
 /**
- * Load OXID Core Classes
+ * Load OXID core classes.
  */
-require getShopBasePath() . 'modules/functions.php';
-require getShopBasePath() . 'core/oxfunctions.php';
+require 'modules/functions.php';
+require 'core/oxfunctions.php';
 
-//here we go
+// Here we go.
 $request    = new Admin2_Controller_Request_Http();
 $result     = new Admin2_Controller_Result();
 $dispatcher = new Admin2_Dispatcher($request, $result);

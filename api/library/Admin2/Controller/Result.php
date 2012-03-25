@@ -64,7 +64,7 @@ class Admin2_Controller_Result
     /**
      * Get response header
      *
-     * @return string Response header
+     * @return array Response header
      */
     public function getResponseHeader()
     {
