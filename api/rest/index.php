@@ -36,6 +36,12 @@ set_include_path(
     )
 );
 
+/**
+ * Load OXID core classes.
+ */
+require 'modules/functions.php';
+require 'core/oxfunctions.php';
+
 // Load and initialize our main autoloader.
 require 'Admin2/Loader/Autoloader.php';
 $loader = Admin2_Loader_Autoloader::getInstance();
@@ -44,12 +50,6 @@ $loader->registerNamespace('Admin2');
 // Initialize our module loader.
 // The module loader loads e.g. the models (currently only the models, but easily extendable).
 $moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
-
-/**
- * Load OXID core classes.
- */
-require 'modules/functions.php';
-require 'core/oxfunctions.php';
 
 // Here we go.
 $request    = new Admin2_Controller_Request_Http();
