@@ -109,7 +109,7 @@ class Admin2_Loader_ModuleLoader
         $fileName = $this->_paths[$moduleName] . '/' . substr($spacedClassName, $secondSpace + 1);
         $fileName = str_replace(' ', DIRECTORY_SEPARATOR, ucwords($fileName)) . '.php';
 
-        if (!file_exists($fileName)) {
+        if (!file_exists($fileName) || !is_readable($fileName)) {
             require_once 'Admin2/Loader/Exception.php';
             throw new Admin2_Loader_Exception("File '$fileName' does not exists.");
         }

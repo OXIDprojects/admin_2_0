@@ -83,7 +83,7 @@ class Admin2_Loader_Autoloader
 
         $fileName = str_replace(' ', DIRECTORY_SEPARATOR, ucwords($spacedClassName)) . '.php';
 
-        if (!$this->fileExists($fileName)) {
+        if (!$this->fileAccessible($fileName)) {
             require_once 'Admin2/Loader/Exception.php';
             throw new Admin2_Loader_Exception("Can't find PHP file for class '$className'.");
         }
@@ -98,14 +98,14 @@ class Admin2_Loader_Autoloader
      *
      * @return bool
      */
-    protected function fileExists($fileName)
+    protected function fileAccessible($fileName)
     {
         if ($this->_includePaths === null) {
             $this->_includePaths = explode(PATH_SEPARATOR, get_include_path());
         }
         foreach ($this->_includePaths as $includePath) {
             $realFile = rtrim($includePath, '/') . '/' . $fileName;
-            if (file_exists($realFile)) {
+            if (file_exists($realFile) && is_readable($realFile)) {
                 return true;
             }
         }
