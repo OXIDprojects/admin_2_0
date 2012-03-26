@@ -17,7 +17,7 @@ class ProductsController extends Admin2_Controller_Abstract
         //   dc5ffdf380e15674b56dd562a7cb6aec
         $oxid         = $this->_request->getParam('productId');
         $productModel = new Application_Model_Product();
-        $productData  = $productModel->getProduct($oxid);
+        $productData  = $productModel->getProduct($this->_request->getEntity());
         $this->_result->setData(array('product' => $productData));
     }
 
