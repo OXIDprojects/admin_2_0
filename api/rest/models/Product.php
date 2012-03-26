@@ -9,7 +9,7 @@ class Application_Model_Product extends Admin2_Model_Abstract
      *
      * @param string $oxid OXID of the product.
      *
-     * @return array
+     * @return array|null
      */
     public function getProduct($oxid)
     {
@@ -21,6 +21,9 @@ class Application_Model_Product extends Admin2_Model_Abstract
         $product->loadInLang($this->currentLanguageId, $oxid);
         $productData = array();
         $fields = $product->getFieldNames();
+        if (!$product->isLoaded()) {
+            return null;
+        }
 
         foreach ($fields as $field) {
             $productData[$field] = $product->getFieldData($field);

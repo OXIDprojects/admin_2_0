@@ -8,7 +8,7 @@ class ProductsController extends Admin2_Controller_Abstract
      * Example call:
      * http://yourDomain/api/rest/v1/products.html?productId=dc5ffdf380e15674b56dd562a7cb6aec
      *
-     * @return void
+     * @return null
      */
     public function get()
     {
@@ -18,6 +18,10 @@ class ProductsController extends Admin2_Controller_Abstract
         $oxid         = $this->_request->getParam('productId');
         $productModel = new Application_Model_Product();
         $productData  = $productModel->getProduct($this->_request->getEntity());
+        if ($productData === null) {
+            return;
+        }
+
         $this->_result->setData(array('product' => $productData));
     }
 

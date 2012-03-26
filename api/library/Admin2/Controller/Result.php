@@ -89,4 +89,9 @@ class Admin2_Controller_Result
         $this->_responseHeader[$key] = (string) $value;
         return true;
     }
+
+    public function hasData()
+    {
+        return ($this->_data !== null) && (count($this->_data) > 0);
+    }
 }

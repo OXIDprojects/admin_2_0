@@ -117,11 +117,15 @@ class Admin2_Dispatcher
 
             $controller->$realMethod();
 
-            $processedData = $this->_outputProcessor->process($this->_result);
-
-            $responseCode = $this->_result->getResponseCode();
-            if (!empty($responseCode)) {
-                header($responseCode);
+            $processedData = '';
+            if ($this->_result->hasData()) {
+                $processedData = $this->_outputProcessor->process($this->_result);
+                $responseCode = $this->_result->getResponseCode();
+                if (!empty($responseCode)) {
+                    header($responseCode);
+                }
+            } else {
+                header('HTTP/1.0 204 No Content', true);
             }
 
             foreach ($this->_result->getResponseHeader() as $headerKey => $headerValue) {
@@ -132,6 +136,7 @@ class Admin2_Dispatcher
             $errorController = new Admin2_Controller_Error();
             $processedData   = $errorController->error($exception);
         }
+
         echo $processedData;
     }
 }
