@@ -26,7 +26,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
      */
     public function post()
     {
-        $oxidClass = $this->_request->getParam('oxidClass');
+        $oxidClass = $this->_request->getEntity();
         $moduleName = $this->_request->getParam('moduleName');
 
         $shopConfigModel = $this->getShopConfigModel();
@@ -72,6 +72,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
         if ($this->_shopConfigModel === null) {
             $this->_shopConfigModel = new Application_Model_Shop_Config();
         }
+
         return $this->_shopConfigModel;
     }
 }
