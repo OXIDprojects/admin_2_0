@@ -19,7 +19,7 @@ class Admin2_Output_Processor_Csv implements Admin2_Output_Processor_Interface
         $headLine = implode(',', $fields);
         $ret      = $headLine ."\n";
         foreach ($data as $line) {
-            $ret .= implode('","', str_replace('"', '\"', $line)) . "\n";
+            $ret .= '"' . implode('","', str_replace('"', '\"', $line)) . "\"\n";
         }
         return $ret;
     }
