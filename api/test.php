@@ -26,7 +26,7 @@
         <form id="testingForm" action="<?php echo $publicUrl; ?>/rest/" onsubmit="return false;">
             <table>
                 <tr>
-                    <th><label for="method">Request method:</label></th>
+                    <th nowrap="nowrap"><label for="method">Request method:</label></th>
                     <td>
                         <select id="method" name="method">
                             <option value="GET" selected="selected">GET</option>
@@ -57,7 +57,7 @@
                     <td><input type="text" id="entity" name="entity"></td>
                 </tr>
                 <tr>
-                    <th><label for="format">Base URL:</label></th>
+                    <th><label for="format">Request format:</label></th>
                     <td><select id="format" name="format">
                         <option value="json" selected="selected">JSON</option>
                         <option value="html">HTML</option>
@@ -83,6 +83,10 @@
                 <tr>
                     <th></th>
                     <td><button type="submit">Submit</button> <button type="button" id="addVariable">Add variable</button></td>
+                </tr>
+                <tr>
+                    <th>Response:</th>
+                    <td id="result-div"></div>
                 </tr>
             </table>
         </form>
@@ -126,6 +130,11 @@
                     "url":url,
                     "data":data,
                     "success":function (r) {
+                        if ($('#format').val() == 'json') {
+                            $('#result-div').html('See firebug console');
+                        } else {
+                            $('#result-div').html(r);
+                        }
                         console.debug(r);
                     }
                 });
