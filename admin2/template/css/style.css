@@ -1,0 +1,197 @@
+body {
+    background:white;
+    font-size:12px;
+    font-family:Helvetica, Arial, Verdana, sans-serif;
+    line-height:24px;
+}
+
+header#oxhead {	
+    width:100%;
+    height:42px;
+	background:white;
+    position:fixed;
+    top:0;
+    z-index:1000;
+    overflow:hidden;
+	border-top:solid 5px #ff3600;
+}
+
+header#oxhead .oxidversion {
+	text-transform:uppercase;
+	color:#ff3600;
+	float:right;
+	font-size:13px;
+	margin:8px 15px 0;
+}
+
+nav#main{
+    background: -moz-linear-gradient(#E0E0E0, #B1B1B1);
+    background: -ms-linear-gradient(#E0E0E0, #B1B1B1);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #E0E0E0), color-stop(100%, #B1B1B1));
+    background: -webkit-linear-gradient(#E0E0E0, #B1B1B1);
+    background: -o-linear-gradient(#E0E0E0, #B1B1B1);
+    background: linear-gradient(#E0E0E0,#B1B1B1);
+	border-bottom:solid 1px #AAA;
+	position:fixed;
+	top:47px;
+	width:100%;
+	height:28px;
+}
+
+nav#main .title {
+	float:left;
+	text-transform:uppercase;
+	text-shadow:0 0 1px white;
+	color:#646464;
+	font-weight:bold;
+	font-size:12px;
+	display:block;
+	margin:4px 10px;
+}
+
+nav#main ul {
+	float:right;
+	display:block;
+}
+
+nav#main ul li {
+	float:left;
+	display:block;
+	border-left:solid 1px #AAA;
+}
+
+nav#main ul li a {
+	display:block;
+	border-left:solid 1px white;
+	padding:3px 20px 1px 40px;
+	color:#646464;
+	text-shadow:0 0 1px white;
+	text-decoration:none;
+}
+
+nav#main ul ul {
+	display:none;
+}
+
+nav#main ul li.favorites {
+	background:url("bg/sprite.png") no-repeat scroll 13px 8px transparent;
+}
+
+nav#main ul li.help {
+	background:url("bg/sprite.png") no-repeat scroll 13px -24px transparent;
+}
+
+nav#main ul li.logout {
+	background:url("bg/sprite.png") no-repeat scroll 13px -55px transparent;
+}
+
+nav#main ul li a.hassub {
+	background:url("bg/sprite.png") no-repeat scroll right 8px transparent;
+}
+
+aside nav {
+	float:left;
+}
+
+aside nav ul {
+	display:block;
+	width:57px;
+	background:#EBEBEB;
+}
+
+aside nav li {
+	display:block;
+	height:58px;
+	border-bottom:solid 1px white;
+	position:relative;
+}
+
+aside nav li > a {
+	text-indent:-999px;
+	display:block;
+	height:58px;
+	border-bottom:#CBCBCB;
+}
+
+aside nav ul li:hover a {
+	background:white;
+	z-index:10;
+	box-shadow:-6px 0 5px rgba(0,0,0,0.7);
+	position:relative;
+	top:0;
+}
+
+aside nav li.orders > a {
+	background:url("bg/sprite.png") no-repeat scroll 7px -184px transparent;
+}
+aside nav li.products > a {
+	background:url("bg/sprite.png") no-repeat scroll 7px -131px transparent;
+}
+aside nav li.marketing > a {
+	background:url("bg/sprite.png") no-repeat scroll 7px -242px transparent;
+}
+aside nav li.user > a {
+	background:url("bg/sprite.png") no-repeat scroll 7px -300px transparent;
+}
+aside nav li.settings > a {
+	background:url("bg/sprite.png") no-repeat scroll 7px -359px transparent;
+}
+
+aside nav li.orders:hover > a {
+	background:url("bg/sprite.png") no-repeat scroll -64px -184px white;
+}
+aside nav li.products:hover > a {
+	background:url("bg/sprite.png") no-repeat scroll -65px -131px white;
+}
+aside nav li.marketing:hover > a {
+	background:url("bg/sprite.png") no-repeat scroll -64px -242px white;
+}
+aside nav li.user:hover > a {
+	background:url("bg/sprite.png") no-repeat scroll -64px -300px white;
+}
+aside nav li.settings:hover > a {
+	background:url("bg/sprite.png") no-repeat scroll -64px -359px white;
+}
+
+aside nav ul ul {
+	position:absolute;
+	left:57px;
+	top:-1px;;
+	background-color:white;
+	z-index:5;
+	border:solid 1px #CBCBCB;
+	border-left:white;
+    box-shadow:	0 0 5px rgba(0,0,0,0.7);
+	width:158px;
+	display:none;
+	min-height:100px;
+}
+
+aside nav ul li:hover ul {
+	display:block;
+}
+
+aside nav ul ul li {
+	position:static;
+	height:auto;
+}
+
+aside nav ul ul li a{
+	display:inline;
+	text-decoration:none;
+	color:#656565;
+	padding-left:10px;
+	font-weight:bold;
+	box-shadow:none !important;
+}
+
+div#main {
+	margin-top:77px;
+}
+
+div#content {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.7);
+    margin-left: 57px;
+    position: relative;
+    z-index: 1;
+}
