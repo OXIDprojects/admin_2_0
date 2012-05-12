@@ -217,3 +217,39 @@ div#content {
     position: relative;
     z-index: 1;
 }
+
+div#listfilter {
+	background:#F1F0EE;
+	height:59px;
+	padding-left:20px;
+}
+
+div#addnew {
+	height:44px;
+	padding:15px 0 0 20px;
+}
+
+a.btn {
+	background: -moz-linear-gradient(#A09C96, #7A7772);
+    background: -ms-linear-gradient(#A09C96, #7A7772);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #A09C96), color-stop(100%, #7A7772));
+    background: -webkit-linear-gradient(#A09C96, #7A7772);
+    background: -o-linear-gradient(#A09C96, #7A7772);
+    background: linear-gradient(#A09C96,#7A7772);
+	display:inline-block;
+	border-radius:3px;
+	padding:5px 10px;
+	color:white;
+	font-size:14px;
+	font-weight:bold;
+}
+
+a.btn.addnew span{
+	display:inline-block;
+	text-indent:-999px;
+	overflow:hidden;
+	width:10px;
+	height:11px;
+	background: url("bg/sprite.png") no-repeat scroll right -36px transparent;
+	margin: 0 0 -1px 5px;
+}
