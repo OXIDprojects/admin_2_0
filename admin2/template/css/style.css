@@ -61,12 +61,12 @@ nav#main ul li {
 }
 
 nav#main ul li a {
-	display:block;
-	border-left:solid 1px white;
-	padding:3px 20px 1px 40px;
-	color:#646464;
-	text-shadow:0 0 1px white;
-	text-decoration:none;
+    border-left: 1px solid #DEDEDE;
+    color: #646464;
+    display: block;
+    padding: 4px 20px 2px 35px;
+    text-decoration: none;
+    text-shadow: 0 0 1px white;
 }
 
 nav#main ul ul {
@@ -74,15 +74,15 @@ nav#main ul ul {
 }
 
 nav#main ul li.favorites {
-	background:url("bg/sprite.png") no-repeat scroll 13px 8px transparent;
+	background:url("bg/sprite.png") no-repeat scroll 10px 8px transparent;
 }
 
 nav#main ul li.help {
-	background:url("bg/sprite.png") no-repeat scroll 13px -24px transparent;
+	background:url("bg/sprite.png") no-repeat scroll 10px -24px transparent;
 }
 
 nav#main ul li.logout {
-	background:url("bg/sprite.png") no-repeat scroll 13px -55px transparent;
+	background:url("bg/sprite.png") no-repeat scroll 10px -55px transparent;
 }
 
 nav#main ul li a.hassub {
@@ -101,7 +101,7 @@ aside nav ul {
 
 aside nav li {
 	display:block;
-	height:58px;
+	height:59px;
 	border-bottom:solid 1px white;
 	position:relative;
 }
@@ -110,7 +110,7 @@ aside nav li > a {
 	text-indent:-999px;
 	display:block;
 	height:58px;
-	border-bottom:#CBCBCB;
+	border-bottom: 1px solid #CBCBCB;
 }
 
 aside nav ul li:hover a {
@@ -137,20 +137,29 @@ aside nav li.settings > a {
 	background:url("bg/sprite.png") no-repeat scroll 7px -359px transparent;
 }
 
-aside nav li.orders:hover > a {
+aside nav li.orders:hover > a,
+aside nav li.orders > a.active {
 	background:url("bg/sprite.png") no-repeat scroll -64px -184px white;
 }
-aside nav li.products:hover > a {
+aside nav li.products:hover > a,
+aside nav li.products > a.active {
 	background:url("bg/sprite.png") no-repeat scroll -65px -131px white;
 }
-aside nav li.marketing:hover > a {
+aside nav li.marketing:hover > a,
+aside nav li.marketing > a.active {
 	background:url("bg/sprite.png") no-repeat scroll -64px -242px white;
 }
-aside nav li.user:hover > a {
+aside nav li.user:hover > a,
+aside nav li.user > a.active {
 	background:url("bg/sprite.png") no-repeat scroll -64px -300px white;
 }
-aside nav li.settings:hover > a {
+aside nav li.settings:hover > a,
+aside nav li.settings > a.active {
 	background:url("bg/sprite.png") no-repeat scroll -64px -359px white;
+}
+
+aside nav li a.active {
+	background-color:white;
 }
 
 aside nav ul ul {
@@ -180,9 +189,22 @@ aside nav ul ul li a{
 	display:inline;
 	text-decoration:none;
 	color:#656565;
+	margin-left:10px;
 	padding-left:10px;
 	font-weight:bold;
 	box-shadow:none !important;
+	border:none;
+}
+
+aside nav ul ul li.active a,
+aside nav ul ul li:hover a {
+	background: url("bg/sprite.png") no-repeat scroll -144px -1px transparent;
+}
+aside nav ul ul li.grouptitle{
+	color:#ff3600;
+	text-transform:uppercase;
+	font-size:14px;
+	margin:17px 0 5px 10px;
 }
 
 div#main {
