@@ -1,12 +1,9 @@
 /export/*
 /log/*
 /modules/*
-/out/azure/*
-/out/basic/*
-/out/de/*
-/out/en/*
-/out/media/*
-/out/pictures/*
+/out/*
+/core/*
+/admin/*
 /tmp/*
 /views/*
 /setup/*
@@ -25,5 +22,5 @@
 /.idea
 /.settings/org.eclipse.core.resources.prefs
 *.*~
-
+/Admin 2.0/*
 /atlassian-ide-plugin.xml
