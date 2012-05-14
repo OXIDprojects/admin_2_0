@@ -5,11 +5,11 @@
 <html>
 <head>
     <title>Testing API REST methods</title>
-    <link rel="stylesheet" type="text/css" href="../admin2/css/ox_reset.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/css/ox_style.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/css/smoothness/jquery-ui-1.8.18.custom.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/css/joscha.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/css/fluid_grid.css">
+    <link rel="stylesheet" type="text/css" href="../admin2/template/css/ox_reset.css">
+    <link rel="stylesheet" type="text/css" href="../admin2/template/css/ox_style.css">
+    <link rel="stylesheet" type="text/css" href="../admin2/template/css/smoothness/jquery-ui-1.8.18.custom.css">
+    <link rel="stylesheet" type="text/css" href="../admin2/template/css/joscha.css">
+    <link rel="stylesheet" type="text/css" href="../admin2/template/css/fluid_grid.css">
 
     <style type="text/css">
         #varInputDialog {
@@ -17,9 +17,9 @@
         }
     </style>
 
-    <script type="text/javascript" src="../admin2/js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="../admin2/js/jquery-ui-1.8.18.custom.min.js"></script>
-    <script type="text/javascript" src="../admin2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="../admin2/template/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="../admin2/template/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="../admin2/template/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <div>
