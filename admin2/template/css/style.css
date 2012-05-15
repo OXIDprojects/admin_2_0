@@ -408,6 +408,11 @@ section.quickedit input[type=submit] {
     margin-left:90px;
 }
 
+#dashboard h1 {
+    padding-left:30px;
+    background: url("bg/sprite.png") no-repeat scroll -343px -156px transparent;
+}
+
 #dashboard ul {
     margin: 0 10px;
     margin: 0 10px;
@@ -423,4 +428,5 @@ section.quickedit input[type=submit] {
 #dashboard section.content h1 {
     padding:10px 0 0 10px;
     color:#333;
+    background:none;
 }
