@@ -95,71 +95,196 @@
 				<div id="addnew">
 					<a class="btn addnew">Neuer Artikel<span>+</span></a>
 				</div>
-                <section id="product_1" class="listentry">
-                    <header>
-                        <h1>Ein Produkt</h1>
-                    </header>
-                    <section class="quickedit">
-                        <p class="details">Beschreibung</p>
-                        <div class="group group1">
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                        </div>
-                        <div class="group group2">
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                        </div>
-                        <div class="group group3 last">
-                            <input name="submit" value="Sichern" type="submit" />
-                        </div>
-                    </section>
-                </section>
-                
-                <section id="product_2" class="listentry">
-                    <header>
-                        <h1>Noch ein Produkt</h1>
-                        <p class="details">Beschreibung</p>
-                    </header>
-                    <section class="quickedit">
-                        <p class="details">Beschreibung</p>
-                        <div class="group group1">
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                        </div>
-                    </section>
-                </section>
-                
-                <section id="product_3" class="listentry">
-                    <header>
-                        <h1>Noch ein Produkt</h1>
-                        <p class="details">Beschreibung</p>
-                    </header>
-                    <section class="quickedit">
-                        <p class="details">Beschreibung</p>
-                        <div class="group group1">
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                            <label for="ox_title">Title:</label>
-                            <input name="ox_title" value="Ein Produkt" />
-                        </div>
-                    </section>
-                </section>
+				<div id="quickeditlist">
+				
+					<section id="product_1" class="listentry active">
+						<header>
+							<h2>Ein Produkt</h2>
+							<span class="price">195,99 €</span>
+							<form>
+								<input type="checkbox" name="active" id="active" value="1"><label for="active">Active</label>
+							</form>
+							<form>
+								<select name="lang">
+									<option value="1">english</option>
+									<option value="0">german</option>
+								</select>
+							</form>
+							<ul class="edit">
+								<li>
+									<a href="#" class="preview" target="preview">Preview</a>
+								</li>
+								<li>
+									<a href="#" class="edit">Edit</a>
+								</li>
+								<li>
+									<a href="#" class="delete">Delete</a>
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</header>
+						<section class="quickedit">
+							<form>
+                                <fieldset>
+                                    <label class="main" for="ox_title">Title:</label>
+                                    <input class="broad" name="ox_title" value="Ein Produkt" />
+                                </fieldset>
+                                <fieldset>
+                                    <label class="main" for="ox_title">Price:</label>
+                                    <input name="ox_title" value="Ein Produkt" />
+                                    <span class="addinfo">Alt. Price</span>
+                                    <label for="ox_title">A:</label>
+                                    <input class="small" name="ox_title" value="" />
+                                    <label for="ox_title">B:</label>
+                                    <input class="small" name="ox_title" value="" />
+                                    <label for="ox_title">C:</label>
+                                    <input class="small" name="ox_title" value="" />
+                                </fieldset>
+                                <fieldset>
+                                    <label class="main" for="ox_title">Normal field:</label>
+                                    <input name="ox_title" value="Some value" />
+                                </fieldset>
+                                <fieldset class="last">
+                                    <input name="submit" value="Sichern" type="submit" />
+                                </fieldset>
+							</form>
+						</section>
+					</section>
+                    
+                    <section id="product_1" class="listentry active outoftime">
+						<header>
+							<h2>Ein Produkt</h2>
+							<span class="price">195,99 €</span>
+							<form>
+								<input type="checkbox" name="active" id="active" value="1"><label for="active">Active</label>
+							</form>
+							<form>
+								<select name="lang">
+									<option value="1">english</option>
+									<option value="0">german</option>
+								</select>
+							</form>
+							<ul class="edit">
+								<li>
+									<a href="#" class="preview" target="preview">Preview</a>
+								</li>
+								<li>
+									<a href="#" class="edit">Edit</a>
+								</li>
+								<li>
+									<a href="#" class="delete">Delete</a>
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</header>
+						<section class="quickedit">
+							<form>
+							<fieldset>
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+							</fieldset>
+							<fieldset>
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+							</fieldset>
+							<fieldset class="last">
+								<input name="submit" value="Sichern" type="submit" />
+							</fieldset>
+							</form>
+						</section>
+					</section>
+                    
+                    <section id="product_1" class="listentry inactive">
+						<header>
+							<h2>Ein Produkt</h2>
+							<span class="price">195,99 €</span>
+							<form>
+								<input type="checkbox" name="active" id="active" value="1"><label for="active">Active</label>
+							</form>
+							<form>
+								<select name="lang">
+									<option value="1">english</option>
+									<option value="0">german</option>
+								</select>
+							</form>
+							<ul class="edit">
+								<li>
+									<a href="#" class="preview" target="preview">Preview</a>
+								</li>
+								<li>
+									<a href="#" class="edit">Edit</a>
+								</li>
+								<li>
+									<a href="#" class="delete">Delete</a>
+								</li>
+							</ul>
+							<div class="clear"></div>
+						</header>
+						<section class="quickedit">
+							<form>
+							<fieldset>
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+							</fieldset>
+							<fieldset>
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+								<label for="ox_title">Title:</label>
+								<input name="ox_title" value="Ein Produkt" />
+							</fieldset>
+							<fieldset class="last">
+								<input name="submit" value="Sichern" type="submit" />
+							</fieldset>
+							</form>
+						</section>
+					</section>
+					
+				</div>
+				<div id="quickeditadditional">
+					<div id="dashboard">
+                        <section class="listentry">
+                            <header>
+                                <h1>Dashboard</h1>
+                            </header>
+                            <section class="content">
+                                <h1>To Do:</h1>
+                                <ul>
+                                    <li>
+                                        Add product
+                                    </li>
+                                    <li>
+                                        Sell product
+                                    </li>
+                                    <li>
+                                        Ship order
+                                    </li>
+                                    <li>
+                                        Pay your developer
+                                    </li>
+                                    <li>
+                                        See you in Hawaii
+                                    </li>
+                                </ul>
+                            </section>
+                        </section>
+					</div>
+				</div>
+				<div class="clear"></div>
             </div>
-        </div>
         
         <script src="template/js/jquery-1.7.1.min.js" type="text/javascript"></script>
         <script src="template/js/joscha.js" type="text/javascript"></script>

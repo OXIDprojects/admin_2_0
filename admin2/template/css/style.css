@@ -216,6 +216,7 @@ div#content {
     margin-left: 57px;
     position: relative;
     z-index: 1;
+    min-height:600px;
 }
 
 div#listfilter {
@@ -253,4 +254,173 @@ a.btn.addnew span{
 	height:11px;
 	background: url("bg/sprite.png") no-repeat scroll right -36px transparent;
 	margin: 0 0 -1px 5px;
+}
+
+div#quickeditlist,
+div#quickeditadditional {
+	width:580px;
+	float:left;
+	padding:0 0 20px 20px;
+}
+
+section.listentry {
+	border:solid 1px #D7D7D7;
+	background:#F6F5F4;
+	border-radius:3px;
+    margin-bottom:10px;
+    color:#666;
+}
+
+section.listentry header {
+	background: -moz-linear-gradient(#F0F0F0, #DDDDDD);
+    background: -ms-linear-gradient(#F0F0F0, #DDDDDD);
+    background: -webkit-gradient(linear, left top, left bottom, color-stop(0, #F0F0F0), color-stop(100%, #DDDDDD));
+    background: -webkit-linear-gradient(#F0F0F0, #DDDDDD);
+    background: -o-linear-gradient(#F0F0F0, #DDDDDD);
+    background: linear-gradient(#F0F0F0, #DDDDDD);
+	padding:3px;
+    cursor:pointer;
+}
+
+section.listentry header h2,
+section.listentry header h1 {
+    color:#666;
+    text-shadow:0 0 1px white;
+}
+section.listentry header h1 {
+    text-transform:uppercase;
+}
+
+section.listentry.active header h2,
+section.listentry.active.outoftime header h2,
+section.listentry.inactive header h2 {
+    background: url("bg/sprite.png") no-repeat scroll -235px -184px transparent;
+    float: left;
+    padding: 0 0 0 30px;
+    width: 180px;
+}
+
+section.listentry.active.outoftime header h2 {
+    background-position:-235px -264px;
+}
+
+section.listentry.inactive header h2 {
+    background-position:-235px -224px;
+}
+
+section.listentry span.price {
+    float:left;
+    display:block;
+    width:80px;
+    font-weight:bold;
+    color:#666;
+    text-align:right;
+}
+
+section.listentry header ul {
+	float:right;
+	width:85px;
+    margin-top: 4px;
+    display:none;
+}
+
+section.listentry header.open ul,
+section.listentry header:hover ul {
+    display:block;
+}
+
+section.listentry header ul li {
+	float:left;
+	display:block;
+	width:17px;
+	height:17px;
+	margin-left:10px;
+}
+
+section.listentry header ul li a {
+	display:block;
+	text-indent:-999px;
+	overflow:hidden;
+	height:17px;
+	background: url("bg/sprite.png") no-repeat scroll -144px -1px transparent;
+	width:17px;
+	float:left;
+}
+
+section.listentry header ul li a.preview {
+	background-position: -239px -159px;
+}
+section.listentry header ul li a.edit {
+	background-position: -269px -159px;
+}
+
+section.listentry header ul li a.delete {
+	background-position: -292px -159px;
+}
+
+section.listentry header form,
+section.listentry header form * {
+    display:none;
+}
+
+section.quickedit {
+    display:none;
+}
+
+section.quickedit fieldset {
+    padding:10px;
+    border-bottom:1px solid #D7D7D7;
+}
+
+section.quickedit fieldset.last {
+    border:none;
+}
+
+section.quickedit label,
+section.quickedit span {
+    display:block;
+    float:left;
+    margin:0 5px;
+}
+
+section.quickedit label.main {
+    width:80px;
+    text-align:right;
+}
+
+section.quickedit input,
+section.quickedit select,
+section.quickedit textarea {
+    float:left;
+}
+section.quickedit input.broad,
+section.quickedit select.broad,
+section.quickedit textarea.broad {
+    width:400px;
+}
+section.quickedit input.small,
+section.quickedit select.small,
+section.quickedit textarea.small {
+    width:50px;
+}
+
+section.quickedit input[type=submit] {
+    margin-left:90px;
+}
+
+#dashboard ul {
+    margin: 0 10px;
+    margin: 0 10px;
+}
+
+#dashboard ul li {
+    padding-left:10px;
+    background: url("bg/sprite.png") no-repeat scroll -145px 4px transparent;
+    display:block;
+    width:200px;
+}
+
+#dashboard section.content h1 {
+    padding:10px 0 0 10px;
+    color:#333;
 }
