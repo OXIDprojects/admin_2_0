@@ -16,12 +16,23 @@ class ProductsController extends Admin2_Controller_Abstract
         //   05848170643ab0deb9914566391c0c63
         //   dc5ffdf380e15674b56dd562a7cb6aec
         $productModel = new Application_Model_Product();
-        $productData  = $productModel->getProduct($this->_request->getEntity());
+        $entity = $this->_request->getEntity();
+        if ($entity != null){
+            $productData  = $productModel->getProduct($entity);
+        } else {
+            $limit = $this->_request->getParam('limit',50);
+            $offset = $this->_request->getParam('offset',0);
+            $productData  = $productModel->getProductList($limit,$offset);
+        }
+
         if ($productData === null) {
             return;
         }
-
-        $this->_result->setData(array('product' => $productData));
+        if ($entity != null){
+            $this->_result->setData(array('product' => $productData));
+        } else {
+            $this->_result->setData(array('productList' => $productData));
+        }
     }
 
     public function post()

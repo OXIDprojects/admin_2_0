@@ -33,6 +33,42 @@ class Application_Model_Product extends Admin2_Model_Abstract
     }
 
     /**
+     * Retrieve product data.
+     *
+     * @param int $limit maximum length of list.
+     *
+     * @param int $offset offset of first list item.
+     *
+     * @return array|null
+     */
+    public function getProductList($limit = 50,$offset = 0)
+    {
+        /**
+         * @var oxArticleList $productList
+         */
+        $productList = oxNew('oxarticlelist');
+        $productList->setSqlLimit($offset,$limit);
+        $oListObject = $productList->getBaseObject();//oxNew('oxarticle');
+        $sFieldList = $oListObject->getSelectFields();
+        $sQ = "select ".$sFieldList." from ".$oListObject->getViewName()." where ";
+        $sQ .= $oListObject->getViewName().".oxparentid = ''";
+        $productList->selectString($sQ);
+
+        $productsData = $productList->getArray();
+        $productData = array();
+        $c = 0;
+        foreach ($productsData as $product){
+            $sOxid = $product->getProductId();
+            $data = $this->getProduct($sOxid);
+            if ($data !== null){
+                $c++;
+                $productData['product'.$c] = $data;
+            }
+        }
+        return $productData;
+    }
+
+    /**
      * Model-specific initialization code.
      *
      * @return null
