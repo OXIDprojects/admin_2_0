@@ -35,34 +35,33 @@ class Application_Model_Product extends Admin2_Model_Abstract
     /**
      * Retrieve product data.
      *
-     * @param int $limit maximum length of list.
-     *
-     * @param int $offset offset of first list item.
+     * @param int $limit  Maximum length of list.
+     * @param int $offset Offset of first list item.
      *
      * @return array|null
      */
-    public function getProductList($limit = 50,$offset = 0)
+    public function getProductList($limit = 50, $offset = 0)
     {
         /**
          * @var oxArticleList $productList
          */
         $productList = oxNew('oxarticlelist');
-        $productList->setSqlLimit($offset,$limit);
+        $productList->setSqlLimit($offset, $limit);
         $oListObject = $productList->getBaseObject();//oxNew('oxarticle');
         $sFieldList = $oListObject->getSelectFields();
-        $sQ = "select ".$sFieldList." from ".$oListObject->getViewName()." where ";
-        $sQ .= $oListObject->getViewName().".oxparentid = ''";
-        $productList->selectString($sQ);
+        $query = 'SELECT ' . $sFieldList . ' FROM ' . $oListObject->getViewName() . ' WHERE '
+                . $oListObject->getViewName() . '.oxparentid = \'\'';
+        $productList->selectString($query);
 
         $productsData = $productList->getArray();
         $productData = array();
         $c = 0;
-        foreach ($productsData as $product){
+        foreach ($productsData as $product) {
             $sOxid = $product->getProductId();
             $data = $this->getProduct($sOxid);
-            if ($data !== null){
+            if ($data !== null) {
                 $c++;
-                $productData['product'.$c] = $data;
+                $productData['product' . $c] = $data;
             }
         }
         return $productData;
