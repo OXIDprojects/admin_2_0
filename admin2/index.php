@@ -1,10 +1,21 @@
 <?php
 
-header('Content-type: text/html; charset=utf-8');
+/**
+ * Returns shop base path.
+ *
+ * @return string
+ */
+function getShopBasePath()
+{
+    return dirname(__FILE__).'/';
+}
+
+// configuration for Admin2.0
 include 'config.php';
 
+
 /**
- *Autpoloader for all Classes
+ * Autoloader for all Classes
  * @param string $class_name
  * @return void 
  */
@@ -23,7 +34,7 @@ function __autoload($class_name)
 
 error_reporting(E_ALL);
 
-$template = new Admin_Template();
-$template->run("/json/page.json");
+$template = new adminTemplate();
+$template->run();
 ?>
 

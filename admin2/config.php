@@ -15,11 +15,12 @@ define('ROOT_DIR', realpath(dirname(__FILE__)));
    // Anlegen der Instanz
    private static $instance = NULL;
 
-public $classesDir = array(
-    '/objects/',
-    '/views/',
-    '/views/widgets/'
-);
+    public $classesDir = array(
+        '/core/',
+        '/controller/',
+        '/views/',
+        '/views/widgets/'
+    );
 
 
  
