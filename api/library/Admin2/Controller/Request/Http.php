@@ -3,6 +3,9 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
 {
     /**
      * Extracts data from the HTTP request.
+     * Sets request method (get, put, post, delete), version, controller, entity and response format (html, json, csv).
+     *
+     * @throws \Admin2_Controller_Request_Exception
      *
      * @return void
      */
@@ -44,7 +47,6 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
         }
 
         $this->_params = filter_var_array($request);
-
     }
 
 }

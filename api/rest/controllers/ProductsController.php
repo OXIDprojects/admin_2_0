@@ -8,7 +8,7 @@ class ProductsController extends Admin2_Controller_Abstract
      * Example call:
      * http://yourDomain/api/rest/v1/Products/dc5ffdf380e15674b56dd562a7cb6aec.html
      *
-     * @return null
+     * @return void
      */
     public function get()
     {

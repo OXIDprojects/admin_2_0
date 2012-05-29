@@ -2,7 +2,7 @@
 class Application_Model_Shop_Config extends Admin2_Model_Abstract
 {
     /**
-     * Retrieves an array cintaining the installed modules.
+     * Retrieves an array containing the installed modules.
      *
      * @return array
      */
