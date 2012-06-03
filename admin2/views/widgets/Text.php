@@ -16,4 +16,3 @@ class Text extends Widget
     }
 
 }
-?>

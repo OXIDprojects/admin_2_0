@@ -10,5 +10,3 @@ class Linebreak extends Widget
     }
 
 }
-
-?>

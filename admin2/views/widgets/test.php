@@ -8,7 +8,5 @@
  */
 class test
 {
-    public $test = "test"; 
+    public $test = "test";
 }
-
-?>

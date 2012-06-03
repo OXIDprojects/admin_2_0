@@ -9,5 +9,3 @@ class Line extends Widget
     }
 
 }
-
-?>

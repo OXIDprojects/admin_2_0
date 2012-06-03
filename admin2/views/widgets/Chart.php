@@ -2,7 +2,7 @@
 
 /**
  * Generates Charts
- * @author Rafael Dabrowski  
+ * @author Rafael Dabrowski
  */
 class Chart extends Widget
 {
@@ -16,11 +16,11 @@ class Chart extends Widget
     public $Height = "400";
     protected $_output = "";
     protected $_chartData = "[]";
-    
-    public $bHasJs = true; 
-    public $bHasJsDoc = true; 
-    
-    public $jsLibs = array("raphael", "amcharts"); 
+
+    public $bHasJs = true;
+    public $bHasJsDoc = true;
+
+    public $jsLibs = array("raphael", "amcharts");
 
     public function __construct($oData)
     {
@@ -31,7 +31,7 @@ class Chart extends Widget
 
     /**
      * Generates Chartdate from DataSoruce or provided Data
-     * @return void 
+     * @return void
      */
     protected function getChartData()
     {
@@ -49,7 +49,7 @@ class Chart extends Widget
     }
 
     /**
-     * Generates HTML Output und stores it in _output 
+     * Generates HTML Output und stores it in _output
      */
     public function generateOutput()
     {
@@ -74,10 +74,10 @@ class Chart extends Widget
     {
         return $this->_output;
     }
-    
+
     public function getJsDocReady()
     {
-        ob_start(); 
+        ob_start();
         ?>
                 var chart;
                 var chartData = <?php echo $this->_chartData ?>;
@@ -116,9 +116,8 @@ class Chart extends Widget
                     // WRITE
                     chart.write("chartdiv");
                 });
-                <?php 
+                <?php
                 return ob_get_clean();
     }
 
 }
-?>

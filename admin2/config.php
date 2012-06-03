@@ -11,7 +11,7 @@ define('ROOT_DIR', realpath(dirname(__FILE__)));
  * @author rafael
  */
  final class Config {
- 
+
    // Anlegen der Instanz
    private static $instance = NULL;
 
@@ -23,13 +23,13 @@ define('ROOT_DIR', realpath(dirname(__FILE__)));
     );
 
 
- 
+
    // Konstruktor private, damit die Klasse nur aus sich selbst heraus instanziiert werden kann.
    private function __construct() {}
- 
+
    // Diese statische Methode gibt die Instanz zurueck.
    public static function getInstance() {
- 
+
        if (NULL === self::$instance) {
            self::$instance = new self;
        }
@@ -38,5 +38,3 @@ define('ROOT_DIR', realpath(dirname(__FILE__)));
    // Klonen per 'clone()' von außen verbieten.
    private function __clone() {}
  }
-
-?>

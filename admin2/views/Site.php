@@ -13,20 +13,20 @@ class Site
 {
 /**
  *
- * @var Content 
+ * @var Content
  */
     private $content = null;
     /**
      *Contains all Names of used JS Libraries
-     * @var Array of string 
+     * @var Array of string
      */
     public $jsLibs = array();
     /**
      * Contains all JS Scripts which should be executet after Document is Ready
-     * @var Array of string 
+     * @var Array of string
      */
     public $jsDocReady = array();
-    
+
     /**
      *Contains all additional CSS Files
      * @var Array of Strings
@@ -34,13 +34,13 @@ class Site
     public $cssFiles = array();
     /**
      *  The Title of The Site
-     * @var string 
+     * @var string
      */
     public $Title = "";
 
     /**
      *  Generates HTML For Including necessary CSS Files
-     * @return String  
+     * @return String
      */
     public function getCssFiles()
     {
@@ -57,7 +57,7 @@ class Site
 
     /**
      * Setter for Content of Site, Starts $this->setArray()
-     * @param type $content 
+     * @param type $content
      */
     public function setContent($content)
     {
@@ -66,8 +66,8 @@ class Site
     }
 
     /**
-     *Searches for all needed JS and CSS 
-     * @param Array of Widgets $items 
+     *Searches for all needed JS and CSS
+     * @param Array of Widgets $items
      */
     private function setArrays($items)
     {
@@ -92,7 +92,7 @@ class Site
 
     /**
      *Generates HTML Output for necessary JS Librarys
-     * @return string 
+     * @return string
      */
     public function getJsLibs()
     {
@@ -108,8 +108,8 @@ class Site
     }
 
     /**
-     * Generates HTML Output for all JS Scripts Started after Document Ready 
-     * @return string 
+     * Generates HTML Output for all JS Scripts Started after Document Ready
+     * @return string
      */
     public function getJsDocReady()
     {
@@ -129,7 +129,7 @@ class Site
     /**
      *Gets basic HTML Snippets
      * @param string $snippetName
-     * @return string 
+     * @return string
      */
     public function getHtmlSnippet($snippetName)
     {
@@ -146,11 +146,11 @@ class Site
     }
 
     /**
-     *Renders the HTML Output 
+     *Renders the HTML Output
      */
     public function render()
     {
-        
+
        ?><!DOCTYPE html>
         <html id="home" lang="de">
             <head>
@@ -187,4 +187,3 @@ class Site
     }
 
 }
-?>

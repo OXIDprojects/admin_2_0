@@ -21,4 +21,3 @@ class Numberbox extends Widget
     }
 
 }
-?>

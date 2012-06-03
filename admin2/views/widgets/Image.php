@@ -3,7 +3,7 @@
 class Image extends Widget
 {
 
-   
+
     public $Source = "";
     public $Title = "";
     public $Alt = "";
@@ -20,4 +20,3 @@ class Image extends Widget
     }
 
 }
-?>

@@ -22,4 +22,3 @@ class Textbox extends Widget
     }
 
 }
-?>

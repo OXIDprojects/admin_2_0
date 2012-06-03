@@ -31,4 +31,3 @@ class Select extends Widget
     }
 
 }
-?>

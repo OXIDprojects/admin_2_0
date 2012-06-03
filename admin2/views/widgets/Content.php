@@ -24,5 +24,3 @@ class Content extends Widget
     }
 
 }
-
-?>

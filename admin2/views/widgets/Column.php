@@ -1,6 +1,5 @@
 <?php
 
-
 class Column extends Widget
 {
 
@@ -18,12 +17,10 @@ class Column extends Widget
                 echo $item->output();
             }
             ?>
-        </div>    
+        </div>
         <?php
         $output = ob_get_clean();
         return $output;
     }
 
 }
-?>
-    

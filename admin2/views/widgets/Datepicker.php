@@ -32,9 +32,8 @@ class Datepicker extends Widget
                     altFormat: 'yy-mm-dd'" .
                 (($this->MinDate != "") ? ",minDate: new Date('{$this->MinDate}')" : "") .
                 (($this->MaxDate != "") ? ",minDate: new Date('{$this->MaxDate}')" : "") .
-                " }).datepicker('setDate', '{$this->Date} '); 
+                " }).datepicker('setDate', '{$this->Date} ');
             });";
     }
 
 }
-?>

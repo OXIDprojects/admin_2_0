@@ -10,14 +10,14 @@ abstract class Widget
 {
 
     public $Type;
-    public $bHasJs = false; 
+    public $bHasJs = false;
     public $jsLibs = array( );
-    public $bHasJsDoc = false; 
+    public $bHasJsDoc = false;
 
-    
+
     /**
      * Initializes Widget Objects
-     * @param object of StdClass $oData 
+     * @param object of StdClass $oData
      */
     public function __construct($oData)
     {
@@ -32,7 +32,7 @@ abstract class Widget
         {
             foreach ($this->Items as $key =>$widget)
             {
-                $this->Items[$key] = new $widget->Type($widget); 
+                $this->Items[$key] = new $widget->Type($widget);
             }
         }
     }
@@ -42,15 +42,13 @@ abstract class Widget
      * @return string
      */
     public abstract function output();
-    
+
     /**
      * Returns JS Script wich should be executet when Document is Ready
-     * @return string 
+     * @return string
      */
     public function getJsDocReady()
     {
-    return ""; 
+    return "";
     }
 }
-
-?>

@@ -29,4 +29,3 @@ class Panel extends Widget
     }
 
 }
-?>

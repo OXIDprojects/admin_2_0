@@ -19,4 +19,3 @@ class Youtube extends Widget
     }
 
 }
-?>

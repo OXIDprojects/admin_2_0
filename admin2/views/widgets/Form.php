@@ -24,4 +24,3 @@ class Form extends Widget
     }
 
 }
-?>

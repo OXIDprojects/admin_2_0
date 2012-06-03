@@ -3,15 +3,15 @@
 class Datagrid extends Widget
 {
 
-  
+
     public $Id = "";
     public $Label = "";
     public $Fields = Array();
     public $DataUrl = "";
     public $Data = "";
     public $bHasJs = true;
-    public $bHasJsDoc = true; 
-    
+    public $bHasJsDoc = true;
+
     public $jsLibs = array("jquery.dataTables.min");
 
     public function output()
@@ -39,7 +39,7 @@ class Datagrid extends Widget
                     <?php
                     $restClient = new Rest_Client();
                     $data = $restClient->getData($this->DataUrl);
-                    
+
                     foreach ($data as $row)
                     {
                         ?>
@@ -53,7 +53,7 @@ class Datagrid extends Widget
         ?>
                 </tbody>
             </table>
-          
+
         </div>
 
         <?php
@@ -69,4 +69,3 @@ class Datagrid extends Widget
     }
 
 }
-?>
