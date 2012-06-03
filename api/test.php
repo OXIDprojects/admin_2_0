@@ -1,15 +1,15 @@
-<?php $publicUrl = dirname($_SERVER['SCRIPT_NAME']);
+<?php
+$publicUrl = dirname($_SERVER['SCRIPT_NAME']);
+$srcDir = '../admin2/views/src';
 ?>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
         "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <title>Testing API REST methods</title>
-    <link rel="stylesheet" type="text/css" href="../admin2/template/css/ox_reset.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/template/css/ox_style.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/template/css/smoothness/jquery-ui-1.8.18.custom.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/template/css/joscha.css">
-    <link rel="stylesheet" type="text/css" href="../admin2/template/css/fluid_grid.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/fluid_grid.css">
 
     <style type="text/css">
         #varInputDialog {
@@ -17,9 +17,9 @@
         }
     </style>
 
-    <script type="text/javascript" src="../admin2/template/js/jquery-1.7.1.min.js"></script>
-    <script type="text/javascript" src="../admin2/template/js/jquery-ui-1.8.18.custom.min.js"></script>
-    <script type="text/javascript" src="../admin2/template/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="<?php echo $srcDir;?>/js/jquery-1.7.1.min.js"></script>
+    <script type="text/javascript" src="<?php echo $srcDir;?>/js/jquery-ui-1.8.18.custom.min.js"></script>
+    <script type="text/javascript" src="<?php echo $srcDir;?>/js/jquery.dataTables.min.js"></script>
 </head>
 <body>
     <div>
