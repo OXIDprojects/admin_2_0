@@ -15,7 +15,7 @@ class Application_Model_User extends Admin2_Model_Abstract
      *
      * @return array
      */
-    public function getUserList($limit, $offset, array $filter)
+    public function getUserList($limit = 50, $offset = 0, array $filter)
     {
         /** @var $userList oxUserList */
         $userList = oxNew('oxUserList');
@@ -31,7 +31,7 @@ class Application_Model_User extends Admin2_Model_Abstract
 
         $database = oxDb::getDb();
 
-        # add simple OR filter to query
+        //add simple OR filter to query
         //ToDo: make it more beautiful
         if (!empty($filter)) {
             $select .= " AND ( ";
@@ -60,8 +60,8 @@ class Application_Model_User extends Admin2_Model_Abstract
         $counter = 0;
         $usersData = array();
         /** @var $user oxUser */
-        foreach ($users as $oxId => $user) {
-            $data = $this->getUser($oxId);
+        foreach ($users as $user) {
+            $data = $this->getUser($user->getId());
             if (!empty($data)) {
                 $counter++;
                 $usersData['user' . $counter] = $data;
