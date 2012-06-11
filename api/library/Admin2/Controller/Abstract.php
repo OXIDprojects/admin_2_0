@@ -20,6 +20,8 @@ abstract class Admin2_Controller_Abstract
      *
      * @param Admin2_Controller_Request_Abstract $request The request
      * @param Admin2_Controller_Result           $result  The data to return
+     *
+     * @return Admin2_Controller_Abstract
      */
     public function __construct(Admin2_Controller_Request_Abstract $request, Admin2_Controller_Result $result)
     {
@@ -28,6 +30,11 @@ abstract class Admin2_Controller_Abstract
         $this->init();
     }
 
+    /**
+     * Controller initialization method.
+     *
+     * @return void
+     */
     public function init()
     {
     }
@@ -36,7 +43,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method GET
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function get();
 
@@ -44,7 +51,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method POST
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function post();
 
@@ -52,7 +59,7 @@ abstract class Admin2_Controller_Abstract
      * Handle method PUT
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function put();
 
@@ -60,9 +67,17 @@ abstract class Admin2_Controller_Abstract
      * Handle method DELETE
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function delete();
+
+    /**
+     * Handle method GET without an entity.
+     * @abstract
+     *
+     * @return void
+     */
+    abstract public function getList();
 
     /**
      * @param \Admin2_Controller_Request_Abstract $request

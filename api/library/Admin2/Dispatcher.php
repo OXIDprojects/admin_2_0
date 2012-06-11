@@ -62,6 +62,8 @@ class Admin2_Dispatcher
     /**
      * Starting point for dispatcher execution
      *
+     * @throws Admin2_Dispatcher_Exception
+     *
      * @return void
      */
     public function run()
@@ -107,6 +109,10 @@ class Admin2_Dispatcher
             }
 
             $realMethod = strtolower($method);
+            $entity = $this->_request->getEntity();
+            if (empty($entity)) {
+                $realMethod = 'getList';
+            }
 
             if (!method_exists($controller, $realMethod)) {
                 require_once 'Admin2/Dispatcher/Exception.php';
