@@ -8,9 +8,8 @@
  *  @link      http://admin20.de
  *  @copyright (C) 2012 :: Admin 2.0 Developers
  */
-
 /**
- *
+ * Class to handle user data
  */
 class Application_Model_User extends Admin2_Model_Abstract
 {
