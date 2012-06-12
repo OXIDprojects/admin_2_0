@@ -49,16 +49,9 @@ class Application_Model_User extends Admin2_Model_Abstract
                 if ($countFields > 1) {
                     $select .= ' OR ';
                 }
-
-                $quotedFirstClause  = $database->quote('%' . $clause . '%');
-                $quotedSecondClause = $database->quote($clause . '%');
-                $quotedThirdClause  = $database->quote('%' . $clause);
-
-                $select .= " " . $field . " LIKE " . $quotedFirstClause;
-                $select .= " OR " . $field . " LIKE " . $quotedSecondClause;
-                $select .= " OR " . $field . " LIKE " . $quotedThirdClause;
+                $select .= ' ' . $field . ' LIKE ' . $database->quote('%' . $clause . '%');
             }
-            $select .= " ) ";
+            $select .= ' ) ';
         }
 
         $userList->selectString($select);
