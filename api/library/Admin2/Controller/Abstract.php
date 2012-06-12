@@ -19,7 +19,7 @@ abstract class Admin2_Controller_Abstract
      * Constructor
      *
      * @param Admin2_Controller_Request_Abstract $request The request
-     * @param Admin2_Controller_Response           $response  The data to return
+     * @param Admin2_Controller_Response         $response  The data to return
      *
      * @return Admin2_Controller_Abstract
      */
@@ -41,6 +41,7 @@ abstract class Admin2_Controller_Abstract
 
     /**
      * Handle method GET
+     *
      * @abstract
      *
      * @return void
@@ -49,6 +50,7 @@ abstract class Admin2_Controller_Abstract
 
     /**
      * Handle method POST
+     *
      * @abstract
      *
      * @return void
@@ -57,6 +59,7 @@ abstract class Admin2_Controller_Abstract
 
     /**
      * Handle method PUT
+     *
      * @abstract
      *
      * @return void
@@ -65,6 +68,7 @@ abstract class Admin2_Controller_Abstract
 
     /**
      * Handle method DELETE
+     *
      * @abstract
      *
      * @return void
@@ -73,6 +77,7 @@ abstract class Admin2_Controller_Abstract
 
     /**
      * Handle method GET without an entity.
+     *
      * @abstract
      *
      * @return void
@@ -105,6 +110,8 @@ abstract class Admin2_Controller_Abstract
      * Set response
      *
      * @param \Admin2_Controller_Response $response The response object
+     *
+     * @return void
      */
     public function setResponse(Admin2_Controller_Response $response)
     {
