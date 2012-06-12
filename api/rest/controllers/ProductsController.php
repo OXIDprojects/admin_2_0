@@ -9,6 +9,9 @@
  *  @copyright (C) 2012 :: Admin 2.0 Developers
  */
 
+/**
+ * Controller handles product actions
+ */
 class ProductsController extends Admin2_Controller_Abstract
 {
     /**
