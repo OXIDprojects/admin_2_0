@@ -27,7 +27,7 @@ class ProductsController extends Admin2_Controller_Abstract
         $productModel = new Application_Model_Product();
         $entity = $this->_request->getEntity();
         $productData = null;
-        if ($entity != null){
+        if ($entity != null) {
             $productData  = $productModel->getProduct($entity);
         }
 
@@ -37,25 +37,45 @@ class ProductsController extends Admin2_Controller_Abstract
         $this->_response->setData(array('product' => $productData));
     }
 
+    /**
+     * Get list of products
+     *
+     * @return void
+     */
     public function getList()
     {
         $productModel = new Application_Model_Product();
-        $limit = $this->_request->getParam('limit',50);
-        $offset = $this->_request->getParam('offset',0);
-        $productData  = $productModel->getProductList($limit,$offset);
+        $limit = $this->_request->getParam('limit', 50);
+        $offset = $this->_request->getParam('offset', 0);
+        $productData  = $productModel->getProductList($limit, $offset);
         $this->_response->setData(array('productList' => $productData));
     }
 
+    /**
+     * Save list of products
+     *
+     * @return void
+     */
     public function post()
     {
         $this->_response->setData(array('hello' => 'world!'));
     }
 
+    /**
+     * Create or update a product
+     *
+     * @return void
+     */
     public function put()
     {
         $this->_response->setData(array('hello' => 'world!'));
     }
 
+    /**
+     * Delete a product
+     *
+     * @return void
+     */
     public function delete()
     {
         $this->_response->setData(array('hello' => 'world!'));
