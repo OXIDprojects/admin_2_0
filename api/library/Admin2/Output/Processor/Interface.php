@@ -14,5 +14,14 @@
  */
 interface Admin2_Output_Processor_Interface
 {
-    public function process(Admin2_Controller_Response $result);
+    /**
+     * Convert data to target format and set response
+     *
+     * @abstract
+     *
+     * @param Admin2_Controller_Response $response Response object
+     *
+     * @return string
+     */
+    public function process(Admin2_Controller_Response $response);
 }

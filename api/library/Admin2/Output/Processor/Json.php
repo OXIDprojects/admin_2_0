@@ -14,10 +14,17 @@
  */
 class Admin2_Output_Processor_Json implements Admin2_Output_Processor_Interface
 {
-    public function process(Admin2_Controller_Response $result)
+    /**
+     * Convert data to JSON and set response
+     *
+     * @param Admin2_Controller_Response $response Response object
+     *
+     * @return string
+     */
+    public function process(Admin2_Controller_Response $response)
     {
-        $result->addResponseHeader('Content-Type', 'application/json', true);
+        $response->addResponseHeader('Content-Type', 'application/json', true);
 
-        return json_encode($result->getData());
+        return json_encode($response->getData());
     }
 }

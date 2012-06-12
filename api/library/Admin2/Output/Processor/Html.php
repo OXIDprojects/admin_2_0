@@ -15,15 +15,15 @@
 class Admin2_Output_Processor_Html implements Admin2_Output_Processor_Interface
 {
     /**
-     * Build HTML output
+     * Convert data to HTML and set response
      *
-     * @param Admin2_Controller_Response $result Result object
+     * @param Admin2_Controller_Response $response Response object
      *
      * @return string
      */
-    public function process(Admin2_Controller_Response $result)
+    public function process(Admin2_Controller_Response $response)
     {
-        $result->addResponseHeader('Content-Type', 'text/html');
+        $response->addResponseHeader('Content-Type', 'text/html');
         $html = <<<EOH
 <html>
 <head>
@@ -34,7 +34,7 @@ class Admin2_Output_Processor_Html implements Admin2_Output_Processor_Interface
 </body>
 </html>
 EOH;
-        $htmlSnippet = $this->implode($result->getData());
+        $htmlSnippet = $this->implode($response->getData());
 
         return sprintf($html, $htmlSnippet);
     }

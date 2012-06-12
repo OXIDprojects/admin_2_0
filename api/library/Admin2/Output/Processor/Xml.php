@@ -14,9 +14,16 @@
  */
 class Admin2_Output_Processor_Xml implements Admin2_Output_Processor_Interface
 {
-    public function process(Admin2_Controller_Response $result)
+    /**
+     * Convert data to XML and set response
+     *
+     * @param Admin2_Controller_Response $response Response object
+     *
+     * @return string
+     */
+    public function process(Admin2_Controller_Response $response)
     {
-        $result->addResponseHeader('Content-Type', 'text/xml', true);
+        $response->addResponseHeader('Content-Type', 'text/xml', true);
 
         $xml = <<<EOXML
 <?xml version="1.0" encoding="utf-8"?>
@@ -26,7 +33,7 @@ class Admin2_Output_Processor_Xml implements Admin2_Output_Processor_Interface
 EOXML;
 
         $xmlSnippet = '';
-        foreach ($result->getData() as $key => $value) {
+        foreach ($response->getData() as $key => $value) {
             $xmlSnippet .= "<data name=\"$key\">$value</data>\n";
         }
 
