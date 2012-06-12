@@ -17,9 +17,9 @@ interface Admin2_Output_Processor_Interface
     /**
      * Convert data to target format and set response
      *
-     * @abstract
-     *
      * @param Admin2_Controller_Response $response Response object
+     *
+     * @abstract
      *
      * @return string
      */

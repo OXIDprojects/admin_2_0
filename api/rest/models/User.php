@@ -14,14 +14,12 @@
  */
 class Application_Model_User extends Admin2_Model_Abstract
 {
-
-
     /**
      * Retrieve a list of user data.
      *
-     * @param int $limit  Maximum length of list.
-     * @param int $offset Offset of first list item.
-     * @param array $filter Filter for where clause.
+     * @param int   $limit  Maximum length of list
+     * @param int   $offset Offset of first list item
+     * @param array $filter Filter for where clause
      *
      * @return array
      */
@@ -33,32 +31,32 @@ class Application_Model_User extends Admin2_Model_Abstract
 
         $oListObject = $userList->getBaseObject();
         $sFieldList = $oListObject->getSelectFields();
-        $select = "SELECT $sFieldList FROM " . $oListObject->getViewName() . PHP_EOL;
+        $select = 'SELECT ' . $sFieldList . ' FROM ' . $oListObject->getViewName();
 
         if ($sActiveSnippet = $oListObject->getSqlActiveSnippet()) {
-            $select .= " WHERE $sActiveSnippet " . PHP_EOL;
+            $select .= ' WHERE ' . $sActiveSnippet;
         }
 
         $database = oxDb::getDb();
 
-        # add simple OR filter to query
+        // add simple OR filter to query
         //ToDo: make it more beautiful
         if (!empty($filter)) {
-            $select .= " AND ( ";
+            $select .= ' AND ( ';
             $countFields = 0;
 
             foreach ($filter as $field => $clause) {
                 $countFields++;
                 if ($countFields > 1)
-                    $select .= " OR ";
+                    $select .= ' OR ';
 
                 $quotedFirstClause = $database->quote('%' . $clause . '%');
                 $quotedSecondClause = $database->quote($clause . '%');
                 $quotedThirdClause = $database->quote('%' . $clause);
 
-                $select .= " " . $field . " LIKE " . $quotedFirstClause . PHP_EOL;
-                $select .= " OR " . $field . " LIKE " . $quotedSecondClause . PHP_EOL;
-                $select .= " OR " . $field . " LIKE " . $quotedThirdClause . PHP_EOL;
+                $select .= " " . $field . " LIKE " . $quotedFirstClause;
+                $select .= " OR " . $field . " LIKE " . $quotedSecondClause;
+                $select .= " OR " . $field . " LIKE " . $quotedThirdClause;
             }
             $select .= " ) ";
         }
