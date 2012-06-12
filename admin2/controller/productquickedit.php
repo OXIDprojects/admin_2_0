@@ -10,10 +10,10 @@
  */
 
 
-class login {
+class productquickedit {
     
     // Name of the templatefile
-    protected $_templateName = 'login.php';
+    protected $_templateName = 'productquickedit.php';
     
     /**
      * Prepare content and return the output
