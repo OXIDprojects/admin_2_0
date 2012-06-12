@@ -5,8 +5,8 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
 /**
  * Class to handle user data
@@ -29,8 +29,8 @@ class Application_Model_User extends Admin2_Model_Abstract
         $userList->setSqlLimit($offset, $limit);
 
         $oListObject = $userList->getBaseObject();
-        $sFieldList = $oListObject->getSelectFields();
-        $select = 'SELECT ' . $sFieldList . ' FROM ' . $oListObject->getViewName();
+        $sFieldList  = $oListObject->getSelectFields();
+        $select      = 'SELECT ' . $sFieldList . ' FROM ' . $oListObject->getViewName();
 
         if ($sActiveSnippet = $oListObject->getSqlActiveSnippet()) {
             $select .= ' WHERE ' . $sActiveSnippet;
@@ -46,12 +46,13 @@ class Application_Model_User extends Admin2_Model_Abstract
 
             foreach ($filter as $field => $clause) {
                 $countFields++;
-                if ($countFields > 1)
+                if ($countFields > 1) {
                     $select .= ' OR ';
+                }
 
-                $quotedFirstClause = $database->quote('%' . $clause . '%');
+                $quotedFirstClause  = $database->quote('%' . $clause . '%');
                 $quotedSecondClause = $database->quote($clause . '%');
-                $quotedThirdClause = $database->quote('%' . $clause);
+                $quotedThirdClause  = $database->quote('%' . $clause);
 
                 $select .= " " . $field . " LIKE " . $quotedFirstClause;
                 $select .= " OR " . $field . " LIKE " . $quotedSecondClause;
@@ -64,7 +65,7 @@ class Application_Model_User extends Admin2_Model_Abstract
 
         $users = $userList->getArray();
 
-        $counter = 0;
+        $counter   = 0;
         $usersData = array();
         /** @var $user oxUser */
         foreach ($users as $oxId => $user) {
@@ -76,7 +77,6 @@ class Application_Model_User extends Admin2_Model_Abstract
         }
 
         return $usersData;
-
     }
 
     /**
@@ -91,12 +91,12 @@ class Application_Model_User extends Admin2_Model_Abstract
         /** @var $user oxuser */
         $user = oxNew('oxuser');
         $user->disableLazyLoading();
-        if (!$user->load($entity))
+        if (!$user->load($entity)) {
             return null;
-
+        }
 
         $userData = array();
-        $fields = $user->getFieldNames();
+        $fields   = $user->getFieldNames();
 
         foreach ($fields as $field) {
             $userData[$field] = $user->getFieldData($field);
