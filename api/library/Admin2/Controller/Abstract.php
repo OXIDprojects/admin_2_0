@@ -18,8 +18,8 @@ abstract class Admin2_Controller_Abstract
     /**
      * Constructor
      *
-     * @param Admin2_Controller_Request_Abstract $request   The request
-     * @param Admin2_Controller_Response         $response  The data to return
+     * @param Admin2_Controller_Request_Abstract $request  The request
+     * @param Admin2_Controller_Response         $response The data to return
      *
      * @return Admin2_Controller_Abstract
      */

@@ -28,7 +28,7 @@ class Application_Model_Product extends Admin2_Model_Abstract
          */
         $product = oxNew('oxarticle');
         $product->disableLazyLoading();
-        $product->loadInLang($this->currentLanguageId, $oxid);
+        $product->loadInLang($this->_currentLanguageId, $oxid);
         $productData = array();
         $fields = $product->getFieldNames();
         if (!$product->isLoaded()) {
