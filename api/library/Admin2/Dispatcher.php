@@ -1,5 +1,13 @@
 <?php
-
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
 /**
  * Request Dispatcher
  */
@@ -36,20 +44,20 @@ class Admin2_Dispatcher
     /**
      * Constructor
      *
-     * @param Admin2_Controller_Request_Abstract $request
-     * @param Admin2_Controller_Response           $result
-     * @param array                              $config
+     * @param Admin2_Controller_Request_Abstract $request  Request object
+     * @param Admin2_Controller_Response         $response Response object
+     * @param array                              $config   Configuration array
      *
      * @return Admin2_Dispatcher
      */
     public function __construct(
         Admin2_Controller_Request_Abstract $request,
-        Admin2_Controller_Response $result,
+        Admin2_Controller_Response $response,
         $config = array()
     )
     {
         $this->_request         = $request;
-        $this->_result          = $result;
+        $this->_result          = $response;
         $outputProcClass        = 'Admin2_Output_Processor_' . ucfirst($request->getFormat());
         $this->_outputProcessor = new $outputProcClass();
 

@@ -92,7 +92,10 @@ $srcDir = '../admin2/views/src';
                 </tr>
                 <tr>
                     <th></th>
-                    <td><button type="submit">Submit</button> <button type="button" id="addVariable">Add variable</button></td>
+                    <td>
+                        <button type="submit">Submit</button>
+                        <button type="button" id="addVariable">Add variable</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>Response:</th>
