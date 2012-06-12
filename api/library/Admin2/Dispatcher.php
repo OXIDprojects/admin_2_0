@@ -22,7 +22,7 @@ class Admin2_Dispatcher
     /**
      * The result of the controller action.
      *
-     * @var Admin2_Controller_Result
+     * @var Admin2_Controller_Response
      */
     protected $_result;
 
@@ -37,14 +37,14 @@ class Admin2_Dispatcher
      * Constructor
      *
      * @param Admin2_Controller_Request_Abstract $request
-     * @param Admin2_Controller_Result           $result
+     * @param Admin2_Controller_Response           $result
      * @param array                              $config
      *
      * @return Admin2_Dispatcher
      */
     public function __construct(
         Admin2_Controller_Request_Abstract $request,
-        Admin2_Controller_Result $result,
+        Admin2_Controller_Response $result,
         $config = array()
     )
     {

@@ -1,5 +1,5 @@
 <?php
-class Admin2_Controller_Result
+class Admin2_Controller_Response
 {
     /**
      * HTTP response code

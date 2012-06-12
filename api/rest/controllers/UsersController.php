@@ -35,7 +35,7 @@ class UsersController extends Admin2_Controller_Abstract
             return;
         }
 
-        $result = $this->getResult();
+        $result = $this->getResponse();
         $result->setData(array('user' => $userData));
     }
 
@@ -57,7 +57,7 @@ class UsersController extends Admin2_Controller_Abstract
             return;
         }
 
-        $result = $this->getResult();
+        $result = $this->getResponse();
         $result->setData(array('userlist' => $userData));
     }
 

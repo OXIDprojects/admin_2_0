@@ -26,7 +26,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
     public function get()
     {
         $shopConfigModel = $this->getShopConfigModel();
-        $this->_result->setData($shopConfigModel->getModules());
+        $this->_response->setData($shopConfigModel->getModules());
     }
 
     /**
@@ -41,7 +41,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
 
         $shopConfigModel = $this->getShopConfigModel();
         $result = $shopConfigModel->addModule($oxidClass, $moduleName);
-        $this->_result->setData($result);
+        $this->_response->setData($result);
     }
 
     /**
@@ -54,7 +54,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
         $moduleList = $this->_request->getParam('moduleList');
         $shopConfigModel = $this->getShopConfigModel();
         $result = $shopConfigModel->setModules($moduleList);
-        $this->_result->setData($result);
+        $this->_response->setData($result);
     }
 
     /**
@@ -69,7 +69,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
 
         $shopConfigModel = $this->getShopConfigModel();
         $result = $shopConfigModel->removeModules($oxidClass, $moduleName);
-        $this->_result->setData($result);
+        $this->_response->setData($result);
     }
 
     /**

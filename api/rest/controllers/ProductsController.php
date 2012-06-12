@@ -34,7 +34,7 @@ class ProductsController extends Admin2_Controller_Abstract
         if ($productData === null) {
             return;
         }
-        $this->_result->setData(array('product' => $productData));
+        $this->_response->setData(array('product' => $productData));
     }
 
     public function getList()
@@ -43,21 +43,21 @@ class ProductsController extends Admin2_Controller_Abstract
         $limit = $this->_request->getParam('limit',50);
         $offset = $this->_request->getParam('offset',0);
         $productData  = $productModel->getProductList($limit,$offset);
-        $this->_result->setData(array('productList' => $productData));
+        $this->_response->setData(array('productList' => $productData));
     }
 
     public function post()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $this->_response->setData(array('hello' => 'world!'));
     }
 
     public function put()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $this->_response->setData(array('hello' => 'world!'));
     }
 
     public function delete()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $this->_response->setData(array('hello' => 'world!'));
     }
 }

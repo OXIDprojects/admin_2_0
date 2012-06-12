@@ -63,6 +63,6 @@ $moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
 
 // Here we go.
 $request    = new Admin2_Controller_Request_Http();
-$result     = new Admin2_Controller_Result();
+$result     = new Admin2_Controller_Response();
 $dispatcher = new Admin2_Dispatcher($request, $result);
 $dispatcher->run();
