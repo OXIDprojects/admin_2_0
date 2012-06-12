@@ -75,7 +75,6 @@ class Application_Model_User extends Admin2_Model_Abstract
                 $usersData['user' . $counter] = $data;
             }
         }
-
         return $usersData;
     }
 
@@ -101,7 +100,6 @@ class Application_Model_User extends Admin2_Model_Abstract
         foreach ($fields as $field) {
             $userData[$field] = $user->getFieldData($field);
         }
-
         return $userData;
     }
 }
