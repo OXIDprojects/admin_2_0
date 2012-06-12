@@ -39,9 +39,8 @@ class Application_Model_User extends Admin2_Model_Abstract
         $database = oxDb::getDb();
 
         // add simple OR filter to query
-        //ToDo: make it more beautiful
         if (!empty($filter)) {
-            $select .= ' AND ( ';
+            $select .= ' AND (';
             $countFields = 0;
 
             foreach ($filter as $field => $clause) {
@@ -49,9 +48,9 @@ class Application_Model_User extends Admin2_Model_Abstract
                 if ($countFields > 1) {
                     $select .= ' OR ';
                 }
-                $select .= ' ' . $field . ' LIKE ' . $database->quote('%' . $clause . '%');
+                $select .= '`' . $field . '` LIKE ' . $database->quote('%' . $clause . '%');
             }
-            $select .= ' ) ';
+            $select .= ')';
         }
 
         $userList->selectString($select);
