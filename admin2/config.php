@@ -66,6 +66,8 @@ final class Config
 
     /**
      * Disallow cloning for singleton
+     *
+     * @return void
      */
     private function __clone()
     {
