@@ -31,7 +31,7 @@ class UsersController extends Admin2_Controller_Abstract
 
         // TODO: 400 bad request
         // request cannot be fulfilled due to bad syntax
-        // $result->setResponseCode(400);
+        // $response->setResponseCode(400);
 
         if (!empty($entity)) {
             $userData = $userModel->getUser($entity);
@@ -64,8 +64,8 @@ class UsersController extends Admin2_Controller_Abstract
             return;
         }
 
-        $result = $this->getResponse();
-        $result->setData(array('userlist' => $userData));
+        $response = $this->getResponse();
+        $response->setData(array('userlist' => $userData));
     }
 
     /**
