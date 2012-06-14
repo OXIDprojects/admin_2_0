@@ -5,18 +5,14 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
-
-
-
 /**
- * Rest Client 
+ * Rest Client
  */
 class Rest_Client
 {
-
     private $_host = null;
     private $_port = null;
     private $_user = null;
@@ -31,10 +27,11 @@ class Rest_Client
     /**
      * Factory of the class. Lazy connect
      *
-     * @param string $host
+     * @param string  $host Host to
      * @param integer $port
-     * @param string $user
-     * @param string $pass
+     * @param string  $user
+     * @param string  $pass
+     *
      * @return Http
      */
     static public function connect($host, $port, $user = null, $pass = null)
@@ -42,15 +39,16 @@ class Rest_Client
         return new self($host, $port, $user, $pass);
     }
 
-    const POST = 'POST';
-    const GET = 'GET';
+    const POST   = 'POST';
+    const GET    = 'GET';
     const DELETE = 'DELETE';
 
     /**
      * POST request
      *
      * @param string $url
-     * @param array $params
+     * @param array  $params
+     *
      * @return string
      */
     public function doPost($url, $params = array())
@@ -62,7 +60,8 @@ class Rest_Client
      * GET Request
      *
      * @param string $url
-     * @param array $params
+     * @param array  $params
+     *
      * @return string
      */
     public function doGet($url, $params = array())
@@ -73,8 +72,9 @@ class Rest_Client
     /**
      * DELETE Request
      *
-     * @param string $url
-     * @param array $params
+     * @param string $url    Target url
+     * @param array  $params Parameters
+     *
      * @return string
      */
     public function doDelete($url, $params = array())
@@ -87,7 +87,8 @@ class Rest_Client
     /**
      * setHeaders
      *
-     * @param array $headers
+     * @param array $headers The header to set
+     *
      * @return Http
      */
     public function setHeaders($headers)
@@ -96,7 +97,7 @@ class Rest_Client
         return $this;
     }
 
-    const HTTP_OK = 200;
+    const HTTP_OK      = 200;
     const HTTP_CREATED = 201;
     const HTTP_ACEPTED = 202;
 
@@ -105,20 +106,20 @@ class Rest_Client
      *
      * @param string $type
      * @param string $url
-     * @param array $params
+     * @param array  $params
+     *
      * @return string
      */
     private function _exec($type, $url, $params = array())
     {
         $headers = $this->_headers;
-        $curl = curl_init();
+        $curl    = curl_init();
 
         if (!is_null($this->_user)) {
             curl_setopt($curl, CURLOPT_USERPWD, $this->_user . ':' . $this->_pass);
         }
 
-        switch ($type)
-        {
+        switch ($type) {
             case self::DELETE:
                 curl_setopt($curl, CURLOPT_URL, $url . '?' . http_build_query($params));
                 curl_setopt($curl, CURLOPT_CUSTOMREQUEST, self::DELETE);
@@ -135,11 +136,10 @@ class Rest_Client
 
         curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($curl, CURLOPT_HTTPHEADER, $headers);
-        $_out = curl_exec($curl);
+        $_out   = curl_exec($curl);
         $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
         curl_close($curl);
-        switch ($status)
-        {
+        switch ($status) {
             case self::HTTP_OK:
             case self::HTTP_CREATED:
             case self::HTTP_ACEPTED:
@@ -150,5 +150,4 @@ class Rest_Client
         }
         return $out;
     }
-
 }

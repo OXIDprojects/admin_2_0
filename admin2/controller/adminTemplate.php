@@ -5,8 +5,8 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
 /**
  * Controller for Creating Site
@@ -25,10 +25,10 @@ class adminTemplate
     public function run()
     {
         $controllerName = $this->_getClassName();
-        $controller = new $controllerName;
-        $template = $controller->render();
-        $page = $this->output( $template );
-        $this->finalize( $page );
+        $controller     = new $controllerName;
+        $template       = $controller->render();
+        $page           = $this->output($template);
+        $this->finalize($page);
     }
 
     /**
@@ -38,8 +38,8 @@ class adminTemplate
      *
      * @return string with the fully rendered page
      */
-    public function output($template) {
-
+    public function output($template)
+    {
         ob_start();
         require getShopBasePath() . 'views/' . $template;
         $page = ob_get_contents();
@@ -55,7 +55,7 @@ class adminTemplate
      *
      * @return void
      */
-    public function finalize( $page )
+    public function finalize($page)
     {
         echo $page;
     }
@@ -68,11 +68,10 @@ class adminTemplate
     protected function _getClassName()
     {
         //ToDo: Please implement the OXID getConfig() function
-        if( !empty($_REQUEST['cl']) ) {
+        if (!empty($_REQUEST['cl'])) {
             return $_REQUEST['cl'];
         } else {
             return 'login';
         }
     }
-
 }

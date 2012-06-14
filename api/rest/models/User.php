@@ -22,7 +22,7 @@ class Application_Model_User extends Admin2_Model_Abstract
      *
      * @return array
      */
-    public function getUserList($limit = 50, $offset = 0, array $filter)
+    public function getUserList($limit = 50, $offset = 0, array $filter = array())
     {
         /** @var $userList oxUserList */
         $userList = oxNew('oxUserList');
