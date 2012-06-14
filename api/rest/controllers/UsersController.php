@@ -5,8 +5,8 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
 
 /**
@@ -25,9 +25,9 @@ class UsersController extends Admin2_Controller_Abstract
         // use: oxdefaultadmin
         // filter: filter[field] = filtervalue
         $userModel = new Application_Model_User();
-        $request = $this->getRequest();
-        $entity = $request->getEntity();
-        $result = $this->getResult();
+        $request   = $this->getRequest();
+        $entity    = $request->getEntity();
+        $response  = $this->getResponse();
 
         // TODO: 400 bad request
         // request cannot be fulfilled due to bad syntax
@@ -39,10 +39,11 @@ class UsersController extends Admin2_Controller_Abstract
 
         if (empty($userData)) {
             // 404 requested resource could not be found
-            $result->setResponseCode(Admin2_Controller_Result::NOT_FOUND);
+            $response->setResponseCode(Admin2_Controller_Response::NOT_FOUND);
+        } else {
+            $response->setResponseCode(Admin2_Controller_Response::OK);
+            $response->setData(array('user' => $userData));
         }
-        $result->setResponseCode(Admin2_Controller_Result::OK);
-        $result->setData(array('user' => $userData));
     }
 
     /**
@@ -53,11 +54,11 @@ class UsersController extends Admin2_Controller_Abstract
     public function getList()
     {
         $userModel = new Application_Model_User();
-        $request = $this->getRequest();
-        $limit = $request->getParam('limit', 50);
-        $offset = $request->getParam('offset', 0);
-        $filter = $request->getParam('filter', array());
-        $userData = $userModel->getUserList($limit, $offset, $filter);
+        $request   = $this->getRequest();
+        $limit     = $request->getParam('limit', 50);
+        $offset    = $request->getParam('offset', 0);
+        $filter    = $request->getParam('filter', array());
+        $userData  = $userModel->getUserList($limit, $offset, $filter);
 
         if (empty($userData)) {
             return;
