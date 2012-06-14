@@ -5,8 +5,8 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
 
 error_reporting(E_ALL ^ E_NOTICE); // Oxid-classes throw notices so we block them here
@@ -39,9 +39,9 @@ set_include_path(
     implode(
         PATH_SEPARATOR,
         array(
-            realpath(dirname(__FILE__) . '/../library'),
-            getShopBasePath(),
-            get_include_path(),
+             realpath(dirname(__FILE__) . '/../library'),
+             getShopBasePath(),
+             get_include_path(),
         )
     )
 );
@@ -63,6 +63,6 @@ $moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
 
 // Here we go.
 $request    = new Admin2_Controller_Request_Http();
-$response     = new Admin2_Controller_Response();
+$response   = new Admin2_Controller_Response();
 $dispatcher = new Admin2_Dispatcher($request, $response);
 $dispatcher->run();
