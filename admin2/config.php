@@ -5,8 +5,8 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
 
 define('ROOT_DIR', realpath(dirname(__FILE__)));
@@ -20,11 +20,20 @@ define('ROOT_DIR', realpath(dirname(__FILE__)));
  *
  * @author rafael
  */
- final class Config {
+final class Config
+{
+    /**
+     * Instance
+     *
+     * @var Config
+     */
+    private static $_instance = NULL;
 
-   // Anlegen der Instanz
-   private static $instance = NULL;
-
+    /**
+     * Classes directories
+     *
+     * @var array
+     */
     public $classesDir = array(
         '/core/',
         '/controller/',
@@ -32,19 +41,33 @@ define('ROOT_DIR', realpath(dirname(__FILE__)));
         '/views/widgets/'
     );
 
+    /**
+     * Constructor
+     */
+    private function __construct()
+    {
+    }
 
+    /**
+     * Get instance
+     *
+     * @static
+     *
+     * @return Config
+     */
+    public static function getInstance()
+    {
 
-   // Konstruktor private, damit die Klasse nur aus sich selbst heraus instanziiert werden kann.
-   private function __construct() {}
+        if (NULL === self::$_instance) {
+            self::$_instance = new self;
+        }
+        return self::$_instance;
+    }
 
-   // Diese statische Methode gibt die Instanz zurueck.
-   public static function getInstance() {
-
-       if (NULL === self::$instance) {
-           self::$instance = new self;
-       }
-       return self::$instance;
-   }
-   // Klonen per 'clone()' von außen verbieten.
-   private function __clone() {}
- }
+    /**
+     * Disallow cloning for singleton
+     */
+    private function __clone()
+    {
+    }
+}
