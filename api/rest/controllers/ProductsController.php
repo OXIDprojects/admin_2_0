@@ -1,5 +1,17 @@
 <?php
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
 
+/**
+ * Controller handles product actions
+ */
 class ProductsController extends Admin2_Controller_Abstract
 {
     /**
@@ -17,36 +29,58 @@ class ProductsController extends Admin2_Controller_Abstract
         //   dc5ffdf380e15674b56dd562a7cb6aec
         $productModel = new Application_Model_Product();
         $entity = $this->_request->getEntity();
-        if ($entity != null){
+        $productData = null;
+        if ($entity != null) {
             $productData  = $productModel->getProduct($entity);
-        } else {
-            $limit = $this->_request->getParam('limit',50);
-            $offset = $this->_request->getParam('offset',0);
-            $productData  = $productModel->getProductList($limit,$offset);
         }
 
         if ($productData === null) {
             return;
         }
-        if ($entity != null){
-            $this->_result->setData(array('product' => $productData));
-        } else {
-            $this->_result->setData(array('productList' => $productData));
-        }
+        $this->_response->setData(array('product' => $productData));
     }
 
+    /**
+     * Get list of products
+     *
+     * @return void
+     */
+    public function getList()
+    {
+        $productModel = new Application_Model_Product();
+        $limit = $this->_request->getParam('limit', 50);
+        $offset = $this->_request->getParam('offset', 0);
+        $productData  = $productModel->getProductList($limit, $offset);
+        $this->_response->setData(array('productList' => $productData));
+    }
+
+    /**
+     * Save list of products
+     *
+     * @return void
+     */
     public function post()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $this->_response->setData(array('hello' => 'world!'));
     }
 
+    /**
+     * Create or update a product
+     *
+     * @return void
+     */
     public function put()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $this->_response->setData(array('hello' => 'world!'));
     }
 
+    /**
+     * Delete a product
+     *
+     * @return void
+     */
     public function delete()
     {
-        $this->_result->setData(array('hello' => 'world!'));
+        $this->_response->setData(array('hello' => 'world!'));
     }
 }

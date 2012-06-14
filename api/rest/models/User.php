@@ -1,17 +1,24 @@
 <?php
 /**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
  *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
+ */
+/**
+ * Class to handle user data
  */
 class Application_Model_User extends Admin2_Model_Abstract
 {
-
-
     /**
      * Retrieve a list of user data.
      *
-     * @param int $limit  Maximum length of list.
-     * @param int $offset Offset of first list item.
-     * @param array $filter Filter for where clause.
+     * @param int   $limit  Maximum length of list
+     * @param int   $offset Offset of first list item
+     * @param array $filter Filter for where clause
      *
      * @return array
      */
@@ -22,42 +29,35 @@ class Application_Model_User extends Admin2_Model_Abstract
         $userList->setSqlLimit($offset, $limit);
 
         $oListObject = $userList->getBaseObject();
-        $sFieldList = $oListObject->getSelectFields();
-        $select = "SELECT $sFieldList FROM " . $oListObject->getViewName() . PHP_EOL;
+        $sFieldList  = $oListObject->getSelectFields();
+        $select      = 'SELECT ' . $sFieldList . ' FROM ' . $oListObject->getViewName();
 
         if ($sActiveSnippet = $oListObject->getSqlActiveSnippet()) {
-            $select .= " WHERE $sActiveSnippet " . PHP_EOL;
+            $select .= ' WHERE ' . $sActiveSnippet;
         }
 
         $database = oxDb::getDb();
 
-        //add simple OR filter to query
-        //ToDo: make it more beautiful
+        // add simple OR filter to query
         if (!empty($filter)) {
-            $select .= " AND ( ";
+            $select .= ' AND (';
             $countFields = 0;
 
             foreach ($filter as $field => $clause) {
                 $countFields++;
-                if ($countFields > 1)
-                    $select .= " OR ";
-
-                $quotedFirstClause = $database->quote('%' . $clause . '%');
-                $quotedSecondClause = $database->quote($clause . '%');
-                $quotedThirdClause = $database->quote('%' . $clause);
-
-                $select .= " " . $field . " LIKE " . $quotedFirstClause . PHP_EOL;
-                $select .= " OR " . $field . " LIKE " . $quotedSecondClause . PHP_EOL;
-                $select .= " OR " . $field . " LIKE " . $quotedThirdClause . PHP_EOL;
+                if ($countFields > 1) {
+                    $select .= ' OR ';
+                }
+                $select .= '`' . $field . '` LIKE ' . $database->quote('%' . $clause . '%');
             }
-            $select .= " ) ";
+            $select .= ')';
         }
 
         $userList->selectString($select);
 
         $users = $userList->getArray();
 
-        $counter = 0;
+        $counter   = 0;
         $usersData = array();
         /** @var $user oxUser */
         foreach ($users as $user) {
@@ -67,9 +67,7 @@ class Application_Model_User extends Admin2_Model_Abstract
                 $usersData['user' . $counter] = $data;
             }
         }
-
         return $usersData;
-
     }
 
     /**
@@ -84,17 +82,16 @@ class Application_Model_User extends Admin2_Model_Abstract
         /** @var $user oxuser */
         $user = oxNew('oxuser');
         $user->disableLazyLoading();
-        if (!$user->load($entity))
+        if (!$user->load($entity)) {
             return null;
-
+        }
 
         $userData = array();
-        $fields = $user->getFieldNames();
+        $fields   = $user->getFieldNames();
 
         foreach ($fields as $field) {
             $userData[$field] = $user->getFieldData($field);
         }
-
         return $userData;
     }
 }

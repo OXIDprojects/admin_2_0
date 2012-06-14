@@ -1,4 +1,14 @@
 <?php
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
+
 class Config_ModulesController extends Admin2_Controller_Abstract
 {
     /**
@@ -16,7 +26,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
     public function get()
     {
         $shopConfigModel = $this->getShopConfigModel();
-        $this->_result->setData($shopConfigModel->getModules());
+        $this->_response->setData($shopConfigModel->getModules());
     }
 
     /**
@@ -31,7 +41,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
 
         $shopConfigModel = $this->getShopConfigModel();
         $result = $shopConfigModel->addModule($oxidClass, $moduleName);
-        $this->_result->setData($result);
+        $this->_response->setData($result);
     }
 
     /**
@@ -44,7 +54,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
         $moduleList = $this->_request->getParam('moduleList');
         $shopConfigModel = $this->getShopConfigModel();
         $result = $shopConfigModel->setModules($moduleList);
-        $this->_result->setData($result);
+        $this->_response->setData($result);
     }
 
     /**
@@ -59,7 +69,7 @@ class Config_ModulesController extends Admin2_Controller_Abstract
 
         $shopConfigModel = $this->getShopConfigModel();
         $result = $shopConfigModel->removeModules($oxidClass, $moduleName);
-        $this->_result->setData($result);
+        $this->_response->setData($result);
     }
 
     /**

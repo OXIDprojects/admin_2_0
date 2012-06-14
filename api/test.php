@@ -1,4 +1,14 @@
 <?php
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
+
 $publicUrl = dirname($_SERVER['SCRIPT_NAME']);
 $srcDir = '../admin2/views/src';
 ?>
@@ -82,7 +92,10 @@ $srcDir = '../admin2/views/src';
                 </tr>
                 <tr>
                     <th></th>
-                    <td><button type="submit">Submit</button> <button type="button" id="addVariable">Add variable</button></td>
+                    <td>
+                        <button type="submit">Submit</button>
+                        <button type="button" id="addVariable">Add variable</button>
+                    </td>
                 </tr>
                 <tr>
                     <th>Response:</th>

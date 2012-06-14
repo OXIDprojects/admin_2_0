@@ -8,22 +8,21 @@
  *  @link      http://admin20.de
  *  @copyright (C) 2012 :: Admin 2.0 Developers
  */
-/**
- * Error class
- */
-class Admin2_Controller_Error
-{
+
+
+class productquickedit {
+    
+    // Name of the templatefile
+    protected $_templateName = 'productquickedit.php';
+    
     /**
-     * Get dump of thrown exception
+     * Prepare content and return the output
      *
-     * @param Exception $exception Thrown exception
-     *
-     * @return string
+     * @return rendered output
      */
-    public function error(Exception $exception)
+    public function render()
     {
-        ob_start();
-        var_dump($exception);
-        return ob_get_clean();
+        return $this->_templateName;
     }
+    
 }

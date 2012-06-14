@@ -1,5 +1,13 @@
 <?php
-
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
 /**
  * Request Dispatcher
  */
@@ -22,7 +30,7 @@ class Admin2_Dispatcher
     /**
      * The result of the controller action.
      *
-     * @var Admin2_Controller_Result
+     * @var Admin2_Controller_Response
      */
     protected $_result;
 
@@ -36,20 +44,20 @@ class Admin2_Dispatcher
     /**
      * Constructor
      *
-     * @param Admin2_Controller_Request_Abstract $request
-     * @param Admin2_Controller_Result           $result
-     * @param array                              $config
+     * @param Admin2_Controller_Request_Abstract $request  Request object
+     * @param Admin2_Controller_Response         $response Response object
+     * @param array                              $config   Configuration array
      *
      * @return Admin2_Dispatcher
      */
     public function __construct(
         Admin2_Controller_Request_Abstract $request,
-        Admin2_Controller_Result $result,
+        Admin2_Controller_Response $response,
         $config = array()
     )
     {
         $this->_request         = $request;
-        $this->_result          = $result;
+        $this->_result          = $response;
         $outputProcClass        = 'Admin2_Output_Processor_' . ucfirst($request->getFormat());
         $this->_outputProcessor = new $outputProcClass();
 
@@ -61,6 +69,8 @@ class Admin2_Dispatcher
 
     /**
      * Starting point for dispatcher execution
+     *
+     * @throws Admin2_Dispatcher_Exception
      *
      * @return void
      */
@@ -107,6 +117,10 @@ class Admin2_Dispatcher
             }
 
             $realMethod = strtolower($method);
+            $entity = $this->_request->getEntity();
+            if (empty($entity)) {
+                $realMethod = 'getList';
+            }
 
             if (!method_exists($controller, $realMethod)) {
                 require_once 'Admin2/Dispatcher/Exception.php';

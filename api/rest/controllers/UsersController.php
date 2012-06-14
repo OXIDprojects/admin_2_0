@@ -1,4 +1,13 @@
 <?php
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
 
 /**
  *
@@ -20,29 +29,43 @@ class UsersController extends Admin2_Controller_Abstract
         $entity = $request->getEntity();
         if (!empty($entity)) {
             $userData = $userModel->getUser($entity);
-        } else {
-            $limit = $request->getParam('limit', 50);
-            $offset = $request->getParam('offset', 0);
-            $filter = $request->getParam('filter', array());
-            $userData = $userModel->getUserList($limit, $offset, $filter);
         }
 
         if ($userData === null) {
             return;
         }
 
-        $result = $this->getResult();
-        if (!empty($entity)) {
-            $result->setData(array('user' => $userData));
-        } else {
-            $result->setData(array('userlist' => $userData));
-        }
+        $result = $this->getResponse();
+        $result->setData(array('user' => $userData));
     }
+
+    /**
+     * Handle method GET without an entity.
+     *
+     * @return void
+     */
+    public function getList()
+    {
+        $userModel = new Application_Model_User();
+        $request = $this->getRequest();
+        $limit = $request->getParam('limit', 50);
+        $offset = $request->getParam('offset', 0);
+        $filter = $request->getParam('filter', array());
+        $userData = $userModel->getUserList($limit, $offset, $filter);
+
+        if ($userData === null) {
+            return;
+        }
+
+        $result = $this->getResponse();
+        $result->setData(array('userlist' => $userData));
+    }
+
 
     /**
      * Handle method POST
      *
-     * @return null
+     * @return void
      */
     public function post()
     {
@@ -52,7 +75,7 @@ class UsersController extends Admin2_Controller_Abstract
     /**
      * Handle method PUT
      *
-     * @return null
+     * @return void
      */
     public function put()
     {
@@ -62,7 +85,7 @@ class UsersController extends Admin2_Controller_Abstract
     /**
      * Handle method DELETE
      *
-     * @return null
+     * @return void
      */
     public function delete()
     {

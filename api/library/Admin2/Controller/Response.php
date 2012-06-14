@@ -1,9 +1,18 @@
 <?php
 /**
- * Admin2_Controller_Result class
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
  *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
  */
-class Admin2_Controller_Result
+
+/**
+ * Response class
+ */
+class Admin2_Controller_Response
 {
     // Successful
     /**
@@ -302,6 +311,8 @@ class Admin2_Controller_Result
      * Set HTTP response code
      *
      * @param string $responseCode HTTP response code
+     *
+     * @return void
      */
     public function setResponseCode($responseCode)
     {
@@ -348,6 +359,7 @@ class Admin2_Controller_Result
     }
 
     /**
+     * Detect if response has data to return
      *
      * @return bool
      */

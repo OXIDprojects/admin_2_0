@@ -11,61 +11,85 @@ abstract class Admin2_Controller_Abstract
     protected $_request;
 
     /**
-     * @var Admin2_Controller_Result
+     * @var Admin2_Controller_Response
      */
-    protected $_result;
+    protected $_response;
 
     /**
      * Constructor
      *
-     * @param Admin2_Controller_Request_Abstract $request The request
-     * @param Admin2_Controller_Result           $result  The data to return
+     * @param Admin2_Controller_Request_Abstract $request  The request
+     * @param Admin2_Controller_Response         $response The data to return
+     *
+     * @return Admin2_Controller_Abstract
      */
-    public function __construct(Admin2_Controller_Request_Abstract $request, Admin2_Controller_Result $result)
+    public function __construct(Admin2_Controller_Request_Abstract $request, Admin2_Controller_Response $response)
     {
         $this->_request = $request;
-        $this->_result = $result;
+        $this->_response = $response;
         $this->init();
     }
 
+    /**
+     * Controller initialization method.
+     *
+     * @return void
+     */
     public function init()
     {
     }
 
     /**
      * Handle method GET
+     *
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function get();
 
     /**
      * Handle method POST
+     *
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function post();
 
     /**
      * Handle method PUT
+     *
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function put();
 
     /**
      * Handle method DELETE
+     *
      * @abstract
      *
-     * @return null
+     * @return void
      */
     abstract public function delete();
 
     /**
-     * @param \Admin2_Controller_Request_Abstract $request
+     * Handle method GET without an entity.
+     *
+     * @abstract
+     *
+     * @return void
+     */
+    abstract public function getList();
+
+    /**
+     * Set the request object
+     *
+     * @param \Admin2_Controller_Request_Abstract $request The request object
+     *
+     * @return void
      */
     public function setRequest(Admin2_Controller_Request_Abstract $request)
     {
@@ -73,7 +97,9 @@ abstract class Admin2_Controller_Abstract
     }
 
     /**
-     * @return \Admin2_Controller_Request_Abstract
+     * Get the request object
+     *
+     * @return \Admin2_Controller_Request_Abstract The request object
      */
     public function getRequest()
     {
@@ -81,18 +107,24 @@ abstract class Admin2_Controller_Abstract
     }
 
     /**
-     * @param \Admin2_Controller_Result $result
+     * Set response
+     *
+     * @param \Admin2_Controller_Response $response The response object
+     *
+     * @return void
      */
-    public function setResult(Admin2_Controller_Result $result)
+    public function setResponse(Admin2_Controller_Response $response)
     {
-        $this->_result = $result;
+        $this->_response = $response;
     }
 
     /**
-     * @return \Admin2_Controller_Result
+     * Get response
+     *
+     * @return \Admin2_Controller_Response The response object
      */
-    public function getResult()
+    public function getResponse()
     {
-        return $this->_result;
+        return $this->_response;
     }
 }

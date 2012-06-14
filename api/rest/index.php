@@ -1,4 +1,14 @@
 <?php
+/**
+ *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
+ *
+ *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
+ *  it under the terms of the MIT License.
+ *
+ *  @link      http://admin20.de
+ *  @copyright (C) 2012 :: Admin 2.0 Developers
+ */
+
 error_reporting(E_ALL ^ E_NOTICE); // Oxid-classes throw notices so we block them here
 ini_set('display_errors', 1);
 
@@ -53,6 +63,6 @@ $moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
 
 // Here we go.
 $request    = new Admin2_Controller_Request_Http();
-$result     = new Admin2_Controller_Result();
+$result     = new Admin2_Controller_Response();
 $dispatcher = new Admin2_Dispatcher($request, $result);
 $dispatcher->run();
