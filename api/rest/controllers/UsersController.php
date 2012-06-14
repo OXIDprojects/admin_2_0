@@ -27,15 +27,21 @@ class UsersController extends Admin2_Controller_Abstract
         $userModel = new Application_Model_User();
         $request = $this->getRequest();
         $entity = $request->getEntity();
+        $result = $this->getResult();
+
+        // TODO: 400 bad request
+        // request cannot be fulfilled due to bad syntax
+        // $result->setResponseCode(400);
+
         if (!empty($entity)) {
             $userData = $userModel->getUser($entity);
         }
 
-        if ($userData === null) {
-            return;
+        if (empty($userData)) {
+            // 404 requested resource could not be found
+            $result->setResponseCode(Admin2_Controller_Result::NOT_FOUND);
         }
-
-        $result = $this->getResponse();
+        $result->setResponseCode(Admin2_Controller_Result::OK);
         $result->setData(array('user' => $userData));
     }
 
@@ -53,7 +59,7 @@ class UsersController extends Admin2_Controller_Abstract
         $filter = $request->getParam('filter', array());
         $userData = $userModel->getUserList($limit, $offset, $filter);
 
-        if ($userData === null) {
+        if (empty($userData)) {
             return;
         }
 
@@ -61,25 +67,37 @@ class UsersController extends Admin2_Controller_Abstract
         $result->setData(array('userlist' => $userData));
     }
 
-
     /**
-     * Handle method POST
+     * Handle method POST to create a new user
      *
      * @return void
      */
     public function post()
     {
         // TODO: Implement post() method.
+
+        // no user name -> 406
+        // 406 Not Acceptable
+
+
+        // 201 successfully created
+        // location in header
     }
 
     /**
-     * Handle method PUT
+     * Handle method PUT to update a user
      *
      * @return void
      */
     public function put()
     {
         // TODO: Implement put() method.
+
+        // no oxid/s -> 406
+        // 406 Not Acceptable
+
+        // 200 request wsa successfully
+        // response in header
     }
 
     /**
@@ -90,5 +108,11 @@ class UsersController extends Admin2_Controller_Abstract
     public function delete()
     {
         // TODO: Implement delete() method.
+
+        // no oxid/s -> 406
+        // 406 Not Acceptable
+
+        // 200 request wsa successfully
+        // response in header
     }
 }
