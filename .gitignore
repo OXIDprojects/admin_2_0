@@ -1,9 +1,5 @@
 /export/*
 /log/*
-/modules/*
-/out/*
-/core/*
-/admin/*
 /tmp/*
 /views/*
 /setup/*

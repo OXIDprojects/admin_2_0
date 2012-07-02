@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="ISO-8859-15"?>
+<OX>
+    <OXMENU id="NAVIGATION_ESHOPADMIN">
+        <MAINMENU id="mxuadmin">
+            <SUBMENU id="mxusers" cl="admin_user" list="user_list">
+                <TAB id="adm2rest" cl="adm2rest_api" />
+            </SUBMENU>
+        </MAINMENU>
+    </OXMENU>
+</OX>
