@@ -1,14 +1,4 @@
 <?php
-/**
- *  This file is part of Admin 2.0 project for OXID eShop CE/PE/EE.
- *
- *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
- *  it under the terms of the MIT License.
- *
- * @link      http://admin20.de
- * @copyright (C) 2012 :: Admin 2.0 Developers
- */
-
 error_reporting(E_ALL ^ E_NOTICE); // Oxid-classes throw notices so we block them here
 ini_set('display_errors', 1);
 
@@ -39,13 +29,13 @@ set_include_path(
     implode(
         PATH_SEPARATOR,
         array(
-             realpath(dirname(__FILE__) . '/../library'),
-             getShopBasePath(),
-             get_include_path(),
+            realpath(dirname(__FILE__) . '/../library'),
+            getShopBasePath(),
+            get_include_path(),
         )
     )
 );
-
+         
 /**
  * Load OXID core classes.
  */
@@ -61,8 +51,15 @@ $loader->registerNamespace('Admin2');
 // The module loader loads e.g. the models (currently only the models, but easily extendable).
 $moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
 
+// tabsl
+// only for testing oauth
+require 'api/rest/lib/oAuth2/OAuth2.inc'; 
+$oAdm2pAuth = new adm2oauth();
+$oAdm2pAuth->checkApiLogin('9826aff0657076aa1774396a865e8d64');
+
+
 // Here we go.
 $request    = new Admin2_Controller_Request_Http();
-$response   = new Admin2_Controller_Response();
-$dispatcher = new Admin2_Dispatcher($request, $response);
+$result     = new Admin2_Controller_Result();
+$dispatcher = new Admin2_Dispatcher($request, $result);
 $dispatcher->run();
