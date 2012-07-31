@@ -1,8 +1,12 @@
 <?php
 error_reporting(E_ALL ^ E_NOTICE); // Oxid-classes throw notices so we block them here
-ini_set('display_errors', 1);
 
 defined('APPLICATION_PATH') || define('APPLICATION_PATH', dirname(__FILE__));
+defined('APPLICATION_ENV') || define('APPLICATION_ENV', getenv('APPLICATION_ENV'));
+
+if (APPLICATION_ENV == 'development') {
+    ini_set('display_errors', 1);
+}
 
 /**
  * Returns the filesystem path to the OXID eShop installation.
@@ -35,7 +39,7 @@ set_include_path(
         )
     )
 );
-         
+
 /**
  * Load OXID core classes.
  */
@@ -47,19 +51,15 @@ require 'Admin2/Loader/Autoloader.php';
 $loader = Admin2_Loader_Autoloader::getInstance();
 $loader->registerNamespace('Admin2');
 
+$hashClass = new Admin2_Signature_Hash_Sha256();
+$signatureClass = new Admin2_Signature_PhpArray();
+
 // Initialize our module loader.
 // The module loader loads e.g. the models (currently only the models, but easily extendable).
 $moduleLoader = Admin2_Loader_ModuleLoader::getInstance();
 
-// tabsl
-// only for testing oauth
-require 'api/rest/lib/oAuth2/OAuth2.inc'; 
-$oAdm2pAuth = new adm2oauth();
-$oAdm2pAuth->checkApiLogin('9826aff0657076aa1774396a865e8d64');
-
-
 // Here we go.
 $request    = new Admin2_Controller_Request_Http();
-$result     = new Admin2_Controller_Result();
+$result     = new Admin2_Controller_Response();
 $dispatcher = new Admin2_Dispatcher($request, $result);
-$dispatcher->run();
+$dispatcher->run($signatureClass, $hashClass);

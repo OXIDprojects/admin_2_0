@@ -23,7 +23,7 @@ class Admin2_Output_Processor_Json implements Admin2_Output_Processor_Interface
      */
     public function process(Admin2_Controller_Response $response)
     {
-        $response->addResponseHeader('Content-Type', 'application/json', true);
+        $response->addResponseHeader('Content-Type', 'application/json; charset=utf-8', true);
 
         return json_encode($response->getData());
     }

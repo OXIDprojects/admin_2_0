@@ -127,4 +127,20 @@ abstract class Admin2_Controller_Request_Abstract
 
         return $default;
     }
+
+    /**
+     * Returns the request parameters.
+     *
+     * @return array
+     */
+    public function getParams()
+    {
+        $params = $this->_params;
+        $params['controller'] = $this->getContoller();
+        $params['entity'] = $this->getEntity();
+        $params['format'] = $this->getFormat();
+        $params['method'] = $this->getMethod();
+        $params['version'] = $this->getVersion();
+        return $params;
+    }
 }

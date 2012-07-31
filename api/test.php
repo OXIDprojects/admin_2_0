@@ -12,19 +12,22 @@
 $publicUrl = dirname($_SERVER['SCRIPT_NAME']);
 $srcDir = '../admin2/views/src';
 ?>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
-        "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <title>Testing API REST methods</title>
     <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/reset.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/style.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/ui-lightness/jquery-ui-1.8.22.custom.css">
     <link rel="stylesheet" type="text/css" href="<?php echo $srcDir;?>/css/fluid_grid.css">
 
     <style type="text/css">
         #varInputDialog {
             display:none;
         }
+        th, td {padding:2px 4px;}
+        #dataTable {min-width:800px;}
+
     </style>
 
     <script type="text/javascript" src="<?php echo $srcDir;?>/js/jquery-1.7.1.min.js"></script>

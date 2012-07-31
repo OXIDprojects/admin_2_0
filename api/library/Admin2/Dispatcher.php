@@ -5,8 +5,8 @@
  *  The Admin 2.0 sourcecode is free software: you can redistribute it and/or modify
  *  it under the terms of the MIT License.
  *
- *  @link      http://admin20.de
- *  @copyright (C) 2012 :: Admin 2.0 Developers
+ * @link      http://admin20.de
+ * @copyright (C) 2012 :: Admin 2.0 Developers
  */
 /**
  * Request Dispatcher
@@ -32,7 +32,7 @@ class Admin2_Dispatcher
      *
      * @var Admin2_Controller_Response
      */
-    protected $_result;
+    protected $_response;
 
     /**
      * Directory where the controller are located.
@@ -57,7 +57,7 @@ class Admin2_Dispatcher
     )
     {
         $this->_request         = $request;
-        $this->_result          = $response;
+        $this->_response        = $response;
         $outputProcClass        = 'Admin2_Output_Processor_' . ucfirst($request->getFormat());
         $this->_outputProcessor = new $outputProcClass();
 
@@ -68,22 +68,62 @@ class Admin2_Dispatcher
     }
 
     /**
-     * Starting point for dispatcher execution
+     * Checks the request signature.
+     *
+     * @param Admin2_Signature_SignatureAbstract $signatureClass Class for signature check.
+     * @param Admin2_Signature_HashInterface     $hashClass      Class for hash calculation.
      *
      * @throws Admin2_Dispatcher_Exception
      *
      * @return void
      */
-    public function run()
+    public function checkSignature(
+        Admin2_Signature_SignatureAbstract $signatureClass,
+        Admin2_Signature_HashInterface $hashClass
+    )
+    {
+        $params = $this->_request->getParams();
+        if (!isset($params['signature'])) {
+            throw new Admin2_Dispatcher_Exception('Missing signature!');
+        }
+
+        $requestSignature = $params['signature'];
+        unset($params['signature']);
+        $signatureClass->setData($params);
+        $calculatedSignature = $signatureClass->createSignature($hashClass);
+        if ($requestSignature != $calculatedSignature) {
+            if (APPLICATION_ENV == 'development') {
+                echo "<!--\nReq-Sig:  $requestSignature\nCalc-Sig: $calculatedSignature\n-->\n";
+            }
+            throw new Admin2_Dispatcher_Exception('Signature check failed!');
+        }
+    }
+
+    /**
+     * Starting point for dispatcher execution
+     *
+     * @param Admin2_Signature_SignatureAbstract $signatureClass Class for signature check.
+     * @param Admin2_Signature_HashInterface     $hashClass      Class for hash calculation.
+     *
+     * @throws Admin2_Dispatcher_Exception
+     *
+     * @return void
+     */
+    public function run(
+        Admin2_Signature_SignatureAbstract $signatureClass,
+        Admin2_Signature_HashInterface $hashClass
+    )
     {
         try {
+            $this->checkSignature($signatureClass, $hashClass);
+
             $controllerName = $this->_request->getContoller();
             if ($controllerName === null) {
                 throw new Admin2_Dispatcher_Exception("There was no controller specified.");
             }
 
             $spacedClass = str_replace('_', ' ', $controllerName);
-            $class = str_replace(' ', '_', ucwords($spacedClass)) . 'Controller';
+            $class       = str_replace(' ', '_', ucwords($spacedClass)) . 'Controller';
 
             $controllerFile = $this->_controllerDir . '/' . str_replace('_', DIRECTORY_SEPARATOR, $class) . '.php';
 
@@ -101,7 +141,7 @@ class Admin2_Dispatcher
                 throw new Admin2_Dispatcher_Exception("Can't find controller '$class'.");
             }
 
-            $controller = new $class($this->_request, $this->_result);
+            $controller = new $class($this->_request, $this->_response);
             if (!$controller instanceof Admin2_Controller_Abstract) {
                 require_once 'Admin2/Dispatcher/Exception.php';
                 throw new Admin2_Dispatcher_Exception(
@@ -117,7 +157,7 @@ class Admin2_Dispatcher
             }
 
             $realMethod = strtolower($method);
-            $entity = $this->_request->getEntity();
+            $entity     = $this->_request->getEntity();
             if (empty($entity)) {
                 $realMethod = 'getList';
             }
@@ -132,9 +172,9 @@ class Admin2_Dispatcher
             $controller->$realMethod();
 
             $processedData = '';
-            if ($this->_result->hasData()) {
-                $processedData = $this->_outputProcessor->process($this->_result);
-                $responseCode = $this->_result->getResponseCode();
+            if ($this->_response->hasData()) {
+                $processedData = $this->_outputProcessor->process($this->_response);
+                $responseCode  = $this->_response->getResponseCode();
                 if (!empty($responseCode)) {
                     header($responseCode);
                 }
@@ -142,10 +182,9 @@ class Admin2_Dispatcher
                 header('HTTP/1.0 204 No Content', true);
             }
 
-            foreach ($this->_result->getResponseHeader() as $headerKey => $headerValue) {
+            foreach ($this->_response->getResponseHeader() as $headerKey => $headerValue) {
                 header($headerKey . ': ' . $headerValue);
             }
-
         } catch (Exception $exception) {
             $errorController = new Admin2_Controller_Error();
             $processedData   = $errorController->error($exception);

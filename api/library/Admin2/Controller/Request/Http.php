@@ -33,9 +33,17 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
             $urlParts[$count - 1] = substr($urlParts[$count - 1], 0, $formatPos);
         }
 
-        $this->_version    = $count > 0 ? substr($urlParts[0], 1) : 1;
-        $this->_controller = $count > 1 ? $urlParts[1] : 'Products';
-        $this->_entity     = $count > 2 ? $urlParts[2] : '';
+        if ($count > 0) {
+            $this->_version = substr($urlParts[0], 1);
+        }
+
+        if ($count > 1) {
+            $this->_controller = $urlParts[1];
+        }
+
+        if ($count > 2) {
+            $this->_entity = $urlParts[2];
+        }
 
         if (!empty($_SERVER['REQUEST_METHOD'])) {
             $this->_method = $_SERVER['REQUEST_METHOD'];
@@ -48,5 +56,4 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
 
         $this->_params = filter_var_array($request);
     }
-
 }
