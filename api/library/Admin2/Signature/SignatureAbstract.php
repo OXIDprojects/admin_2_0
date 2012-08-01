@@ -6,7 +6,7 @@ abstract class Admin2_Signature_SignatureAbstract
      *
      * @var mixed
      */
-    private $data;
+    private $_data;
 
     /**
      * Create a new signature based on the given data.
@@ -27,7 +27,7 @@ abstract class Admin2_Signature_SignatureAbstract
      */
     public function setData($data)
     {
-        $this->data = $data;
+        $this->_data = $data;
     }
 
     /**
@@ -37,6 +37,6 @@ abstract class Admin2_Signature_SignatureAbstract
      */
     public function getData()
     {
-        return $this->data;
+        return $this->_data;
     }
 }

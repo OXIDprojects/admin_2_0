@@ -13,12 +13,23 @@
  */
 class Admin2_Controller_Error
 {
-    private $htmlHead = '<html>
+    /**
+     * HTML head for the formatted output.
+     *
+     * @var string
+     */
+    private $_htmlHead = '<html>
         <head><title>Error occurred.</title></head>
         <body><h1>An error has been occurred!</h1>
         <table border="2">';
 
-    private $htmlFoot = '</table></body></html>';
+    /**
+     * HTML foot for the formatted output.
+     *
+     * @var string
+     */
+    private $_htmlFoot = '</table></body></html>';
+
     /**
      * Get dump of thrown exception
      *
@@ -29,15 +40,23 @@ class Admin2_Controller_Error
     public function error(Exception $exception)
     {
         if (APPLICATION_ENV == 'development') {
-
-            if (isset($exception->xdebug_message)) {
-                $message = $exception->xdebug_message;
-                $htmlErrors = ini_get('html_errors');
-                return ($htmlErrors ? $this->htmlHead : '') . $message . ($htmlErrors ? $this->htmlFoot : '');
+            ob_start();
+            $htmlErrors = ini_get('html_errors');
+            if ($htmlErrors) {
+                echo $this->_htmlHead;
             }
 
-            ob_start();
-            var_dump($exception);
+            $xdebugMessage = 'xdebug_message';
+            if (isset($exception->$xdebugMessage)) {
+                echo $exception->$xdebugMessage;
+            } else {
+                var_dump($exception);
+            }
+
+            if ($htmlErrors) {
+                echo $this->_htmlFoot;
+            }
+
             return ob_get_clean();
         }
         return $exception->getMessage();
