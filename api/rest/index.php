@@ -51,7 +51,18 @@ require 'Admin2/Loader/Autoloader.php';
 $loader = Admin2_Loader_Autoloader::getInstance();
 $loader->registerNamespace('Admin2');
 
-$hashClass = new Admin2_Signature_Hash_Sha256();
+$hash = null;
+if (function_exists('hash')) {
+    $hashClass = new Admin2_Signature_Hash_Sha256();
+} else if (function_exists('mhash')) {
+    $hashClass = new Admin2_Signature_Mhash_Sha256();
+}
+
+if ($hash === null) {
+    header('HTTP/1.0 500 Internal Server Error');
+    exit(255);
+}
+
 $signatureClass = new Admin2_Signature_PhpArray();
 
 // Initialize our module loader.
