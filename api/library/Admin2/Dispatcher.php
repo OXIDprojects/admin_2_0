@@ -75,7 +75,7 @@ class Admin2_Dispatcher
      *
      * @throws Admin2_Dispatcher_Exception
      *
-     * @return void
+     * @return bool
      */
     public function checkSignature(
         Admin2_Signature_SignatureAbstract $signatureClass,
@@ -84,8 +84,21 @@ class Admin2_Dispatcher
     {
         $params = $this->_request->getParams();
         if (!isset($params['signature'])) {
-            throw new Admin2_Dispatcher_Exception('Missing signature!');
+            header('HTTP/1.0 403 Forbidden');
+            return false;
         }
+
+        if (!isset($params['key'])) {
+            header('HTTP/1.0 403 Forbidden');
+            return false;
+        }
+
+        $user = oxDb::getDb(true)->GetRow(
+            'SELECT `OXID`, `apiSecret` FROM `oxuser` WHERE `apiKey` = ?',
+            array($params['key'])
+        );
+
+        $signatureClass->setSalt($user['apiSecret']);
 
         $requestSignature = $params['signature'];
         unset($params['signature']);
@@ -95,8 +108,13 @@ class Admin2_Dispatcher
             if (APPLICATION_ENV == 'development') {
                 echo "<!--\nReq-Sig:  $requestSignature\nCalc-Sig: $calculatedSignature\n-->\n";
             }
-            throw new Admin2_Dispatcher_Exception('Signature check failed!');
+            header('HTTP/1.0 403 Forbidden');
+            return false;
         }
+
+        $_SESSION['usr'] = $user['OXID'];
+
+        return true;
     }
 
     /**
@@ -115,7 +133,9 @@ class Admin2_Dispatcher
     )
     {
         try {
-            $this->checkSignature($signatureClass, $hashClass);
+            if (!$this->checkSignature($signatureClass, $hashClass)) {
+                return;
+            }
 
             $controllerName = $this->_request->getContoller();
             if ($controllerName === null) {

@@ -3,7 +3,7 @@
     <OXMENU id="NAVIGATION_ESHOPADMIN">
         <MAINMENU id="mxuadmin">
             <SUBMENU id="mxusers" cl="admin_user" list="user_list">
-                <TAB id="adm2rest" cl="adm2rest_api" />
+                <TAB id="admin2rest" cl="admin2rest" />
             </SUBMENU>
         </MAINMENU>
     </OXMENU>

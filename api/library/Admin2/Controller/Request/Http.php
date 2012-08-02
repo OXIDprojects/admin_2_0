@@ -49,7 +49,7 @@ class Admin2_Controller_Request_Http extends Admin2_Controller_Request_Abstract
             $this->_method = $_SERVER['REQUEST_METHOD'];
         }
 
-        $request = $_REQUEST;
+        $request = array_merge($_GET, $_POST);
         if (empty($request) && $this->_method != 'GET') {
             parse_str(file_get_contents('php://input'), $request);
         }

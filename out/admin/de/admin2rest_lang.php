@@ -18,23 +18,23 @@
  * @link      http://www.oxid-esales.com
  * @package   lang
  * @copyright (C) OXID eSales AG 2003-2011
- * @version OXID eShop CE
+ * @version   OXID eShop CE
  * @version   SVN: $Id: cust_lang.php 34107 2011-03-31 15:18:40Z juergen.busch $
  */
 
-$sLangName  = "English";
+$sLangName = "Deutsch";
 // -------------------------------
 // RESOURCE IDENTITFIER = STRING
 // -------------------------------
 $aLang = array(
-'charset'                                  => 'ISO-8859-15',
-'adm2rest'                                 => 'API',
-
-'ADM2REST_API_ACCESS'                      => 'API-Access',
-'ADM2REST_API_ACCESS_KEY'                  => 'API-Key',
-'HELP_ADM2REST_API_ACCESS_KEY'             => 'The API key is required to authenticate itself to the REST server, to get an access token.',
-'GET_ADM2REST_API_ACCESS_KEY'              => 'Create API-Key',
-
+    'charset'                    => 'UTF-8',
+    'admin2rest'                 => 'API-Zugriff',
+    'ADMIN2_API_KEY'             => 'API-Key',
+    'ADMIN2_API_SECRET'          => 'API-Secret',
+    'ADMIN2_SHOW_API_SECRET'     => 'API-Secret anzeigen',
+    'ADMIN2_GENERATE_KEY_SECRET' => 'API-Key und API-Secret generieren',
+    'ADMIN2_API_HEAD_TITLE'      => 'REST-API Zugriff für diesen Benutzer',
+    'ADMIN2_API_DESCRIPTION'     => 'Um den Zugriff zu verweigern, lassen Sie mindestens das Feld "API-Secret" leer.',
 );
 
 /*

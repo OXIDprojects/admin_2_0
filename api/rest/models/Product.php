@@ -29,17 +29,8 @@ class Application_Model_Product extends Admin2_Model_Abstract
         $product = oxNew('oxarticle');
         $product->disableLazyLoading();
         $product->loadInLang($this->_currentLanguageId, $oxid);
-        $productData = array();
-        $fields = $product->getFieldNames();
-        if (!$product->isLoaded()) {
-            return null;
-        }
 
-        foreach ($fields as $field) {
-            $productData[$field] = $product->getFieldData($field);
-        }
-
-        return $productData;
+        return $this->oxidToArray($product);
     }
 
     /**
@@ -54,25 +45,20 @@ class Application_Model_Product extends Admin2_Model_Abstract
     {
         /**
          * @var oxArticleList $productList
+         * @var oxArticle $product
          */
         $productList = oxNew('oxarticlelist');
         $productList->setSqlLimit($offset, $limit);
-        $oListObject = $productList->getBaseObject();//oxNew('oxarticle');
-        $sFieldList = $oListObject->getSelectFields();
-        $query = 'SELECT ' . $sFieldList . ' FROM ' . $oListObject->getViewName() . ' WHERE '
-                . $oListObject->getViewName() . '.oxparentid = \'\'';
+        $listObject = $productList->getBaseObject();
+        $listObject->disableLazyLoading();
+        $fieldList = $listObject->getSelectFields();
+        $query = 'SELECT ' . $fieldList . ' FROM ' . $listObject->getViewName() . ' WHERE '
+                . $listObject->getViewName() . '.oxparentid = \'\'';
         $productList->selectString($query);
 
-        $productsData = $productList->getArray();
         $productData = array();
-        $c = 0;
-        foreach ($productsData as $product) {
-            $sOxid = $product->getProductId();
-            $data = $this->getProduct($sOxid);
-            if ($data !== null) {
-                $c++;
-                $productData['product' . $c] = $data;
-            }
+        foreach ($productList as $product) {
+            $productData[$product->getProductId()] = $this->oxidToArray($product);
         }
         return $productData;
     }
@@ -85,5 +71,17 @@ class Application_Model_Product extends Admin2_Model_Abstract
     public function init()
     {
         // Add your model-specific initialization code here, instead of overloading the constructor.
+    }
+
+    private function oxidToArray(oxBase $oxidObject)
+    {
+        $objectData = array();
+        $fields = $oxidObject->getFieldNames();
+
+        foreach ($fields as $field) {
+            $objectData[$field] = $oxidObject->getFieldData($field);
+        }
+
+        return $objectData;
     }
 }

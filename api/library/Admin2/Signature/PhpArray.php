@@ -11,8 +11,9 @@ class Admin2_Signature_PhpArray extends Admin2_Signature_SignatureAbstract
     public function createSignature(Admin2_Signature_HashInterface $hash)
     {
         $data     = $this->getData();
-        $imploded = $this->_implodeArray($data);
-        return $hash->createHash($imploded);
+        $imploded = str_replace('&&', '&', $this->_implodeArray($data));
+        ini_set('html_errors', false);
+        return $hash->createHash($imploded . "SA" . $this->getSalt() . "LT");
     }
 
     /**
@@ -53,6 +54,8 @@ class Admin2_Signature_PhpArray extends Admin2_Signature_SignatureAbstract
                 $imploded .= '&' . $newPrefix . '=' . $value;
             }
         }
+
+        $imploded = str_replace('&&', '&', $imploded);
 
         return ltrim($imploded, '&');
     }

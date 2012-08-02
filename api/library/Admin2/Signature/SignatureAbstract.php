@@ -9,6 +9,13 @@ abstract class Admin2_Signature_SignatureAbstract
     private $_data;
 
     /**
+     * Secret salt for the signature calculation.
+     *
+     * @var string
+     */
+    private $_salt;
+
+    /**
      * Create a new signature based on the given data.
      *
      * @param Admin2_Signature_HashInterface $hash Class for hash creation.
@@ -38,5 +45,27 @@ abstract class Admin2_Signature_SignatureAbstract
     public function getData()
     {
         return $this->_data;
+    }
+
+    /**
+     * Sets the salt.
+     *
+     * @param string $salt New salt.
+     *
+     * @return void
+     */
+    public function setSalt($salt)
+    {
+        $this->_salt = $salt;
+    }
+
+    /**
+     * Returns the current salt.
+     *
+     * @return string
+     */
+    public function getSalt()
+    {
+        return $this->_salt;
     }
 }
