@@ -102,7 +102,7 @@ $srcDir = '../admin2/views/src';
                 </tr>
                 <tr>
                     <th>Response:</th>
-                    <td id="result-div"></div>
+                    <td id="result-div"></td>
                 </tr>
             </table>
         </form>

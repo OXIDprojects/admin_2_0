@@ -17,13 +17,14 @@ $aModule = array(
     'url'          => 'https://github.com/OXIDprojects/admin_2_0',
     'email'        => 'tobias@merkl.eu',
     'extend'       => array(   
+		'oxadmindetails'	=> 'admin2/admin2rest',
     ),
     'files' => array(
-		'adm2rest_api' => 'admin20/admin/adm2rest_api.php',
-		'adm2oauth' => 'admin20/core/adm2oauth.php',
+		'adm2rest_api' => 'admin2/admin/adm2rest_api.php',
+		'adm2oauth' => 'admin2/core/adm2oauth.php',
     ),
    'templates' => array(
-		'adm2rest_api.tpl' => 'admin20/out/admin/tpl/adm2rest_api.tpl',
+		'admin2rest.tpl' => 'admin2/admin2rest.tpl',
     ),
     'blocks' => array(
     ),

@@ -14,7 +14,7 @@ class Select extends Widget
         <div class="select">
 
             <Label for="<?php echo $this->Id ?>"><?php echo $this->Label ?></Label>
-            <select id="<?php echo $this->Id ?>" Type="checkbox" >
+            <select id="<?php echo $this->Id ?>">
                 <?php
                 foreach ($this->Options as $option => $value)
                 {
