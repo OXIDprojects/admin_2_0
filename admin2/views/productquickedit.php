@@ -285,7 +285,7 @@
 				</div>
 				<div class="clear"></div>
             </div>
-        
+        </div>
         <script src="views/src/js/jquery-1.7.1.min.js" type="text/javascript"></script>
         <script src="views/src/js/joscha.js" type="text/javascript"></script>
         
