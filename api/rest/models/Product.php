@@ -70,7 +70,9 @@ class Application_Model_Product extends Admin2_Model_Abstract
      */
     public function init()
     {
-        // Add your model-specific initialization code here, instead of overloading the constructor.
+        /**
+         * Add your model-specific initialization code here, instead of overloading the constructor.
+         */ 
     }
 
     private function oxidToArray(oxBase $oxidObject)
