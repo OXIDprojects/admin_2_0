@@ -18,7 +18,7 @@ class Rest_Client
     private $_user = null;
     private $_pass = null;
 
-    public function getData($url, $params = "", $method = "GET")
+    public function getData($url)
     {
         $obj = json_decode(file_get_contents(ROOT_DIR . $url));
         return $obj;
@@ -27,10 +27,10 @@ class Rest_Client
     /**
      * Factory of the class. Lazy connect
      *
-     * @param string  $host Host to
-     * @param integer $port
-     * @param string  $user
-     * @param string  $pass
+     * @param string  $host Host to connect
+     * @param integer $port Port to connect
+     * @param string  $user username to connect
+     * @param string  $pass pass to connect
      *
      * @return Http
      */
