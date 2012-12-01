@@ -81,6 +81,16 @@ class ProductsController extends Admin2_Controller_Abstract
      */
     public function delete()
     {
-        $this->_response->setData(array('hello' => 'world!'));
+        $productModel = new Application_Model_Product();
+        $entity = $this->_request->getEntity();
+        $productData = null;
+        if ($entity != null) {
+            $productData  = $productModel->deleteProduct($entity);
+        }
+
+        if ($productData === null) {
+            return;
+        }
+        $this->_response->setData(array('erfolgreich'=>$productData));
     }
 }

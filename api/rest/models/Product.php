@@ -64,6 +64,23 @@ class Application_Model_Product extends Admin2_Model_Abstract
     }
 
     /**
+     * Delete product.
+     *
+     * @param string $oxid OXID of the product.
+     *
+     * @return array|null
+     */
+    public function deleteProduct($oxid)
+    {
+
+        $product = oxNew('oxarticle');
+        $product->delete($oxid);
+        return $this->oxidToArray($product);
+    }
+    
+
+    
+    /**
      * Model-specific initialization code.
      *
      * @return null
