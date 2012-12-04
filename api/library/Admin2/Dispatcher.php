@@ -94,11 +94,11 @@ class Admin2_Dispatcher
         }
 
         $user = oxDb::getDb(true)->GetRow(
-            'SELECT `OXID`, `apiSecret` FROM `oxuser` WHERE `apiKey` = ?',
+            'SELECT `OXID`, `apisecret` FROM `oxuser` WHERE `apikey` = ?',
             array($params['key'])
         );
 
-        $signatureClass->setSalt($user['apiSecret']);
+        $signatureClass->setSalt($user['apisecret']);
 
         $requestSignature = $params['signature'];
         unset($params['signature']);

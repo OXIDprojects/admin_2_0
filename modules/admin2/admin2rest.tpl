@@ -9,11 +9,39 @@
 <form name="transfer" id="transfer" action="[{ $oViewConf->getSelfLink() }]" method="post">
 [{ $oViewConf->getHiddenSid() }]
     <input type="hidden" name="oxid" value="[{ $oxid }]">
-    <input type="hidden" name="cl" value="adm2rest_api">
+    <input type="hidden" name="cl" value="admin2rest">
 </form>
 
-<script type="text/javascript" src="[{$oViewConf->getResourceUrl()}]admin2/utils.js"></script>
+<script type="text/javascript" src="[{$oViewConf->getModuleUrl('admin20')}]admin2/utils.js"></script>
+<script type="text/javascript">
+<!--
+window.onload = function ()
+{
+    [{ if $updatelist == 1}]
+        top.oxid.admin.updateList('[{ $oxid }]');
+    [{ /if}]
+    top.reloadEditFrame();
+}
+function editThis( sID )
+{
+    var oTransfer = top.basefrm.edit.document.getElementById( "transfer" );
+    oTransfer.oxid.value = sID;
+    oTransfer.cl.value = top.basefrm.list.sDefClass;
 
+    //forcing edit frame to reload after submit
+    top.forceReloadingEditFrame();
+
+    var oSearch = top.basefrm.list.document.getElementById( "search" );
+    oSearch.oxid.value = sID;
+    oSearch.actedit.value = 0;
+    oSearch.submit();
+}
+function processUnitInput( oSelect, sInputId )
+{
+    document.getElementById( sInputId ).disabled = oSelect.value ? true : false;
+}
+//-->
+</script>
 <h3>[{ oxmultilang ident="ADMIN2_API_HEAD_TITLE" }]</h3>
 <h4>[{ oxmultilang ident="ADMIN2_API_DESCRIPTION" }]</h4>
 
@@ -25,6 +53,7 @@
                 <input type="hidden" name="cl" value="[{$oViewConf->getActiveClassName()}]">
                 <input type="hidden" name="fnc" value="save">
                 <input type="hidden" name="oxid" value="[{ $oxid }]">
+                <input type="hidden" name="editval[user__oxid]" value="[{ $oxid }]">
             </td>
             <td valign="top" class="edittext">
                 <table cellspacing="0" cellpadding="0" border="0">
@@ -33,7 +62,7 @@
                             <label for="apiKey">[{ oxmultilang ident="ADMIN2_API_KEY" }]:</label>
                         </td>
                         <td class="edittext">
-                            <input id="apiKey" type="text" name="admin2[apiKey]" value="[{ $edit.apiKey|escape }]" style="width:300px;" [{ $readonly}]>
+                            <input id="apiKey" type="text" name="editval[oxuser__apikey]" value="[{$edit->oxuser__apikey->value}]" style="width:300px;" [{ $readonly}]>
                         </td>
                     </tr>
                     <tr>
@@ -41,7 +70,7 @@
                         <label for="apiSecret">[{ oxmultilang ident="ADMIN2_API_SECRET" }]:</label>
                         </td>
                         <td class="edittext">
-                            <input type="password" id="apiSecret" name="admin2[apiSecret]" value="[{ $edit.apiSecret|escape }]" style="width:300px;" [{ $readonly}]>
+                            <input type="password" id="apiSecret" name="editval[oxuser__apisecret]" value="[{$edit->oxuser__apisecret->value}]" style="width:300px;" [{ $readonly}]>
                         </td>
                     </tr>
                     <tr>

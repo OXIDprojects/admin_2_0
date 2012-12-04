@@ -201,7 +201,7 @@ $srcDir = '../admin2/views/src';
                 $('#dataTable').dataTable().fnClearTable();
                 return;
             }
-            var trNode = $(anchorNode).parent().parent();
+            var trNode = $('#dataTable tr').index($(anchorNode).closest('tr')) - 1;
             $('#dataTable').dataTable().fnDeleteRow(trNode);
         }
     </script>
