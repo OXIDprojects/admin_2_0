@@ -13,7 +13,7 @@ class Image extends Widget
     {
         ob_start();
         ?>
-        <image src="<?php echo $this->Source ?>" title="<?php echo (isset($this->Label)) ? $this->Label : "" ?>" />
+        <img src="<?php echo $this->Source ?>" title="<?php echo (isset($this->Label)) ? $this->Label : "" ?>" />
         <?php
         $output = ob_get_clean();
         return $output;

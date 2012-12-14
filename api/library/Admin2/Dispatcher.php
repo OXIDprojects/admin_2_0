@@ -196,10 +196,10 @@ class Admin2_Dispatcher
                 $processedData = $this->_outputProcessor->process($this->_response);
                 $responseCode  = $this->_response->getResponseCode();
                 if (!empty($responseCode)) {
-                    header($responseCode);
+               		header(' ', true, $responseCode);
                 }
             } else {
-                header('HTTP/1.0 204 No Content', true);
+                header(' ', true, 204);
             }
 
             foreach ($this->_response->getResponseHeader() as $headerKey => $headerValue) {

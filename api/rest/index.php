@@ -43,22 +43,26 @@ set_include_path(
 /**
  * Load OXID core classes.
  */
-require 'modules/functions.php';
-require 'core/oxfunctions.php';
+if (file_exists(getShopBasePath() . "bootstrap.php")) {
+	require_once getShopBasePath() . "bootstrap.php";
+} else {
+	require 'modules/functions.php';
+	require 'core/oxfunctions.php';
+}
 
 // Load and initialize our main autoloader.
 require 'Admin2/Loader/Autoloader.php';
 $loader = Admin2_Loader_Autoloader::getInstance();
 $loader->registerNamespace('Admin2');
 
-$hash = null;
+$hashClass = null;
 if (function_exists('hash')) {
     $hashClass = new Admin2_Signature_Hash_Sha256();
 } else if (function_exists('mhash')) {
     $hashClass = new Admin2_Signature_Mhash_Sha256();
 }
 
-if ($hash === null) {
+if ($hashClass === null) {
     header('HTTP/1.0 500 Internal Server Error');
     exit(255);
 }
